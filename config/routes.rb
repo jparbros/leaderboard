@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
 
   root 'welcome#index'
-  resources :users do
-    resources :inputs
+  resources :users, defaults: { format: 'json' }  do
+    resources :inputs, defaults: { format: 'json' }
   end
   get '*path' => 'welcome#index', :constraints => { :subdomain => /.+/ }
 end

@@ -22,3 +22,16 @@ app.controller 'indexCtrl', ($scope, $location, $resource, $modal, Input) ->
           input
 
     modalInstance.result
+
+  $scope.openDialogDeleteInput = (input) ->
+    modalInstance = $modal.open
+      templateUrl: 'leaderboard/templates/inputs/delete.html',
+      controller: 'deleteInputCtrl',
+      size: 'lg',
+      resolve:
+        input: ->
+          input
+
+    modalInstance.result.then (input) ->
+      index = $scope.inputs.indexOf(input)
+      $scope.inputs.splice(index, 1)

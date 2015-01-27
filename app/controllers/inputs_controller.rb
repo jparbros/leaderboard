@@ -2,7 +2,7 @@ class InputsController < ApplicationController
 
   def index
     @inputs = user.inputs
-    render json: @inputs
+    respond_with @inputs
   end
 
   def create
@@ -13,10 +13,20 @@ class InputsController < ApplicationController
   def update
     @input = user.inputs.find params[:id]
     if @input.update_attributes input_params
-      render json: @input
+      respond_with @input
     else
-      render status: 500
+      respond_with status: 500
     end
+  end
+
+  def destroy
+    @input = user.inputs.find params[:id]
+    if @input.destroy
+      respond_with status: 200
+    else
+      respond_with status: 500
+    end
+
   end
 
   private
