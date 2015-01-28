@@ -401,6 +401,7 @@ angular.module('ng-token-auth', ['ipCookie'])
                     expiry:   expiry
                   }))
 
+
                   # strip qs from url to prevent re-use of these params
                   # on page refresh
                   $location.url(($location.path() || '/'))
@@ -527,6 +528,8 @@ angular.module('ng-token-auth', ['ipCookie'])
 
             # must extend existing object for scoping reasons
             angular.extend @user, user
+
+            $rootScope.$broadcast('auth:user-loaded', @user)
 
             # add shortcut to determine user auth status
             @user.signedIn   = true

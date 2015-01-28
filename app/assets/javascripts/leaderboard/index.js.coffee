@@ -33,10 +33,14 @@ window.app ||= angular.module('LeaderboardApp', [
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
-).run( ($rootScope, $location) ->
+).run( ($rootScope, $location, Organization) ->
 
   $rootScope.$on '$routeChangeError', (ev) ->
     $location.path('/signin')
+
+  $rootScope.$on 'auth:user-loaded', (ev) ->
+    organization = Organization.get({id: $rootScope.user.organization_id })
+    $rootScope.organization = organization
 
   $rootScope.$on 'auth:logout-success', (ev) ->
     $location.path('/signin')

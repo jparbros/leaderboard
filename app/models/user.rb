@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   belongs_to :organization
   has_many :inputs
 
+  accepts_nested_attributes_for :organization,
+      allow_destroy: true,
+      reject_if: :all_blank
+
   def confirmed?
    true
   end

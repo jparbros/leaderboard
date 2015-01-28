@@ -7,6 +7,11 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="nav navbar-nav navbar-left buy-now-container" ng-hide="organization.subscribed">
+        <a href="#" class="btn btn-default">Buy Now</a>
+        <span>{{organization.days_left}} Days left of of your trial</span>
+      </div>
+
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{user.name || user.email}} <span class="caret"></span></a>
@@ -17,8 +22,8 @@
           </ul>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 
   <div class="container-fluid">
