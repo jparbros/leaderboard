@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
 
   root 'welcome#index'
-  resources :organizations
+  resources :organizations do
+    resources :departaments, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
+  end
   resources :users, defaults: { format: 'json' }  do
     resources :inputs, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
   end
