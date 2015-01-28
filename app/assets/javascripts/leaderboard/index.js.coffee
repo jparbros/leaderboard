@@ -24,6 +24,10 @@ window.app ||= angular.module('LeaderboardApp', [
       .when '/profile', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'editUsersCtrl'}
+      .when '/departaments', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'indexDepartamentsCtrl'
+      }
       .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)

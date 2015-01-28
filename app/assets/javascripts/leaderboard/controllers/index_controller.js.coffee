@@ -1,5 +1,6 @@
 app.controller 'indexCtrl', ($scope, $location, $resource, $modal, Input) ->
   $scope.partialUrl = "leaderboard/templates/main.html";
+  $scope.generalActive = true;
 
   $scope.inputs = Input.query({user_id: $scope.user.id});
 
