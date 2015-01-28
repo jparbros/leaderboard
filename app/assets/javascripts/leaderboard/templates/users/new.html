@@ -1,47 +1,59 @@
-<div class="pure-g">
-    <div class="pure-u-1-5"></div>
-
-    <div class="pure-u-3-5">
-      <form class="pure-form pure-form-aligned" ng-submit="submitRegistration(registrationForm)" role="form" ng-init="registrationForm = {}">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <form class="form-horizontal" ng-submit="submitRegistration(registrationForm)" role="form" ng-init="registrationForm = {}">
         <fieldset>
           <legend>Registration Form</legend>
 
-          <div class="pure-control-group">
-            <label for="name">Email</label>
-            <input type="email" placeholder="Email" ng-model="registrationForm.email" required>
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" placeholder="Email" ng-model="registrationForm.email" required class="form-control">
+            </div>
           </div>
 
-          <div class="pure-control-group">
-            <label for="name">Password</label>
-            <input type="password" placeholder="Password" ng-model="registrationForm.password" required>
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" placeholder="Password" ng-model="registrationForm.password" required class="form-control">
+            </div>
           </div>
 
-          <div class="pure-control-group">
-            <label for="name">Password confirmation</label>
-            <input type="password" placeholder="Password Confirmation" ng-model="registrationForm.password_confirmation" required>
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Password confirmation</label>
+            <div class="col-sm-10">
+              <input type="password" placeholder="Password confirmation" ng-model="registrationForm.password_confirmation" required class="form-control">
+            </div>
           </div>
 
-          <div class="pure-control-group">
-            <label for="name">Full name</label>
-            <input type="text" placeholder="Full Name"  ng-model="registrationForm.name" required>
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Full name</label>
+            <div class="col-sm-10">
+              <input type="email" placeholder="Email" ng-model="registrationForm.name" required class="form-control">
+            </div>
           </div>
 
-          <div class="pure-control-group">
-            <label for="name">Company</label>
-            <input type="text" placeholder="Company" ng-model="registrationForm.organization_attributes.name" required>
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Organization</label>
+            <div class="col-sm-10">
+              <input type="email" placeholder="Email" ng-model="registrationForm.organization_attributes.name" required class="form-control">
+            </div>
           </div>
 
-          <div class="pure-controls">
-            <label for="remember" class="pure-checkbox">
-              <input id="remember" type="checkbox"> Remember me
-            </label>
-
-            <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
           </div>
 
         </fieldset>
       </form>
     </div>
+  </div>
 
-    <div class="pure-u-1-5"></div>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h4>You have an account? Please <a href="/signin">signin </a></h4>
+    </div>
+  </div>
 </div>
