@@ -24,7 +24,9 @@
 //= require ui-bootstrap-tpls
 //= require ng-token-auth
 //= require ng-rails-csrf
+//= require multiselect
 //= require leaderboard/index
+//= require_tree ./leaderboard/modules
 //= require_tree ./leaderboard/templates
 //= require_tree ./leaderboard/resources
 //= require_tree ./leaderboard/controllers

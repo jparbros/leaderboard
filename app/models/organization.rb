@@ -1,5 +1,8 @@
 class Organization < ActiveRecord::Base
 
+  has_many :departaments
+  has_many :users
+
   def days_left
     TimeDifference.between(trial_end_at, Time.now).in_days.round
   end
