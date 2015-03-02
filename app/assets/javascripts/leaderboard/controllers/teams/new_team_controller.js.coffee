@@ -1,4 +1,4 @@
-app.controller 'newDepartamentCtrl', ($scope, $modalInstance, Departament) ->
+app.controller 'newTeamCtrl', ($scope, $modalInstance, Departament) ->
   $scope.erroOnCreate = false;
   $scope.inputForm = {}
 

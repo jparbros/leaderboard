@@ -11,8 +11,8 @@ window.app ||= angular.module('LeaderboardApp', [
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider
       .when '/', {
-        templateUrl: 'leaderboard/templates/index.html',
-        controller: 'indexCtrl',
+        templateUrl: 'leaderboard/templates/inputs/index.html',
+        controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
@@ -24,9 +24,9 @@ window.app ||= angular.module('LeaderboardApp', [
       .when '/profile', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'editUsersCtrl'}
-      .when '/departaments', {
+      .when '/teams', {
         templateUrl: 'leaderboard/templates/index.html',
-        controller: 'indexDepartamentsCtrl'
+        controller: 'indexTeamsCtrl'
       }
       .otherwise {redirectTo: '/'}
 
@@ -35,8 +35,6 @@ window.app ||= angular.module('LeaderboardApp', [
     $authProvider.configure
       apiUrl: 'http://localhost:3000'
 
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common["X-Requested-With"];
 ).run( ($rootScope, $location, Organization) ->
 
   $rootScope.$on '$routeChangeError', (ev) ->

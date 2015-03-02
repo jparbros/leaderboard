@@ -2,11 +2,16 @@ class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   respond_to :json
 
+  after_filter :set_csrf_cookie_for_ng
+
+  def set_csrf_cookie_for_ng
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
 
 
   protected
@@ -16,6 +21,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << {organization_attributes: [:name]}
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:sign_up) << {organization_attributes: [:name]}
+  end
+
+  def verified_request?
+    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 
 end
