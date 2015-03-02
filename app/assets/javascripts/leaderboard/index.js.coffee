@@ -11,7 +11,7 @@ window.app ||= angular.module('LeaderboardApp', [
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider
       .when '/', {
-        templateUrl: 'leaderboard/templates/inputs/index.html',
+        templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
@@ -25,6 +25,10 @@ window.app ||= angular.module('LeaderboardApp', [
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'editUsersCtrl'}
       .when '/teams', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'indexTeamsCtrl'
+      }
+      .when '/users', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexTeamsCtrl'
       }
