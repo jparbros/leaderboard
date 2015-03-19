@@ -1,0 +1,85 @@
+@import "colors";
+
+body {
+  background-color: $light-gray-background;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a{
+  color: $black-text;
+  font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+body > div > .container {
+  padding: 0;
+  background-color: $white;
+}
+
+.main {
+  padding: 20px;
+  margin-top: 130px;
+}
+
+.sidebar {
+  background-color: $light-gray;
+  position: fixed;
+  top: 130px;
+  bottom: 0;
+  z-index: 10;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 1px solid #eee;
+
+  li {
+    border-bottom: 1px solid $white;
+    margin: 0 !important;
+
+    &.active {
+      background-color: $dark-gray;
+
+      a {
+        background-color: transparent;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    a {
+      padding: 10px 140px 10px 15px;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+ul.sub-nav {
+  margin: 0;
+  padding: 0;
+
+  li {
+    background-color: $light-gray-3;
+    list-style: none;
+    height: 50px;
+    padding: 15px 0;
+
+    a {
+      color: $main-green-blue;
+      font-weight: bold;
+    }
+
+    &.active {
+      background-color: $white;
+
+      a {
+        color: $dark-gray;
+        font-weight: normal;
+      }
+    }
+  }
+}

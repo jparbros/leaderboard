@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'active_model_serializers'
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'bootstrap-sass', '~> 3.3.0'
@@ -12,6 +13,7 @@ gem 'jquery-rails'
 gem 'ng-rails-csrf'
 gem 'omniauth'
 gem 'pg'
+gem 'pry', group: :development
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rails', '4.1.8'
 gem 'rails_12factor', group: :production

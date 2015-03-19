@@ -1,0 +1,32 @@
+.navbar-brand {
+  img {
+    width: 180px;
+  }
+}
+
+.navbar-layout {
+  background-color: $white;
+  border-color: $white;
+  height: 60px;
+  padding: 5px 0;
+  z-index: 1040;
+
+  .nav {
+    &.navbar-links {
+      padding: 10px 0;
+
+      a {
+        margin-left: 65px;
+      }
+    }
+  }
+}
+
+.navbar-app {
+  background-color: $main-green-blue;
+  border-color: $main-green-blue;
+  color: $white;
+  height: 70px;
+  top: 60px;
+  padding: 10px 0;
+}

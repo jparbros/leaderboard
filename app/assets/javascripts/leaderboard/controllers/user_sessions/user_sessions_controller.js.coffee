@@ -3,7 +3,7 @@ app.controller 'UserSessionsCtrl', ($scope, $location, $timeout) ->
   $scope.loginForm = {}
 
   $scope.$on 'auth:login-success', (ev, user) ->
-    $location.path('/leaderboard')
+    $location.path('/')
 
   $scope.$on 'auth:login-error', (ev, reason) ->
     $scope.erroOnLogin = true;

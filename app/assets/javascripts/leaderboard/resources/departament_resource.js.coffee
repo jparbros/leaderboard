@@ -1,5 +1,5 @@
 app.factory "Departament", ($resource) ->
-  $resource("/organizations/:organization_id/departaments/:id", {id: '@id'},
+  $resource("/api/organizations/:organization_id/departaments/:id", {id: '@id'},
   {
    get:    {method: 'GET'},
    save:   {method: 'POST'},

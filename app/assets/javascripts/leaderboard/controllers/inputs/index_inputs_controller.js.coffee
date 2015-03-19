@@ -1,8 +1,8 @@
 app.controller 'indexInputsCtrl', ($scope, $location, $resource, $modal, Input) ->
   $scope.partialUrl = "leaderboard/templates/inputs/main.html";
-  $scope.generalActive = true;
+  $scope.inputsActive = true;
 
-  $scope.inputs = Input.query({user_id: $scope.user.id});
+  $scope.inputs = Input.query({organization_id: $scope.user.organization_id});
 
   $scope.openNewInput = ->
     modalInstance = $modal.open

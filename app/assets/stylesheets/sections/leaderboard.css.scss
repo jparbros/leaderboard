@@ -1,0 +1,104 @@
+.leaderboard-container {
+  margin-top: 60px;
+
+  .teams {
+    @extend .col-md-2;
+    padding-right: 0;
+
+    ul.teams-list {
+      list-style: none;
+      padding: 0;
+
+      li {
+        @extend .text-center;
+        background-color: $light-gray;
+        border-bottom: 1px solid $white;
+        color: $black-text;
+        font-size: 20px;
+        height: 70px;
+        padding: 21px;
+
+        &.title {
+          background-color: $green;
+          border-bottom: none;
+          color: $white;
+          font-family: 'Alegreya Sans SC', sans-serif;
+          font-size: 24px;
+          height: 60px;
+          padding: 15px 0;
+        }
+      }
+    }
+  }
+
+  .main {
+    @extend .col-md-7;
+    margin-top: 0;
+    padding: 0;
+
+    .selected-team {
+      @extend .text-center;
+      background-color: $main-green-blue;
+      color: $white;
+      font-size: 30px;
+      height: 60px;
+      padding: 10px 0;
+    }
+
+    ul.periods-list {
+      list-style: none;
+      padding: 0;
+
+      li {
+        @extend .text-center;
+        background-color: $green;
+        border-right: 1px solid $white;
+        float: left;
+        height: 40px;
+        padding: 9px 0;
+        width: 20%;
+
+        &:last-child {
+          border-right: none;
+        }
+
+        a {
+          color: $white;
+        }
+      }
+    }
+
+    .leaderboard-table {
+      th {
+        @extend .text-center;
+        background-color: $light-gray-3;
+        border-right: 1px solid $dark-gray;
+        border-bottom: none;
+        font-size: 14px;
+        font-weight: normal;
+        width: 20%;
+        padding: 0;
+        border-bottom: 5px solid #f8f8f8;
+        border-top: 4px solid #f8f8f8 !important;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+
+  .leader {
+    @extend .col-md-3;
+    padding-left: 0;
+
+    .leader-title {
+      @extend .text-center;
+      background-color: $light-gray-2;
+      color: $white;
+      font-family: 'Alegreya Sans SC', sans-serif;
+      font-size: 40px;
+      height: 60px;
+    }
+  }
+}

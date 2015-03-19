@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
 
   root 'welcome#index'
-  resources :organizations do
-    resources :departaments, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
-  end
-  resources :users, defaults: { format: 'json' }  do
+  namespace :api do
+    resources :organizations do
+      resources :departaments, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
+    end
+    resources :users, defaults: { format: 'json' }
     resources :inputs, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
   end
   get '*path' => 'welcome#index'

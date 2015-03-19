@@ -18,7 +18,7 @@ app.controller 'editInputCtrl', ($scope, $modalInstance, Input, input) ->
 
   $scope.submitInput = (inputForm) ->
     input = new Input(inputForm)
-    input.$update {user_id: $scope.user.id}, (input)->
+    input.$update {user_id: input.user.id, organization_id: $scope.user.organization_id}, (input)->
       $modalInstance.close(input)
     , (error) ->
       $scope.erroOnUpdate = true

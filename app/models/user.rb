@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :organization
+  belongs_to :departament
   has_many :inputs
+
+  serialize :target, Hash
 
   accepts_nested_attributes_for :organization,
       allow_destroy: true,
@@ -15,4 +18,11 @@ class User < ActiveRecord::Base
   def confirmed?
    true
   end
+
+  def set_password
+    @password = SecureRandom.hex(8)
+    password = @password
+    password_confirmation = @password
+  end
+
 end

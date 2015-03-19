@@ -1,5 +1,5 @@
 app.factory "Input", ($resource) ->
-  $resource("/users/:user_id/inputs/:id", {id: '@id'},
+  $resource("/api/inputs/:id", {id: '@id'},
   {
    get:    {method: 'GET'},
    save:   {method: 'POST'},

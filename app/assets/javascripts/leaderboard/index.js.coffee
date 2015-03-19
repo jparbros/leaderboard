@@ -7,7 +7,8 @@ window.app ||= angular.module('LeaderboardApp', [
   'ngResource',
   'ng-token-auth',
   'ng-rails-csrf',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angularjs-dropdown-multiselect'
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider
       .when '/', {
@@ -23,14 +24,52 @@ window.app ||= angular.module('LeaderboardApp', [
         controller: 'UserSessionsCtrl'}
       .when '/profile', {
         templateUrl: 'leaderboard/templates/index.html',
-        controller: 'editUsersCtrl'}
+        controller: 'editUsersCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
       .when '/teams', {
         templateUrl: 'leaderboard/templates/index.html',
-        controller: 'indexTeamsCtrl'
+        controller: 'indexTeamsCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
       }
       .when '/users', {
         templateUrl: 'leaderboard/templates/index.html',
-        controller: 'indexTeamsCtrl'
+        controller: 'indexMembersCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
+      .when '/users/new', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'newMemberCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
+      .when '/users/:id/edit', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'editMemberCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
+      .when '/leaderboard', {
+        templateUrl: 'leaderboard/templates/leaderboard/index.html',
+        controller: 'leaderboardCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
+      .when '/input', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'indexInputsCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
       }
       .otherwise {redirectTo: '/'}
 
@@ -45,8 +84,9 @@ window.app ||= angular.module('LeaderboardApp', [
     $location.path('/signin')
 
   $rootScope.$on 'auth:user-loaded', (ev) ->
-    organization = Organization.get({id: $rootScope.user.organization_id })
-    $rootScope.organization = organization
+    Organization.get({id: $rootScope.user.organization_id }, (organization) ->
+      $rootScope.organization = organization
+    )
 
   $rootScope.$on 'auth:logout-success', (ev) ->
     $location.path('/signin')
