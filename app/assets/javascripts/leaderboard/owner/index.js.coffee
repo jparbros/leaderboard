@@ -88,6 +88,9 @@ window.ownerApp ||= angular.module('LeaderboardApp', [
       $rootScope.organization = organization
     )
 
+  $rootScope.$on 'auth:registration-email-success', (ev) ->
+    $location.path('/signin')
+
   $rootScope.$on 'auth:logout-success', (ev) ->
     $location.path('/signin')
 )
