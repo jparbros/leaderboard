@@ -76,7 +76,7 @@ window.ownerApp ||= angular.module('LeaderboardApp', [
     $locationProvider.html5Mode(true)
 
     $authProvider.configure
-      apiUrl: 'http://localhost:3000'
+      apiUrl: 'http://leaderboard-pb.herokuapp.com/'
 
 ).run( ($rootScope, $location, Organization) ->
 
