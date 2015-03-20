@@ -16,7 +16,12 @@ window.app ||= angular.module('LeaderboardApp', [
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
-            $auth.validateUser()
+            user = $auth.validateUser()
+            console.log(user.value && user.value.owner)
+            if user.value && user.value.owner
+              true
+            else
+              false
       }
       .when '/signup', {templateUrl: 'leaderboard/templates/users/new.html'}
       .when '/signin', {
@@ -71,6 +76,13 @@ window.app ||= angular.module('LeaderboardApp', [
           auth: ($auth) ->
             $auth.validateUser()
       }
+      .when '/records', {
+        templateUrl: 'leaderboard/templates/user.html',
+        controller: 'indexRecordsCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
       .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)
@@ -81,6 +93,9 @@ window.app ||= angular.module('LeaderboardApp', [
 ).run( ($rootScope, $location, Organization) ->
 
   $rootScope.$on '$routeChangeError', (ev) ->
+    if $rootScope.user.active == true && $rootScope.user.owner == false
+      $location.path('/records')
+    else
     $location.path('/signin')
 
   $rootScope.$on 'auth:user-loaded', (ev) ->

@@ -18,6 +18,7 @@
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Period</label>
       <div class="col-sm-10">
+        <div ng-dropdown-multiselect selected-model="departament.period" options="periods" extra-settings="multiselectSettings"></div>
         <select ng-model='departament.period' class="form-control" multiple required>
           <option value="daily">Daily</option>
           <option value="weekly">Weekly</option>

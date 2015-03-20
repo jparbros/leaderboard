@@ -3,6 +3,18 @@ app.controller 'editTeamCtrl', ($scope, $modalInstance, Departament, departament
   $scope.departament = departament;
   $scope.previous_attributes = angular.copy(departament)
 
+  $scope.periods = [ {id: 'daily', label: 'Daily'},
+    {id: 'weekly', label: 'Weekly'},
+    {id: 'monthly', label: 'Monthly'},
+    {id: 'quartly', label: 'Quartly'},
+    {id: 'yearly', label: 'Yearly'}
+  ]
+
+  $scope.multiselectSettings = {
+      smartButtonMaxItems: 5,
+      externalIdProp: 'id'
+  }
+
   $scope.ok = ->
     $modalInstance.close();
 
