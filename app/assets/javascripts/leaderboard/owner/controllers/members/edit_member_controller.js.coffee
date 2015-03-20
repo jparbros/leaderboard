@@ -1,5 +1,5 @@
 ownerApp.controller 'editMemberCtrl', ($scope, $rootScope, $location, User, Departament, $routeParams, $filter) ->
-  $scope.partialUrl = "leaderboard/templates/members/new.html";
+  $scope.partialUrl = "leaderboard/owner/templates/members/new.html";
   $scope.usersActive = true;
   $scope.erroOnCreate = false
   $scope.selectedTeam = null

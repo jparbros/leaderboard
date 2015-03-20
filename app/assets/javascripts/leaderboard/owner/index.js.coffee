@@ -12,60 +12,60 @@ window.ownerApp ||= angular.module('LeaderboardApp', [
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider
       .when '/', {
-        templateUrl: 'leaderboard/templates/index.html',
+        templateUrl: 'leaderboard/owner/templates/index.html',
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/signup', {templateUrl: 'leaderboard/templates/users/new.html'}
+      .when '/signup', {templateUrl: 'leaderboard/owner/templates/users/new.html'}
       .when '/signin', {
-        templateUrl: 'leaderboard/templates/user_sessions/new.html',
+        templateUrl: 'leaderboard/owner/templates/user_sessions/new.html',
         controller: 'UserSessionsCtrl'}
       .when '/profile', {
-        templateUrl: 'leaderboard/templates/index.html',
+        templateUrl: 'leaderboard/owner/templates/index.html',
         controller: 'editUsersCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
       .when '/teams', {
-        templateUrl: 'leaderboard/templates/index.html',
+        templateUrl: 'leaderboard/owner/templates/index.html',
         controller: 'indexTeamsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
       .when '/users', {
-        templateUrl: 'leaderboard/templates/index.html',
+        templateUrl: 'leaderboard/owner/templates/index.html',
         controller: 'indexMembersCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
       .when '/users/new', {
-        templateUrl: 'leaderboard/templates/index.html',
+        templateUrl: 'leaderboard/owner/templates/index.html',
         controller: 'newMemberCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
       .when '/users/:id/edit', {
-        templateUrl: 'leaderboard/templates/index.html',
+        templateUrl: 'leaderboard/owner/templates/index.html',
         controller: 'editMemberCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
       .when '/leaderboard', {
-        templateUrl: 'leaderboard/templates/leaderboard/index.html',
+        templateUrl: 'leaderboard/owner/templates/leaderboard/index.html',
         controller: 'leaderboardCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
       .when '/input', {
-        templateUrl: 'leaderboard/templates/index.html',
+        templateUrl: 'leaderboard/owner/templates/index.html',
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->

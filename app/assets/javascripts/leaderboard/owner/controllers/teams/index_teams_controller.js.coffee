@@ -1,5 +1,5 @@
 ownerApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootScope, Departament) ->
-  $scope.partialUrl = "leaderboard/templates/teams/index.html";
+  $scope.partialUrl = "leaderboard/owner/templates/teams/index.html";
   $scope.departamentsActive = true;
   $scope.erroOnCreate = false;
 
@@ -31,7 +31,7 @@ ownerApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootScope, De
 
   $scope.openEditDepartament = (departament) ->
     modalInstance = $modal.open
-      templateUrl: 'leaderboard/templates/teams/edit.html',
+      templateUrl: 'leaderboard/owner/templates/teams/edit.html',
       controller: 'editTeamCtrl',
       size: 'lg'
       resolve:
@@ -40,7 +40,7 @@ ownerApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootScope, De
 
   $scope.openDialogDeleteDepartament = (departament) ->
     modalInstance = $modal.open
-      templateUrl: 'leaderboard/templates/teams/delete.html',
+      templateUrl: 'leaderboard/owner/templates/teams/delete.html',
       controller: 'deleteTeamCtrl',
       size: 'lg',
       resolve:

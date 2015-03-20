@@ -1,5 +1,5 @@
 ownerApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User, Departament, $filter) ->
-  $scope.partialUrl = "leaderboard/templates/members/new.html";
+  $scope.partialUrl = "leaderboard/owner/templates/members/new.html";
   $scope.usersActive = true;
   $scope.erroOnCreate = false
   $scope.userForm = new User()

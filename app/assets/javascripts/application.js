@@ -26,9 +26,3 @@
 //= require ng-rails-csrf
 //= require angularjs-dropdown-multiselect
 //= require underscore-min
-//= require leaderboard/index
-//= require_tree ./leaderboard/modules
-//= require_tree ./leaderboard/templates
-//= require_tree ./leaderboard/resources
-//= require_tree ./leaderboard/controllers
-//= require_tree .
