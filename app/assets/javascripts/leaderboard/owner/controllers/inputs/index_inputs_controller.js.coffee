@@ -1,12 +1,12 @@
 ownerApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $modal, Input) ->
-  $scope.partialUrl = "leaderboard/owner/templates/inputs/main.html";
+  $scope.partialUrl = "leaderboard/templates/inputs/main.html";
   $scope.inputsActive = true;
 
   $scope.inputs = Input.query({organization_id: $scope.user.organization_id});
 
   $scope.openNewInput = ->
     modalInstance = $modal.open
-      templateUrl: 'leaderboard/owner/templates/inputs/new.html',
+      templateUrl: 'leaderboard/templates/inputs/new.html',
       controller: 'newInputCtrl',
       size: 'lg'
 
@@ -15,7 +15,7 @@ ownerApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $modal, In
 
   $scope.openEditInput =  (input) ->
     modalInstance = $modal.open
-      templateUrl: 'leaderboard/owner/templates/inputs/edit.html',
+      templateUrl: 'leaderboard/templates/inputs/edit.html',
       controller: 'editInputCtrl',
       size: 'lg',
       resolve:
@@ -26,7 +26,7 @@ ownerApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $modal, In
 
   $scope.openDialogDeleteInput = (input) ->
     modalInstance = $modal.open
-      templateUrl: 'leaderboard/owner/templates/inputs/delete.html',
+      templateUrl: 'leaderboard/templates/inputs/delete.html',
       controller: 'deleteInputCtrl',
       size: 'lg',
       resolve:

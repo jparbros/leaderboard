@@ -1,7 +1,7 @@
 ownerApp.controller 'editUsersCtrl', ($scope, $location) ->
   $scope.erroOnupdate = false;
   $scope.updateSuccessfully = false;
-  $scope.partialUrl = "leaderboard/owner/templates/users/edit.html";
+  $scope.partialUrl = "leaderboard/templates/users/edit.html";
 
   $scope.$on 'auth:account-update-success', (ev, user) ->
     $scope.updateSuccessfully = true;

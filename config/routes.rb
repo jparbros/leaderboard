@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: '/auth'
 
 
-  root 'owner#index'
+  root 'welcome#index'
   namespace :api do
     resources :organizations do
       resources :departaments, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
