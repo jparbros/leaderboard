@@ -1,0 +1,73 @@
+<nav class="navbar navbar-fixed-top navbar-layout">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><%= image_tag 'logo_color.png'%></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{user.name || user.email}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/profile">Profile</a></li>
+            <li class="divider"></li>
+            <li><a href="#" ng-click='signOut()'>Sign Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container leaderboard-container">
+  <div class="row">
+    <div class="teams">
+      <ul class="teams-list">
+        <li class="title">Team</li>
+        <li ng-repeat='team in teams'><a href="#" ng-click="selectTeam(team)">{{team.name}}</a></li>
+        <li><a href="#" ng-click="selectTotalTeam()">Total Team</a></li>
+      </ul>
+    </div>
+
+    <div class="main">
+      <div class="selected-team">
+        {{selectedTeam.name}}
+      </div>
+      <ul class="periods-list">
+        <li><a href="#" ng-click="selectPeriod('today')">Today<a/></li>
+        <li><a href="#" ng-click="selectPeriod('week')">Week<a/></li>
+        <li><a href="#" ng-click="selectPeriod('month')">Month<a/></li>
+        <li><a href="#" ng-click="selectPeriod('quarter')">Quarter<a/></li>
+        <li><a href="#" ng-click="selectPeriod('year')">Year<a/></li>
+      </ul>
+
+      <table class="table table-striped leaderboard-table">
+        <thead>
+          <tr>
+            <th>Name (alias)</th>
+            <th>Target</th>
+            <th>Realized</th>
+            <th>Difference</th>
+            <th>Fullfilment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="input in inputs">
+            <td>{{input.username}}</td>
+            <td>{{input.currentTarget | number:2}}</td>
+            <td>{{input.realized | number:2}}</td>
+            <td>{{input.difference | number:2}}</td>
+            <td>{{input.fullfilment | number:2}}%</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="leader">
+      <div class="leader-title">Leader</div>
+    </div>
+  </div>
+</div>
