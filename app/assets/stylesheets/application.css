@@ -11,5 +11,8 @@
  * file per style scope.
  *
  *= require 'base'
+ *= require_tree ./layout
+ *= require_tree ./mixins
+ *= require_tree ./modules
  *= require_self
  */

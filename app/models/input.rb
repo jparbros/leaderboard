@@ -24,6 +24,10 @@ class Input < ActiveRecord::Base
     where('date >= ? and date <= ?', Date.today.beginning_of_year, Date.today.end_of_year)
   end
 
+  def self.by_user user_id
+    where(user_id: user_id)
+  end
+
   def self.by_departament(departament_id)
     joins(:departament).where(departaments: {id: departament_id})
   end

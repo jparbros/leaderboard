@@ -3,6 +3,7 @@ module Api
 
     def index
       @inputs = organization.inputs
+      @inputs = @inputs.by_user(params[:user_id]) if params[:user_id]
       @inputs = @inputs.by_today if params[:period] == 'today'
       @inputs = @inputs.by_week if params[:period] == 'week'
       @inputs = @inputs.by_month if params[:period] == 'month'

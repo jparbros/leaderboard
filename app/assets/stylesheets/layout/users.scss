@@ -1,0 +1,22 @@
+@import "../colors";
+
+.container.users-container {
+
+  .sidebar {
+    width: 300px;
+
+    li {
+      height: 70px;
+      text-align: center;
+
+      &.active {
+        background-color: $green;
+      }
+
+      a {
+        padding: 23px 0px;
+        text-transform: capitalize;
+      }
+    }
+  }
+}

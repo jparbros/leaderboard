@@ -31,4 +31,3 @@
 //= require_tree ./leaderboard/templates
 //= require_tree ./leaderboard/resources
 //= require_tree ./leaderboard/controllers
-//= require_tree .

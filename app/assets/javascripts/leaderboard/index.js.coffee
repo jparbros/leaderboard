@@ -71,6 +71,14 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
           auth: ($auth) ->
             $auth.validateUser()
       }
+      .when '/records', {
+        templateUrl: 'leaderboard/templates/records/index.html',
+        controller: 'indexRecordsCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
+
       .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)

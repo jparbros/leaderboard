@@ -3,7 +3,7 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
   $scope.departamentsActive = true;
   $scope.erroOnCreate = false;
 
-  $scope.departaments = Departament.query({organization_id: $scope.user.id});
+  $scope.departaments = Departament.query({organization_id: $scope.user.organization_id});
 
   $scope.periods = [ {id: 'daily', label: 'Daily'},
     {id: 'weekly', label: 'Weekly'},

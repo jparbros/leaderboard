@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     resources :users, defaults: { format: 'json' }
     resources :inputs, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
   end
-  get '*path' => 'owner#index'
+  get '*path' => 'welcome#index'
 end
