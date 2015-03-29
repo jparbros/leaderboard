@@ -1,8 +1,9 @@
+@import '../colors';
+
 .leaderboard-container {
   margin-top: 60px;
 
   .teams {
-    @extend .col-md-2;
     padding-right: 0;
 
     ul.teams-list {
@@ -10,13 +11,12 @@
       padding: 0;
 
       li {
-        @extend .text-center;
         background-color: $light-gray;
         border-bottom: 1px solid $white;
         color: $black-text;
         font-size: 20px;
         height: 70px;
-        padding: 21px;
+        padding: 0 10px 0 20px;
 
         &.title {
           background-color: $green;
@@ -26,23 +26,25 @@
           font-size: 24px;
           height: 60px;
           padding: 15px 0;
+          text-align: center;
+
         }
       }
     }
   }
 
   .main {
-    @extend .col-md-7;
     margin-top: 0;
     padding: 0;
 
     .selected-team {
-      @extend .text-center;
       background-color: $main-green-blue;
       color: $white;
+      font-family: 'Alegreya Sans SC', sans-serif;
       font-size: 30px;
       height: 60px;
       padding: 10px 0;
+      text-align: center;
     }
 
     ul.periods-list {
@@ -50,12 +52,12 @@
       padding: 0;
 
       li {
-        @extend .text-center;
         background-color: $green;
         border-right: 1px solid $white;
         float: left;
         height: 40px;
         padding: 9px 0;
+        text-align: center;
         width: 20%;
 
         &:last-child {
@@ -70,7 +72,7 @@
 
     .leaderboard-table {
       th {
-        @extend .text-center;
+        text-align: center;
         background-color: $light-gray-3;
         border-right: 1px solid $dark-gray;
         border-bottom: none;
@@ -85,15 +87,22 @@
           border-right: none;
         }
       }
+
+      tbody {
+        td {
+          height: 50px;
+          text-align: center;
+          vertical-align: middle;
+        }
+      }
     }
   }
 
   .leader {
-    @extend .col-md-3;
     padding-left: 0;
 
     .leader-title {
-      @extend .text-center;
+      text-align: center;
       background-color: $light-gray-2;
       color: $white;
       font-family: 'Alegreya Sans SC', sans-serif;

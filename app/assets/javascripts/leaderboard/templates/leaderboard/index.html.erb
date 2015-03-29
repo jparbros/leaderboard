@@ -23,7 +23,7 @@
 
 <div class="container leaderboard-container">
   <div class="row">
-    <div class="teams">
+    <div class="teams col-md-2">
       <ul class="teams-list">
         <li class="title">Team</li>
         <li ng-repeat='team in teams'><a href="#" ng-click="selectTeam(team)">{{team.name}}</a></li>
@@ -31,7 +31,7 @@
       </ul>
     </div>
 
-    <div class="main">
+    <div class="main col-md-7">
       <div class="selected-team">
         {{selectedTeam.name}}
       </div>
@@ -66,7 +66,7 @@
 
     </div>
 
-    <div class="leader">
+    <div class="leader col-md-3">
       <div class="leader-title">Leader</div>
     </div>
   </div>
