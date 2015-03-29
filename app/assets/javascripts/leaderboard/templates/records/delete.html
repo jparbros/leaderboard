@@ -1,0 +1,17 @@
+<form class="form-horizontal" ng-submit="submitInput(inputForm)" role="form" >
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Delete Input</h4>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-warning animate-show" ng-show="erroOnDelete">
+      There was an error when trying to delete the input.
+    </div>
+
+     <h4>Are you sure of delete the input?</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-danger" ng-click="deleteInput()">Delete Input</button>
+  </div>
+</form>

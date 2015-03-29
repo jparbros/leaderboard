@@ -13,24 +13,28 @@ a{
 }
 
 body > div > .container {
-  padding: 0;
   background-color: $white;
+  padding: 0;
+
 }
 
 .main {
-  padding: 20px;
-  margin-top: 130px;
+  height: 100%;
+  margin: 130px 0 0 0;
+  padding: 0px 15px 0 0;
 }
 
 .sidebar {
   background-color: $light-gray;
-  position: fixed;
-  top: 130px;
+//  border-right: 1px solid #eee;
   bottom: 0;
-  z-index: 10;
   overflow-x: hidden;
   overflow-y: auto;
-  border-right: 1px solid #eee;
+  position: fixed;
+  top: 130px;
+  width: 20%;
+  z-index: 10;
+
 
   li {
     border-bottom: 1px solid $white;

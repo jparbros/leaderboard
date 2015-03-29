@@ -1,0 +1,99 @@
+@import '../../colors';
+
+.navbar-app {
+  .new-record {
+    border: 1px solid white;
+    margin: 8px 0 0 0;
+    width: 100%;
+  }
+
+  ul.users-table-header {
+    list-style: none;
+    margin: 15px 0 0 0;
+
+    li {
+      color: white;
+      border-right: 1px solid white;
+      float: left;
+      text-align: center;
+      width: 25%;
+
+      &:last-child {
+        border: 0;
+      }
+    }
+  }
+}
+
+.users-container {
+  .sidebar {
+    li {
+      height: 70px;
+      text-align: center;
+
+      &.active {
+        background-color: $green;
+      }
+
+      a {
+        padding: 23px 0px;
+        text-transform: capitalize;
+
+        &:focus {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  table.users-table {
+    margin: 0;
+
+    td {
+      text-align: center;
+      width: 25%;
+    }
+  }
+
+  ul {
+    &.totals-head, &.totals-data {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        float: left;
+        width: 33.33%;
+        text-align: center;
+      }
+    }
+
+    &.totals-head {
+      li {
+        border-right: 1px solid $light-gray;
+        color: white;
+        height: 30px;
+        background: $green;
+        padding: 5px 0;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+
+    &.totals-data {
+      li {
+        border-bottom: 1px solid $light-gray;
+        border-right: 1px solid $light-gray;
+        font-size: 18px;
+        height: 85px;
+        padding: 30px 0;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}

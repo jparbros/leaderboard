@@ -1,7 +1,8 @@
-LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input) ->
+LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input, $modal) ->
   $scope.currentUser = $rootScope.user
   $scope.inputs = []
   $scope.periodDetails = null
+  $scope.selectedPeriod = ''
 
   $scope.periods =
     'daily': 'today'
@@ -11,7 +12,7 @@ LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input) 
     'yearly': 'year'
 
   $scope.selectPeriod = (period) ->
-    console.log(period)
+    $scope.selectedPeriod = period
     Input.query({organization_id: $scope.currentUser.organization_id, period: $scope.periods[period], user_id: $scope.currentUser.id}, (inputs) ->
       $scope.inputs = inputs
     )
@@ -21,7 +22,45 @@ LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input) 
       if input
         input.difference = input.currentTarget - input.realized
         input.currentTarget = $scope.currentUser.target[period]
-        console.log input.currentTarget
         input.fullfilment = (input.realized*100) / input.currentTarget
         $scope.periodDetails = input
+      else
+        $scope.periodDetails = {}
+        $scope.periodDetails.difference = 0
+        $scope.periodDetails.currentTarget = $scope.currentUser.target[period]
+        $scope.fullfilment = (0*100) / $scope.periodDetails.currentTarget
     )
+
+  $scope.selectPeriod('daily')
+
+  $scope.openNewRecord = ->
+    modalInstance = $modal.open
+      templateUrl: 'leaderboard/templates/records/new.html',
+      controller: 'newRecordCtrl'
+
+    modalInstance.result.then (input) ->
+      $scope.inputs.push(input)
+      $scope.selectPeriod($scope.selectedPeriod)
+
+  $scope.openEditInput =  (input) ->
+    modalInstance = $modal.open
+      templateUrl: 'leaderboard/templates/inputs/edit.html',
+      controller: 'editInputCtrl',
+      resolve:
+        input: ->
+          input
+
+    modalInstance.result.then (input) ->
+      $scope.selectPeriod($scope.selectedPeriod)
+
+  $scope.openDialogDeleteInput = (input) ->
+    modalInstance = $modal.open
+      templateUrl: 'leaderboard/templates/records/delete.html',
+      controller: 'deleteRecordCtrl',
+      resolve:
+        input: ->
+          input
+
+    modalInstance.result.then (input) ->
+      index = $scope.inputs.indexOf(input)
+      $scope.inputs.splice(index, 1)

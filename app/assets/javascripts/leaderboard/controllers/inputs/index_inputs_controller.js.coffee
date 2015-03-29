@@ -15,8 +15,8 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
 
   $scope.openEditInput =  (input) ->
     modalInstance = $modal.open
-      templateUrl: 'leaderboard/templates/inputs/edit.html',
-      controller: 'editInputCtrl',
+      templateUrl: 'leaderboard/templates/records/edit.html',
+      controller: 'editRecordCtrl',
       size: 'lg',
       resolve:
         input: ->

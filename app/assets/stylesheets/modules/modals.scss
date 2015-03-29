@@ -1,0 +1,27 @@
+@import '../colors';
+
+.modal-content {
+  border-radius: 0;
+
+  .modal-header {
+    background: $main-green-blue;
+    height: 80px;
+
+    .close {
+      color: white;
+      opacity: 1;
+      text-shadow: none;
+    }
+
+    h4 {
+      color: white;
+      font-family: 'Alegreya Sans SC', sans-serif;
+      font-size: 36px;
+      text-align: center;
+    }
+  }
+
+  .modal-footer {
+    border-top: 0;
+  }
+}
