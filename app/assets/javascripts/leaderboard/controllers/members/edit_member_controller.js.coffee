@@ -24,6 +24,6 @@ LeaderboardApp.controller 'editMemberCtrl', ($scope, $rootScope, $location, User
   $scope.submitUser = (userForm) ->
     userObject = new User(userForm)
     userObject.$update {organization_id: $scope.organization.id}, (userData)->
-      $location.path('/users')
+      $location.path('/rankingdesk/users')
     , (error) ->
       $scope.erroOnCreate = true

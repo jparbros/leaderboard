@@ -12,75 +12,82 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   'angularjs-dropdown-multiselect'
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider
-      .when '/', {
+      .when '/rankingdesk', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/signup', {templateUrl: 'leaderboard/templates/users/new.html'}
-      .when '/signin', {
+      .when '/rankingdesk/signup', {templateUrl: 'leaderboard/templates/users/new.html'}
+      .when '/rankingdesk/signin', {
         templateUrl: 'leaderboard/templates/user_sessions/new.html',
         controller: 'UserSessionsCtrl'}
-      .when '/profile', {
+      .when '/rankingdesk/profile', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'editUsersCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/teams', {
+      .when '/rankingdesk/teams', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexTeamsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/users', {
+      .when '/rankingdesk/users', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexMembersCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/users/new', {
+      .when '/rankingdesk/users/new', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'newMemberCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/users/:id/edit', {
+      .when '/rankingdesk/users/:id/edit', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'editMemberCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/leaderboard', {
+      .when '/rankingdesk/leaderboard', {
         templateUrl: 'leaderboard/templates/leaderboard/index.html',
         controller: 'leaderboardCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/input', {
+      .when '/rankingdesk/input', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/records', {
+      .when '/rankingdesk/records', {
         templateUrl: 'leaderboard/templates/records/index.html',
         controller: 'indexRecordsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
+      .when '/rankingdesk/boardlogin/settings', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'settingsBoardloginCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
 
-      .otherwise {redirectTo: '/'}
+      .otherwise {redirectTo: '/rankingdesk'}
 
     $locationProvider.html5Mode(true)
 
@@ -90,7 +97,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
 ).run( ($rootScope, $location, Organization) ->
 
   $rootScope.$on '$routeChangeError', (ev) ->
-    $location.path('/signin')
+    $location.path('/rankingdesk/signin')
 
   $rootScope.$on 'auth:user-loaded', (ev) ->
     Organization.get({id: $rootScope.user.organization_id }, (organization) ->
@@ -98,8 +105,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     )
 
   $rootScope.$on 'auth:registration-email-success', (ev) ->
-    $location.path('/signin')
+    $location.path('/rankingdesk/signin')
 
   $rootScope.$on 'auth:logout-success', (ev) ->
-    $location.path('/signin')
+    $location.path('/rankingdesk/signin')
 )

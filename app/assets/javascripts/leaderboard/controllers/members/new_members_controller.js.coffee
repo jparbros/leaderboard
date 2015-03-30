@@ -18,6 +18,6 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
   $scope.submitUser = (userForm) ->
     userObject = new User(userForm)
     userObject.$save {organization_id: $scope.organization.id}, (userData)->
-      $location.path('/users')
+      $location.path('/rankingdesk/users')
     , (error) ->
       $scope.erroOnCreate = true

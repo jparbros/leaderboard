@@ -12,18 +12,22 @@ Rails.application.routes.draw do
     resources :inputs, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
   end
 
-  get '/signup' => 'welcome#index'
-  get '/signin' => 'welcome#index'
-  get '/profile' => 'welcome#index'
-  get '/profile' => 'welcome#index'
-  get '/teams' => 'welcome#index'
-  get '/users' => 'welcome#index'
-  get '/users/new' => 'welcome#index'
-  get '/users/:id/edit' => 'welcome#index'
-  get '/leaderboard' => 'welcome#index'
-  get '/input' => 'welcome#index'
-  get '/records' => 'welcome#index'
+  namespace 'rankingdesk' do
+    get '/signup' => 'welcome#index'
+    get '/signin' => 'welcome#index'
+    get '/profile' => 'welcome#index'
+    get '/profile' => 'welcome#index'
+    get '/teams' => 'welcome#index'
+    get '/users' => 'welcome#index'
+    get '/users/new' => 'welcome#index'
+    get '/users/:id/edit' => 'welcome#index'
+    get '/leaderboard' => 'welcome#index'
+    get '/input' => 'welcome#index'
+    get '/records' => 'welcome#index'
+    get '/boardlogin/settings' => 'welcome#index'
+    get '*path' => 'welcome#index'
+    root to: 'welcome#index'
+  end
 
   comfy_route :cms, :path => '/', :sitemap => false
-  get '*path' => 'welcome#index'
 end
