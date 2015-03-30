@@ -23,3 +23,4 @@ gem 'spring',        group: :development
 gem 'time_difference'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'comfortable_mexican_sofa', '~> 1.12.0'
