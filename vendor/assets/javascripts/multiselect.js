@@ -35,8 +35,6 @@ angular.module('ui.multiselect', [])
         require: 'ngModel',
         link: function (originalScope, element, attrs, modelCtrl) {
 
-          console.log('MULTISELECT')
-
           var exp = attrs.options,
             parsedResult = optionParser.parse(exp),
             isMultiple = attrs.multiple ? true : false,

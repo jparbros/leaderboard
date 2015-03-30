@@ -29,6 +29,21 @@
   border-color: $main-green-blue;
   color: $white;
   height: 70px;
-  top: 60px;
   padding: 10px 0;
+  top: 60px;
+
+  .btn.btn-success {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 23px;
+    letter-spacing: 1px;
+    padding: 6px 20px;
+  }
+
+  .btn.btn-primary {
+    border: 1px solid white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 18px;
+    padding: 10px 50px;
+
+  }
 }

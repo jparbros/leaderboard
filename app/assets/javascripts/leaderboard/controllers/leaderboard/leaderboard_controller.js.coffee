@@ -31,7 +31,6 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
       $scope.leader = _.max($scope.inputs, (input) ->
         return input.fullfilment
       )
-      console.log($scope.leader)
     ) if $scope.user.organization_id && $scope.selectedTeam && $scope.selectedPeriod
 
   $scope.$watch('selectedTeam', $scope.getInputs)

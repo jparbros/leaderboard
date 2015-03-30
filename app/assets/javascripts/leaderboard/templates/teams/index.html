@@ -1,6 +1,6 @@
 <div class="row" ng-show="departaments.length < 5">
   <div class="col-md-8 col-md-offset-1">
-    <form  ng-submit="submitDepartament(departament)" role="form" >
+    <form  ng-submit="submitDepartament(departament)" role="form" class="new-team-form">
         <div class="alert alert-warning animate-show" ng-show="erroOnCreate">
           There was an error when trying to create the team.
         </div>
@@ -27,14 +27,13 @@
 
 
 
-
-        <div class="form-group">
-          <div class="col-md-4">
-            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
-          </div>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-primary">Add Team</button>
-          </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
+              <button type="submit" class="btn btn-success">Add Team</button>
+            </div>
+        </div>
       </div>
 
     </form>
@@ -52,9 +51,9 @@
           </td>
           <td><input type="checkbox" ng-model='departament.active'> Active</td>
           <td>
-            <a href="#" class="btn btn-primary" ng-click="openEditDepartament(departament)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a>
+            <a href="#" class="btn btn-primary" ng-click="openEditDepartament(departament)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 
-            <a href="#" class="btn btn-danger" ng-click="openDialogDeleteDepartament(departament)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>
+            <a href="#" class="btn btn-danger" ng-click="openDialogDeleteDepartament(departament)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
           </td>
         </tr>
       </tbody>
