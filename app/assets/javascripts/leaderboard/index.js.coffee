@@ -8,6 +8,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   'ng-token-auth',
   'ng-rails-csrf',
   'ui.bootstrap',
+  'chart.js',
   'angularjs-dropdown-multiselect'
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider

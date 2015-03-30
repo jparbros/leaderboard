@@ -26,7 +26,7 @@
     <div class="teams col-md-2">
       <ul class="teams-list">
         <li class="title">Team</li>
-        <li ng-repeat='team in teams'><a href="#" ng-click="selectTeam(team)">{{team.name}}</a></li>
+        <li ng-class="{active:selectedTeam==team}" ng-repeat='team in teams'><a href="#" ng-click="selectTeam(team)">{{team.name}}</a></li>
         <li><a href="#" ng-click="selectTotalTeam()">Total Team</a></li>
       </ul>
     </div>
@@ -36,11 +36,11 @@
         {{selectedTeam.name}}
       </div>
       <ul class="periods-list">
-        <li><a href="#" ng-click="selectPeriod('today')">Today<a/></li>
-        <li><a href="#" ng-click="selectPeriod('week')">Week<a/></li>
-        <li><a href="#" ng-click="selectPeriod('month')">Month<a/></li>
-        <li><a href="#" ng-click="selectPeriod('quarter')">Quarter<a/></li>
-        <li><a href="#" ng-click="selectPeriod('year')">Year<a/></li>
+        <li ng-class="{active:selectedPeriod=='today'}"><a href="#" ng-click="selectPeriod('today')">Today<a/></li>
+        <li ng-class="{active:selectedPeriod=='week'}"><a href="#" ng-click="selectPeriod('week')">Week<a/></li>
+        <li ng-class="{active:selectedPeriod=='month'}"><a href="#" ng-click="selectPeriod('month')">Month<a/></li>
+        <li ng-class="{active:selectedPeriod=='quarter'}"><a href="#" ng-click="selectPeriod('quarter')">Quarter<a/></li>
+        <li ng-class="{active:selectedPeriod=='year'}"><a href="#" ng-click="selectPeriod('year')">Year<a/></li>
       </ul>
 
       <table class="table table-striped leaderboard-table">
@@ -68,6 +68,14 @@
 
     <div class="leader col-md-3">
       <div class="leader-title">Leader</div>
+      <div class="leader-details">
+        <div class="leader-name">{{leader.username}}</div>
+        <span class="leader-alias">{{leader.alias}}</span>
+        <div class="leader-chart">
+          <span>Total Fullfilment</span>
+          <canvas id="bar" class="chart chart-bar" data="data" labels="labels"></canvas>
+        </div>
+      </div>
     </div>
   </div>
 </div>

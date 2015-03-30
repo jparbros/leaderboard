@@ -39,4 +39,8 @@ class Input < ActiveRecord::Base
     end
   end
 
+  def self.get_leader
+    all.max
+  end
+
 end

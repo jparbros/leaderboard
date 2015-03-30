@@ -11,8 +11,13 @@ module Api
       @inputs = @inputs.by_year if params[:period] == 'year'
       @inputs = @inputs.by_departament(params[:departament_id]) if params[:departament_id]
       @inputs = @inputs.group_by_user if params[:group_by_user]
+      leader = @inputs.get_leader if params[:get_leader]
       if params[:group_by_user]
-        render json: @inputs
+        if params[:get_leader]
+          render json: leader
+        else
+          render json: @inputs
+        end
       else
         respond_with @inputs
       end
