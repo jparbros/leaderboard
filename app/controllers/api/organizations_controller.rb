@@ -6,5 +6,9 @@ module Api
       respond_with @organization
     end
 
+    def availability
+      render json: Organization.availability(params[:subdomain])
+    end
+
   end
 end

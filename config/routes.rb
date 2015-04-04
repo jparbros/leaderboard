@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: '/auth'
 
   namespace :api do
+    get 'organizations/availability', to: 'organizations#availability'
     resources :organizations do
       resources :departaments, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
     end
@@ -29,5 +30,6 @@ Rails.application.routes.draw do
     root to: 'welcome#index'
   end
 
+  root :to => "comfy/cms/content#show"
   comfy_route :cms, :path => '/', :sitemap => false
 end

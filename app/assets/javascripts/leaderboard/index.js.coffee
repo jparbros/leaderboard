@@ -19,7 +19,10 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/signup', {templateUrl: 'leaderboard/templates/users/new.html'}
+      .when '/rankingdesk/signup', {
+        templateUrl: 'leaderboard/templates/users/new.html',
+        controller: 'newUserCtrl'
+      }
       .when '/rankingdesk/signin', {
         templateUrl: 'leaderboard/templates/user_sessions/new.html',
         controller: 'UserSessionsCtrl'}

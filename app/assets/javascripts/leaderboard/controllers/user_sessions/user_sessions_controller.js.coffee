@@ -12,3 +12,4 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, $location, $timeout) ->
     $timeout( ->
       $scope.erroOnLogin = false;
     , 3000)
+

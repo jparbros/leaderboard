@@ -1,0 +1,81 @@
+<nav class="navbar navbar-fixed-top navbar-layout">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><%= image_tag 'logo_color.png'%></a>
+    </div>
+
+    <div class="nav navbar-nav navbar-right navbar-links">
+      <a href="#">Pricing</a>
+      <a href="/rankingdesk/signin">Login</a>
+      <a href="/rankingdesk/signup" class="btn btn-success">Free Trial</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid leaderboard-container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <form class="form-horizontal" ng-submit="submitRegistration(registrationForm)" role="form" id="create-trial-form">
+        <fieldset>
+          <legend>Let's get started</legend>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="email" placeholder="Email" ng-model="registrationForm.email" required class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="password" placeholder="Password" ng-model="registrationForm.password" required class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="password" placeholder="Password confirmation" ng-model="registrationForm.password_confirmation" required class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" placeholder="Full Name" ng-model="registrationForm.name" required class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" placeholder="Organization" ng-model="registrationForm.organization_attributes.name" required class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" ng-class="{'has-success': availableDomain, 'has-error': !hideSubdomainFeedback()}">
+            <div class="col-sm-12">
+              <input type="text" placeholder="example.rankingdesk.com" ng-model="registrationForm.organization_attributes.subdomain" required class="form-control" ng-blur="subdomainAvailability()">
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-show="availableDomain"></span>
+              <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-hide="hideSubdomainFeedback()"></span>
+              <div ng-hide="hideSubdomainFeedback()">
+                Recommended subdomain: <strong>{{recommendedSubdoamin}}</strong>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-center">
+            <strong>
+              By clicking “Create my trial” you agree to the
+              <br/>
+              Terms of Service and Privacy Policy.
+            </strong>
+          </p>
+
+          <div class="form-group">
+            <div class="col-sm-12 text-center">
+              <button type="submit" class="btn btn-lg btn-success">Create my trial</button>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+  </div>

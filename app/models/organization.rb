@@ -15,4 +15,13 @@ class Organization < ActiveRecord::Base
   def to_json(options)
     super(options.merge({methods: [:days_left]}))
   end
+
+  def self.availability(subdomain)
+    organizations = where(subdomain: subdomain)
+    if organizations.empty?
+      {available: true}
+    else
+      {available: false, recommendation: "#{subdomain}#{organizations.count+1}"}
+    end
+  end
 end
