@@ -7,8 +7,8 @@
 
     <div class="nav navbar-nav navbar-right navbar-links">
       <a href="#">Pricing</a>
-      <a href="/rankingdesk/signin">Login</a>
-      <a href="/rankingdesk/signup" class="btn btn-success">Free Trial</a>
+      <a href="/signin">Login</a>
+      <a href="/signup" class="btn btn-success">Free Trial</a>
     </div>
   </div>
 </nav>
@@ -39,9 +39,16 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" ng-hide="subdomain">
+            <label for="name" class="col-sm-2 control-label">Subdomain</label>
             <div class="col-sm-10">
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <input type="text" ng-model="loginForm.subdomain" placeholder="subdomain" ng-required="!subdomain" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12 text-center">
+              <button type="submit" class="btn btn-success btn-lg">Login</button>
             </div>
           </div>
         </fieldset>
@@ -50,8 +57,8 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <h4>You don't have an account? Please <a href="/signup">signup </a></h4>
+    <div class="col-sm-6 col-sm-offset-3 text-center">
+      <h4>Don't have an account? <a href="/signup">Get started</a></h4>
     </div>
   </div>
 </div>

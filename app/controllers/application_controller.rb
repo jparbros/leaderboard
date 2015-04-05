@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :subdomain_exist?
 
   respond_to :json
 
@@ -18,5 +19,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << {organization_attributes: [:name]}
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:sign_up) << {organization_attributes: [:name]}
+  end
+
+  def subdomain_exist?
+    puts "==> subdomain_exist?"
+    if request.subdomain.present? && request.subdomain != 'www' && request.subdomain != 'demo'
+      organization = Organization.find_by subdomain: request.subdomain
+      redirect_to root_url(subdomain: false) unless organization
+    end
   end
 end

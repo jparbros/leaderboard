@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="/rankingdesk"><%= image_tag 'logo_color.png'%></a>
+      <a class="navbar-brand" href=""><%= image_tag 'logo_color.png'%></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -11,7 +11,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{user.name || user.email}} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/rankingdesk/profile">Profile</a></li>
+            <li><a href="/profile">Profile</a></li>
             <li class="divider"></li>
             <li><a href="#" ng-click='signOut()'>Sign Out</a></li>
           </ul>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="nav navbar-nav navbar-right">
-      <a href="/rankingdesk/leaderboard" class="btn btn-primary">Leaderboard</a>
+      <a href="/leaderboard" class="btn btn-primary">Leaderboard</a>
     </div>
   </div>
 </nav>
@@ -40,11 +40,11 @@
 
     <div class="col-md-3">
       <ul class="nav nav-pills nav-stacked sidebar">
-        <li ng-class="{active:departamentsActive}"><a href="/rankingdesk/teams">Teams & Periods</a></li>
+        <li ng-class="{active:departamentsActive}"><a href="/teams">Teams & Periods</a></li>
         <li><a href="#">Board Login Details</a></li>
-        <li ng-class="{active:boardSettingsActive}"><a href="/rankingdesk/boardlogin/settings">Board Login Settings</a></li>
-        <li ng-class="{active:usersActive}"><a href="/rankingdesk/users">Users</a></li>
-        <li ng-class="{active:inputsActive}"><a href="/rankingdesk/input">Edit Data Input</a></li>
+        <li ng-class="{active:boardSettingsActive}"><a href="/boardlogin/settings">Board Login Settings</a></li>
+        <li ng-class="{active:usersActive}"><a href="/users">Users</a></li>
+        <li ng-class="{active:inputsActive}"><a href="/input">Edit Data Input</a></li>
       </ul>
     </div>
 

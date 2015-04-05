@@ -12,95 +12,97 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   'angularjs-dropdown-multiselect'
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider
-      .when '/rankingdesk', {
+      .when '/', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/signup', {
+      .when '/signup', {
         templateUrl: 'leaderboard/templates/users/new.html',
         controller: 'newUserCtrl'
       }
-      .when '/rankingdesk/signin', {
+      .when '/signin', {
         templateUrl: 'leaderboard/templates/user_sessions/new.html',
         controller: 'UserSessionsCtrl'}
-      .when '/rankingdesk/profile', {
+      .when '/profile', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'editUsersCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/teams', {
+      .when '/teams', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexTeamsCtrl',
         resolve:
           auth: ($auth) ->
+            auth = $auth.validateUser()
+            console.log(auth)
             $auth.validateUser()
       }
-      .when '/rankingdesk/users', {
+      .when '/users', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexMembersCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/users/new', {
+      .when '/users/new', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'newMemberCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/users/:id/edit', {
+      .when '/users/:id/edit', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'editMemberCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/leaderboard', {
+      .when '/leaderboard', {
         templateUrl: 'leaderboard/templates/leaderboard/index.html',
         controller: 'leaderboardCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/input', {
+      .when '/input', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/records', {
+      .when '/records', {
         templateUrl: 'leaderboard/templates/records/index.html',
         controller: 'indexRecordsCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/rankingdesk/boardlogin/settings', {
+      .when '/boardlogin/settings', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'settingsBoardloginCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
       }
-
-      .otherwise {redirectTo: '/rankingdesk'}
+      .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)
 
     $authProvider.configure
-      apiUrl: 'http://localhost:3000/'
+      apiUrl: 'http://lvh.me:3000'
 
 ).run( ($rootScope, $location, Organization) ->
 
   $rootScope.$on '$routeChangeError', (ev) ->
-    $location.path('/rankingdesk/signin')
+    console.log(ev)
+    $location.path('/signin')
 
   $rootScope.$on 'auth:user-loaded', (ev) ->
     Organization.get({id: $rootScope.user.organization_id }, (organization) ->
@@ -108,8 +110,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     )
 
   $rootScope.$on 'auth:registration-email-success', (ev) ->
-    $location.path('/rankingdesk/signin')
+    $location.path('/signin')
 
   $rootScope.$on 'auth:logout-success', (ev) ->
-    $location.path('/rankingdesk/signin')
+    $location.path('/signin')
 )

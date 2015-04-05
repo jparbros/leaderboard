@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     resources :inputs, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
   end
 
-  namespace 'rankingdesk' do
-    get '/signup' => 'welcome#index'
+  get '/signup' => 'welcome#index'
+  get '/signin' => 'welcome#index'
+
+  constraints Subdomain do
     get '/signin' => 'welcome#index'
     get '/profile' => 'welcome#index'
     get '/profile' => 'welcome#index'
@@ -26,8 +28,8 @@ Rails.application.routes.draw do
     get '/input' => 'welcome#index'
     get '/records' => 'welcome#index'
     get '/boardlogin/settings' => 'welcome#index'
+    get '/' => 'welcome#index'
     get '*path' => 'welcome#index'
-    root to: 'welcome#index'
   end
 
   root :to => "comfy/cms/content#show"
