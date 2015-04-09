@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   def subdomain_exist?
-    puts "==> subdomain_exist?"
     if request.subdomain.present? && request.subdomain != 'www' && request.subdomain != 'demo'
       organization = Organization.find_by subdomain: request.subdomain
       redirect_to root_url(subdomain: false) unless organization

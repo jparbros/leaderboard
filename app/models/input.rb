@@ -35,7 +35,7 @@ class Input < ActiveRecord::Base
   def self.group_by_user
     all.group_by {|input| input.user_id}.values.map do |values|
       user = values.first.user
-      {realized: values.map(&:value).inject(0, &:+).round(2), username: user.name, target: user.target}
+      {realized: values.map(&:value).inject(0, &:+).round(2), username: user.name, picture: user.avatar.url(:medium), target: user.target}
     end
   end
 

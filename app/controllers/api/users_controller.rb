@@ -42,6 +42,15 @@ module Api
       respond_with @user
     end
 
+    def upload
+      user.avatar = params[:file]
+      if user.save
+        render json: @user
+      else
+        respond_with status: 500
+      end
+    end
+
     private
 
     def organization
@@ -50,6 +59,10 @@ module Api
 
     def user_params
       params.require(:user).permit(:name, :email, :alias, :departament_id, :active, target: [:daily, :monthly, :quartly, :yearly])
+    end
+
+    def user
+      @user ||= User.find params[:user_id]
     end
   end
 end

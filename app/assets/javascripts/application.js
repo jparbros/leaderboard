@@ -28,6 +28,7 @@
 //= require underscore-min
 //= require chart.min
 //= require angular-chart.min
+//= require angular-file-upload.min
 //= require leaderboard/index
 //= require_tree ./leaderboard/modules
 //= require_tree ./leaderboard/templates

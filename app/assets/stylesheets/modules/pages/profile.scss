@@ -1,0 +1,15 @@
+.upload-picture {
+  div {
+    color: white;
+    cursor: pointer;
+    margin-top: -40px;
+  }
+
+  img {
+    -moz-border-radius: 75px;
+    -webkit-border-radius: 75px;
+    border-radius: 75px;
+    height: 145px;
+    width: 145px;
+  }
+}

@@ -124,6 +124,18 @@
       background: $light-gray;
       padding-top: 20px;
 
+      .leader-picture {
+        text-align: center;
+
+        img {
+          -moz-border-radius: 75px;
+          -webkit-border-radius: 75px;
+          border-radius: 75px;
+          height: 145px;
+          width: 145px;
+        }
+      }
+
       .leader-name {
         color: $main-green-blue;
         font-size: 18px;

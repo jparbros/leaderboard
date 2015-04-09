@@ -9,7 +9,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   'ng-rails-csrf',
   'ui.bootstrap',
   'chart.js',
-  'angularjs-dropdown-multiselect'
+  'angularjs-dropdown-multiselect',
+  'angularFileUpload'
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider
       .when '/', {
@@ -96,15 +97,15 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $locationProvider.html5Mode(true)
 
     $authProvider.configure
-      apiUrl: 'http://lvh.me:3000'
+      apiUrl: 'http://localhost:3000'
 
 ).run( ($rootScope, $location, Organization) ->
 
   $rootScope.$on '$routeChangeError', (ev) ->
-    console.log(ev)
     $location.path('/signin')
 
   $rootScope.$on 'auth:user-loaded', (ev) ->
+    console.log($rootScope.user)
     Organization.get({id: $rootScope.user.organization_id }, (organization) ->
       $rootScope.organization = organization
     )

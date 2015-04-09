@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'ng-rails-csrf'
 gem 'omniauth'
+gem 'paperclip'
 gem 'pg'
 gem 'pry', group: :development
 gem 'rack-cors', :require => 'rack/cors'

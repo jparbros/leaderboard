@@ -319,6 +319,7 @@ DEPENDENCIES
   jquery-rails
   ng-rails-csrf
   omniauth
+  paperclip
   pg
   pry
   rack-cors

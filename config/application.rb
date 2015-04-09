@@ -30,11 +30,15 @@ module Leaderboard
     config.railties_order = [ :all, ComfortableMexicanSofa::Engine ]
     config.autoload_paths << Rails.root.join('lib')
 
-    config.middleware.insert_before 0, "Rack::Cors" do
-      allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
-      end
-    end
+    config.paperclip_defaults = {
+      :storage => :fog,
+      fog_credentials: {
+        provider: 'Google',
+        google_storage_access_key_id: ENV['GOOGLE_ACCESS_KEY'],
+        google_storage_secret_access_key: ENV['GOOGLE_SECRET_KEY']
+      },
+      fog_directory: ENV['GOOGLE_DIRECTORY'],
+      fog_public: true
+    }
   end
 end
