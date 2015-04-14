@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'activemerchant'
 gem 'active_model_serializers'
 gem 'angular-rails-templates'
 gem 'angularjs-rails'

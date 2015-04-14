@@ -85,9 +85,16 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
           auth: ($auth) ->
             $auth.validateUser()
       }
-      .when '/boardlogin/settings', {
+      .when '/board/login', {
         templateUrl: 'leaderboard/templates/index.html',
-        controller: 'settingsBoardloginCtrl',
+        controller: 'loginBoardCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
+      .when '/board/settings', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'settingsBoardCtrl',
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
@@ -97,7 +104,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $locationProvider.html5Mode(true)
 
     $authProvider.configure
-      apiUrl: 'http://localhost:3000'
+      apiUrl: '<%= ENV["AUTH_URL"]%>'
 
 ).run( ($rootScope, $location, Organization) ->
 
@@ -105,7 +112,6 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $location.path('/signin')
 
   $rootScope.$on 'auth:user-loaded', (ev) ->
-    console.log($rootScope.user)
     Organization.get({id: $rootScope.user.organization_id }, (organization) ->
       $rootScope.organization = organization
     )
