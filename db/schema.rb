@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410135837) do
+ActiveRecord::Schema.define(version: 20150421061648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,6 +181,28 @@ ActiveRecord::Schema.define(version: 20150410135837) do
     t.datetime "updated_at"
     t.boolean  "subscribed", default: false
     t.string   "subdomain"
+    t.string   "boardname"
+  end
+
+  create_table "subscriptions", force: true do |t|
+    t.string   "transacion_number"
+    t.string   "card_number"
+    t.integer  "organization_id"
+    t.boolean  "active",            default: false
+    t.string   "subscription_kind"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.string   "transacion_number"
+    t.integer  "amount_cents"
+    t.string   "currency"
+    t.integer  "subscription_id"
+    t.string   "authorization_number"
+    t.boolean  "success",              default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

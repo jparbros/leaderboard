@@ -24,4 +24,12 @@ class Organization < ActiveRecord::Base
       {available: false, recommendation: "#{subdomain}#{organizations.count+1}"}
     end
   end
+
+  def owner
+    users.find_by(owner: true)
+  end
+
+  def guest_user
+    users.find_by(provider: 'username')
+  end
 end

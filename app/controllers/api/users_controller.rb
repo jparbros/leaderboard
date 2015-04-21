@@ -2,7 +2,7 @@ module Api
   class UsersController < ApplicationController
 
     def index
-      @users = organization.users
+      @users = organization.users.where.not(role: 'boardlogin')
       respond_with @users
     end
 
@@ -10,6 +10,7 @@ module Api
       @user = organization.users.new(user_params)
       @user.set_password
       @user.provider = "email"
+      @user.role = "user"
       User.skip_callback("create", :after, :send_on_create_confirmation_instructions)
       if @user.save!
         @client_id = SecureRandom.urlsafe_base64(nil, false)

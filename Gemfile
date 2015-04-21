@@ -6,6 +6,7 @@ gem 'angular-rails-templates'
 gem 'angularjs-rails'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'byebug', '3.5.1', group: :development
+gem 'carmen'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'comfortable_mexican_sofa', '~> 1.12.0'
 gem 'devise'

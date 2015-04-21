@@ -10,7 +10,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   'ui.bootstrap',
   'chart.js',
   'angularjs-dropdown-multiselect',
-  'angularFileUpload'
+  'angularFileUpload',
+  'angularPayments'
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
     $routeProvider
       .when '/', {
@@ -99,6 +100,13 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
           auth: ($auth) ->
             $auth.validateUser()
       }
+      .when '/buy/new/:plan', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'newBuyCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
       .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)
@@ -106,7 +114,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $authProvider.configure
       apiUrl: '<%= ENV["AUTH_URL"]%>'
 
-).run( ($rootScope, $location, Organization) ->
+).run( ($rootScope, $location, Organization, $modal) ->
 
   $rootScope.$on '$routeChangeError', (ev) ->
     $location.path('/signin')
@@ -121,4 +129,10 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
 
   $rootScope.$on 'auth:logout-success', (ev) ->
     $location.path('/signin')
+
+  $rootScope.openBuyModal = ->
+    modalInstance = $modal.open
+      templateUrl: 'leaderboard/templates/buy/modal.html',
+      controller: 'buyModalCtrl',
+      size: 'lg'
 )

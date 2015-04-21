@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  comfy_route :cms_admin, :path => '/admin'
+  get 'api/locations'
+
+  comfy_route :cms_admin, :path => '/cms'
 
 
   mount_devise_token_auth_for 'User', at: '/auth', controllers: {
@@ -8,13 +10,23 @@ Rails.application.routes.draw do
 
   namespace :api do
     get 'organizations/availability', to: 'organizations#availability'
+    get 'locations/countries', to: 'locations#countries'
+    get 'locations/countries/:country', to: 'locations#regions'
     resources :organizations do
       resources :departaments, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
+      resource :guest_user
     end
+
     resources :users, defaults: { format: 'json' } do
       post 'upload'
     end
+
     resources :inputs, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
+  end
+
+  namespace :admin do
+    resources :clients, only: [:index, :show]
+    resources :emails, only: [:index, :show]
   end
 
   get '/signup' => 'welcome#index'

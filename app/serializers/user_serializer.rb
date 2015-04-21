@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :name, :active, :target, :departament_id, :picture, :picture_thumb, :organization_id
+  attributes :id, :email, :name, :active, :target, :departament_id, :picture, :picture_thumb, :organization_id, :uid
 
   has_one :departament, root: :team
 

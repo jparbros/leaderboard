@@ -1,0 +1,30 @@
+.navbar-app {
+
+  ul.admin-table-header {
+    list-style: none;
+    margin-top: 15px;
+
+    li {
+      color: white;
+      border-right: 1px solid white;
+      float: left;
+      text-align: center;
+
+      &:last-child {
+        border: 0;
+      }
+    }
+
+    &.admin-clients-header {
+      li {
+        width: 25%;
+      }
+    }
+  }
+}
+
+.admin-clients-table {
+  td {
+    width: 25%;
+  }
+}

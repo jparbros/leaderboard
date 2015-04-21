@@ -21,6 +21,7 @@
 //= require angular-cookies
 //= require angular-rails-templates
 //= require angular-cookie
+//= require angular-payments.min
 //= require ui-bootstrap-tpls
 //= require ng-token-auth
 //= require ng-rails-csrf
