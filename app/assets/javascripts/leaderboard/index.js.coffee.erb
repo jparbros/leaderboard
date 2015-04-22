@@ -20,6 +20,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
       }
       .when '/signup', {
         templateUrl: 'leaderboard/templates/users/new.html',
@@ -34,15 +36,17 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin', 'user']
       }
       .when '/teams', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'indexTeamsCtrl',
         resolve:
           auth: ($auth) ->
-            auth = $auth.validateUser()
-            console.log(auth)
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
       }
       .when '/users', {
         templateUrl: 'leaderboard/templates/index.html',
@@ -50,6 +54,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
       }
       .when '/users/new', {
         templateUrl: 'leaderboard/templates/index.html',
@@ -57,6 +63,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
       }
       .when '/users/:id/edit', {
         templateUrl: 'leaderboard/templates/index.html',
@@ -64,6 +72,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
       }
       .when '/leaderboard', {
         templateUrl: 'leaderboard/templates/leaderboard/index.html',
@@ -71,6 +81,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin', 'user', 'boardlogin']
       }
       .when '/input', {
         templateUrl: 'leaderboard/templates/index.html',
@@ -78,6 +90,11 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
+        access:
+          requiredPermissions: ['admin']
+
       }
       .when '/records', {
         templateUrl: 'leaderboard/templates/records/index.html',
@@ -85,6 +102,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['user']
       }
       .when '/board/login', {
         templateUrl: 'leaderboard/templates/index.html',
@@ -92,6 +111,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
       }
       .when '/board/settings', {
         templateUrl: 'leaderboard/templates/index.html',
@@ -99,6 +120,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
       }
       .when '/buy/new/:plan', {
         templateUrl: 'leaderboard/templates/index.html',
@@ -106,6 +129,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         resolve:
           auth: ($auth) ->
             $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
       }
       .otherwise {redirectTo: '/'}
 
@@ -114,7 +139,22 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $authProvider.configure
       apiUrl: '<%= ENV["AUTH_URL"]%>'
 
-).run( ($rootScope, $location, Organization, $modal) ->
+).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout) ->
+
+  $rootScope.showLoading = true
+
+  $rootScope.$on '$routeChangeStart', (event, next) ->
+    if next.access != undefined
+      authorised =  Authorization.authorize(next.access.requiredPermissions)
+
+      if !authorised
+        $timeout( ->
+          manageRoleAccess();
+        , 500)
+
+    $timeout( ->
+      $rootScope.showLoading = false;
+    , 800)
 
   $rootScope.$on '$routeChangeError', (ev) ->
     $location.path('/signin')
@@ -135,4 +175,11 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
       templateUrl: 'leaderboard/templates/buy/modal.html',
       controller: 'buyModalCtrl',
       size: 'lg'
+
+  manageRoleAccess = ->
+    if $rootScope.user.role == 'user'
+      $location.path('/records')
+
+    if $rootScope.user.role == 'boardlogin'
+      $location.path('/leaderboard')
 )
