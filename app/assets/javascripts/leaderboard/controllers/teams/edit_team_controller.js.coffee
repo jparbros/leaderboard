@@ -37,7 +37,7 @@ LeaderboardApp.controller 'editTeamCtrl', ($scope, $modalInstance, Departament, 
 
   $scope.submitDepartament = (departament) ->
     departament = new Departament(departament)
-    departament.$update {organization_id: $scope.$scope.user.organization_id}, (departament)->
+    departament.$update {organization_id: $scope.user.organization_id}, (departament)->
       $modalInstance.close(departament)
     , (error) ->
       $scope.erroOnUpdate = true

@@ -16,7 +16,7 @@ LeaderboardApp.controller 'newInputCtrl', ($scope, $modalInstance, Input) ->
 
   $scope.submitInput = (inputForm) ->
     input = new Input(inputForm)
-    input.$save {user_id: $scope.user.id, organization_id: $scope.$scope.user.organization_id}, (input)->
+    input.$save {user_id: $scope.user.id, organization_id: $scope.user.organization_id}, (input)->
       $modalInstance.close(input)
     , (error) ->
       $scope.erroOnCreate = true

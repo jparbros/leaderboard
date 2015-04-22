@@ -23,7 +23,7 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
     departament.period = _.flatten(_.map(departament.period, (period) ->
       _.values(period)
     ))
-    departament.$save {organization_id: $scope.$scope.user.organization_id}, (departament)->
+    departament.$save {organization_id: $scope.user.organization_id}, (departament)->
       $scope.departaments.push(departament)
       $scope.departament =  new Departament({period: []})
     , (error) ->
