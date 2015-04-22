@@ -142,6 +142,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
 ).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout) ->
 
   $rootScope.showLoading = true
+  $rootScope.showLoadingSome = true
 
   $rootScope.$on '$routeChangeStart', (event, next) ->
     if next.access != undefined
