@@ -11,8 +11,8 @@
   <tbody>
     <% @organizations.each do |organization| %>
       <tr>
-        <td><%= organization.id %></td>
-        <td><a href="#" data-toggle="modal" data-target="#client-modal-<%= organization.id %>"><%= organization.name %></a></td>
+        <td><%= $scope.user.organization_id %></td>
+        <td><a href="#" data-toggle="modal" data-target="#client-modal-<%= $scope.user.organization_id %>"><%= organization.name %></a></td>
         <td><%= organization.owner.try(:name) %></td>
         <td><%= organization.owner.try(:email) %></td>
       </tr>

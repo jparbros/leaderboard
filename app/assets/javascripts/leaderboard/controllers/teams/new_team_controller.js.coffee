@@ -21,7 +21,7 @@ LeaderboardApp.controller 'newTeamCtrl', ($scope, $modalInstance, Departament) -
 
   $scope.submitDepartament = (inputDepartament) ->
     departament = new Departament(inputDepartament)
-    departament.$save {organization_id: $scope.organization.id}, (departament)->
+    departament.$save {organization_id: $scope.$scope.user.organization_id}, (departament)->
       $modalInstance.close(departament)
     , (error) ->
       $scope.erroOnCreate = true

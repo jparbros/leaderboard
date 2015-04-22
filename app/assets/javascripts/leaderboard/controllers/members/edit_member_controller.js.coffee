@@ -23,7 +23,7 @@ LeaderboardApp.controller 'editMemberCtrl', ($scope, $rootScope, $location, User
 
   $scope.submitUser = (userForm) ->
     userObject = new User(userForm)
-    userObject.$update {organization_id: $scope.organization.id}, (userData)->
+    userObject.$update {organization_id: $scope.$scope.user.organization_id}, (userData)->
       $location.path('/users')
     , (error) ->
       $scope.erroOnCreate = true
