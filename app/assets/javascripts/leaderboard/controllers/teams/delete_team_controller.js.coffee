@@ -15,7 +15,7 @@ LeaderboardApp.controller 'deleteTeamCtrl', ($scope, $modalInstance, Departament
     $scope.opened = true;
 
   $scope.deleteTeam = ->
-    $scope.departament.$delete {organization_id: $scope.user.organization_id}, ->
+    $scope.departament.$delete {organization_id: $scope.organization.id}, ->
       $modalInstance.close($scope.departament)
     , (error) ->
       $scope.erroOnDelete = true

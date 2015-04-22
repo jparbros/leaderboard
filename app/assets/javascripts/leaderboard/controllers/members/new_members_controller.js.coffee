@@ -5,7 +5,7 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
   $scope.userForm = new User()
   $scope.selectedTeam = null
 
-  Departament.query({organization_id: $scope.user.organization_id}, (teams) ->
+  Departament.query({organization_id: $scope.organization.id}, (teams) ->
     $scope.teams = teams
 
     $scope.$watch('userForm.departament_id', (old_value, new_value) ->
@@ -17,7 +17,7 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
 
   $scope.submitUser = (userForm) ->
     userObject = new User(userForm)
-    userObject.$save {organization_id: $scope.user.organization_id}, (userData)->
+    userObject.$save {organization_id: $scope.organization.id}, (userData)->
       $location.path('/users')
     , (error) ->
       $scope.erroOnCreate = true

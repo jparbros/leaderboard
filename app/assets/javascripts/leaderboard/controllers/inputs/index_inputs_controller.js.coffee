@@ -2,7 +2,7 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
   $scope.partialUrl = "leaderboard/templates/inputs/main.html";
   $scope.inputsActive = true;
 
-  $scope.inputs = Input.query({organization_id: $scope.user.organization_id});
+  $scope.inputs = Input.query({organization_id: $scope.organization.id});
 
   $scope.openNewInput = ->
     modalInstance = $modal.open

@@ -145,10 +145,6 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   $rootScope.showLoadingSome = true
 
   $rootScope.$on '$routeChangeStart', (event, next) ->
-    Organization.get({id: $rootScope.user.organization_id }, (organization) ->
-      $rootScope.organization = organization
-    )
-
     if next.access != undefined
       authorised =  Authorization.authorize(next.access.requiredPermissions)
 
@@ -164,7 +160,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   $rootScope.$on '$routeChangeError', (ev) ->
     $location.path('/signin')
 
-  $rootScope.$on 'auth:user-loaded', (ev) ->
+  $rootScope.$on 'auth:validation-success', (ev) ->
     Organization.get({id: $rootScope.user.organization_id }, (organization) ->
       $rootScope.organization = organization
     )

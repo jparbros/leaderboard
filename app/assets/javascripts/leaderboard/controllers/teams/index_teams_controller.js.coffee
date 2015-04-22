@@ -3,7 +3,7 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
   $scope.departamentsActive = true;
   $scope.erroOnCreate = false;
 
-  $scope.departaments = Departament.query({organization_id: $scope.user.organization_id});
+  $scope.departaments = Departament.query({organization_id: $scope.organization.id});
 
   $scope.periods = [ {id: 'daily', label: 'Daily'},
     {id: 'weekly', label: 'Weekly'},
@@ -23,7 +23,7 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
     departament.period = _.flatten(_.map(departament.period, (period) ->
       _.values(period)
     ))
-    departament.$save {organization_id: $scope.user.organization_id}, (departament)->
+    departament.$save {organization_id: $scope.organization.id}, (departament)->
       $scope.departaments.push(departament)
       $scope.departament =  new Departament({period: []})
     , (error) ->

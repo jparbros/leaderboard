@@ -4,7 +4,7 @@ LeaderboardApp.controller 'settingsBoardCtrl', ($scope, Organization) ->
   $scope.boardSettingsActive = true;
 
 
-  Organization.query({id: $scope.user.organization_id}, (data) ->
+  Organization.query({id: $scope.organization.id}, (data) ->
     $scope.organization = data
   )
 

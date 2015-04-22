@@ -1,9 +1,9 @@
 LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departament, Input) ->
-  $scope.users = User.query({organization_id: $scope.user.organization_id});
+  $scope.users = User.query({organization_id: $scope.organization.id});
   $scope.selectedPeriod = 'today'
   $scope.inputs = []
   $scope.leader = null
-  Departament.query({organization_id: $scope.user.organization_id}, (teams)->
+  Departament.query({organization_id: $scope.organization.id}, (teams)->
     $scope.teams = teams
     $scope.selectedTeam = teams[0]
   );
@@ -16,7 +16,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
     $scope.selectedPeriod = period
 
   $scope.getInputs = (newValue, oldValue) ->
-    Input.query({organization_id: $scope.user.organization_id, departament_id: $scope.selectedTeam.id, period: $scope.selectedPeriod, group_by_user: true}, (inputs) ->
+    Input.query({organization_id: $scope.organization.id, departament_id: $scope.selectedTeam.id, period: $scope.selectedPeriod, group_by_user: true}, (inputs) ->
       angular.forEach(inputs, (input) ->
         input.currentTarget = switch $scope.selectedPeriod
           when 'today' then parseInt(input.target.daily)
@@ -31,7 +31,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
       $scope.leader = _.max($scope.inputs, (input) ->
         return input.fullfilment
       )
-    ) if $scope.user.organization_id && $scope.selectedTeam && $scope.selectedPeriod
+    ) if $scope.organization.id && $scope.selectedTeam && $scope.selectedPeriod
 
   $scope.$watch('selectedTeam', $scope.getInputs)
   $scope.$watch('selectedPeriod', $scope.getInputs)

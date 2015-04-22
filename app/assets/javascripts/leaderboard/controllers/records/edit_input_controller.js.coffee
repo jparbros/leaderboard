@@ -18,7 +18,7 @@ LeaderboardApp.controller 'editRecordCtrl', ($scope, $modalInstance, Input, inpu
 
   $scope.submitInput = (inputForm) ->
     input = new Input(inputForm)
-    input.$update {user_id: input.user.id, organization_id: $scope.user.organization_id}, (input)->
+    input.$update {user_id: input.user.id, organization_id: $scope.organization.id}, (input)->
       $modalInstance.close(input)
     , (error) ->
       $scope.erroOnUpdate = true

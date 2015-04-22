@@ -19,7 +19,7 @@ LeaderboardApp.controller 'editInputCtrl', ($scope, $modalInstance, Input, input
   $scope.submitInput = (inputForm) ->
     input = new Input(inputForm)
     console.log(input)
-    input.$update {user_id: input.user_id, organization_id: $scope.user.organization_id}, (input)->
+    input.$update {user_id: input.user_id, organization_id: $scope.organization.id}, (input)->
       $modalInstance.close(input)
     , (error) ->
       $scope.erroOnUpdate = true

@@ -2,7 +2,6 @@ LeaderboardApp.factory('Authorization', ['$auth', '$timeout', function ($auth, $
   authorize = function  (requiredPermissions) {
     $timeout( function() {
       hasPermission = requiredPermissions.indexOf($auth.user.role) > -1
-      console.log(hasPermission)
       return hasPermission;
     }, 300)
   }
