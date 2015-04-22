@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md12">
+    <h3><%= @email.name%></h3>
+
+    <%= form_for [:admin, @email] do |form| %>
+      <div class="form-group">
+        <%= form.label @email.subject %>
+        <%= form.text_field @email.subject, class: 'form-control' %>
+      </div>
+    <% end %>
+  </div>
+</div>
