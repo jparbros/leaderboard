@@ -20,6 +20,12 @@
         width: 25%;
       }
     }
+
+    &.admin-emails-header {
+      li {
+        width: 33%;
+      }
+    }
   }
 }
 
@@ -27,4 +33,15 @@
   td {
     width: 25%;
   }
+}
+
+.admin-emails-table {
+  td {
+    width: 33%;
+  }
+}
+
+dl.admin-client-details {
+  margin: 20px auto;
+  width: 360px;
 }

@@ -25,8 +25,10 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :clients, only: [:index, :show]
-    resources :emails, only: [:index, :show]
+    resources :clients, only: [:index] do
+      get '/become' => 'clients#become'
+    end
+    resources :emails, only: [:index, :edit, :update]
   end
 
   get '/signup' => 'welcome#index'

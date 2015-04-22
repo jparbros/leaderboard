@@ -1,0 +1,32 @@
+<div class="modal fade" id="client-modal-<%= organization.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= organization.owner.try(:name) %></h4>
+      </div>
+      <div class="modal-body">
+        <dl class="dl-horizontal admin-client-details">
+          <dt>Signup date:</dt>
+          <dd><%= organization.created_at.to_date.to_s(:short_date) %></dd>
+
+          <dt>Date of payment:</dt>
+          <dd>...</dd>
+
+          <dt>Expiry date:</dt>
+          <dd>...</dd>
+
+          <dt>Last login date:</dt>
+          <dd><%= (organization.try(:owner).try(:last_sign_in_at) || Time.now).to_date.to_s(:short_date) %></dd>
+
+          <dt>Active:</dt>
+          <dd><%= organization.subscription.try(:active) ? 'Yes' : 'No' %></dd>
+        </dl>
+
+        <div class="text-center">
+          <%= link_to  'Client Panel', admin_client_become_path(client_id: organization.try(:owner).try(:id) || 1), class: 'btn btn-success', target: '_blank' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

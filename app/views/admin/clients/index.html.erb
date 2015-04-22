@@ -10,17 +10,17 @@
 <table class="table table-striped admin-clients-table">
   <tbody>
     <% @organizations.each do |organization| %>
-      <tr ng-repeat="input in inputs">
+      <tr>
         <td><%= organization.id %></td>
-        <td><%= organization.name %></td>
+        <td><a href="#" data-toggle="modal" data-target="#client-modal-<%= organization.id %>"><%= organization.name %></a></td>
         <td><%= organization.owner.try(:name) %></td>
         <td><%= organization.owner.try(:email) %></td>
       </tr>
-
+      <%= render partial: 'modal', locals: {organization: organization} %>
     <% end %>
     <% if @organizations.size < 1 %>
       <tr ng-show="!inputs.length">
-        <td colspan="4">There is no record, to add a record click at the button new record</td>
+        <td colspan="4">There is no record</td>
       </tr>
     <% end %>
   </tbody>

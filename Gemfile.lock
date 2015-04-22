@@ -215,6 +215,7 @@ GEM
       railties (>= 3.2.16)
     json (1.8.2)
     kramdown (1.6.0)
+    liquid (3.0.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -343,6 +344,7 @@ DEPENDENCIES
   fog
   jbuilder (~> 2.0)
   jquery-rails
+  liquid
   ng-rails-csrf
   omniauth
   paperclip

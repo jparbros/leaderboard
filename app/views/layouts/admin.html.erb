@@ -42,8 +42,8 @@
 
       <div class="col-md-3">
         <ul class="nav nav-pills nav-stacked sidebar">
-          <li class="<%= clients_active_menu %>"><a href="#" >Clients</a></li>
-          <li class="<%= emails_active_menu %>"><a href="#" >Emails</a></li>
+          <li class="<%= clients_active_menu %>"><%= link_to 'Clients', admin_clients_path %></li>
+          <li class="<%= emails_active_menu %>"><%= link_to 'Emails', admin_emails_path %></li>
         </ul>
       </div>
 
