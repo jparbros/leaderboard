@@ -145,6 +145,10 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   $rootScope.showLoadingSome = true
 
   $rootScope.$on '$routeChangeStart', (event, next) ->
+    Organization.get({id: $rootScope.user.organization_id }, (organization) ->
+      $rootScope.organization = organization
+    )
+
     if next.access != undefined
       authorised =  Authorization.authorize(next.access.requiredPermissions)
 
