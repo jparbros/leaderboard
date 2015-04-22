@@ -23,6 +23,8 @@ module Api
 
         @user.save!
 
+        UsersMailer.new_user_notification(@user).deliver
+
         render json: @user
       else
         respond_with status: 500

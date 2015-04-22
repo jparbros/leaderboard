@@ -14,6 +14,7 @@ gem 'devise_token_auth'
 gem 'fog'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'letter_opener', :group => :development
 gem 'liquid'
 gem 'ng-rails-csrf'
 gem 'omniauth'

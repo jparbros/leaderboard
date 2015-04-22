@@ -42,4 +42,5 @@ Rails.application.configure do
       password: ENV['MERCHANT_PASSWORD'])
   end
 
+  config.action_mailer.delivery_method = :letter_opener
 end
