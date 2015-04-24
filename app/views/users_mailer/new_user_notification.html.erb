@@ -1,16 +1,17 @@
+<% subdomain = @user.organization.subdomain %>
 <div class="title" style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:600;color:#374550">You have been invited to participate in Ranking Desk</div>
 <br>
 
 <div class="body-text" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:#333333">
 
   <div class="body-text" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:#333333">
-    You can enter from the following link <a href="http://<%= @user.organization.subdomain%>.rankingdesk.com">http://<%= @user.organization.subdomain%>.rankingdesk.com</a>.
+    In the following link you will be able to complete the registration process.
     <br><br>
+    <%= link_to 'Change my password', edit_password_url(@user, reset_password_token: @token, subdomain: subdomain, redirect_url: signin_url(subdomain: subdomain)) %>
+
     And you can use the following credentials:
     <br><br>
-    Email: <%= @user.email %>
-    <br>
-    Password: <%= @user.password %>
+    Email: <%= @user.uid %>
     <br><br>
     We hope you enjoy the experience of <a href="http://www.rankingdesk.com/">RankingDesk</a>
     <br><br>

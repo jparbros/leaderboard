@@ -3,8 +3,9 @@ class UsersMailer < ActionMailer::Base
 
   layout 'mailer'
 
-  def new_user_notification(user)
+  def new_user_notification(user, token)
     @user = user
+    @token = token
     mail(to: @user.email, subject: 'Welcome to RankingDesk')
   end
 end

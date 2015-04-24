@@ -30,4 +30,13 @@ class User < ActiveRecord::Base
   def token_validation_response
     UserSerializer.new(self).as_json(root: false)
   end
+
+  def create_password_token_reset
+    raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
+
+    self.reset_password_token   = enc
+    self.reset_password_sent_at = Time.now.utc
+    self.save(validate: false)
+    raw
+  end
 end
