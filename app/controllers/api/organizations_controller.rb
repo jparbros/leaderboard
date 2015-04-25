@@ -15,7 +15,7 @@ module Api
       if @organization.update_attributes organization_params
         respond_with @organization
       else
-        respond_with status: 500
+        render json: @organization.errors.full_messages, status: 500
       end
     end
 

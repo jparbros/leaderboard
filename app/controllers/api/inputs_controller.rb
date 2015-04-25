@@ -24,8 +24,11 @@ module Api
     end
 
     def create
-      @input = user.inputs.create input_params
-      render json: @input
+      if @input = user.inputs.create(input_params)
+        render json: @input
+      else
+        render json: @input.errors.full_messages, status: 500
+      end
     end
 
     def update
@@ -33,7 +36,7 @@ module Api
       if @input.update_attributes input_params
         respond_with @input
       else
-        respond_with status: 500
+        render json: @input.errors.full_messages, status: 500
       end
     end
 
@@ -42,7 +45,7 @@ module Api
       if @input.destroy
         respond_with status: 200
       else
-        respond_with status: 500
+        render json: @input.errors.full_messages, status: 500
       end
 
     end

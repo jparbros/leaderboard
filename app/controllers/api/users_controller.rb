@@ -27,7 +27,7 @@ module Api
 
         render json: @user
       else
-        respond_with status: 500
+        render json: @user.errors.full_messages, status: 500
       end
     end
 
@@ -36,7 +36,7 @@ module Api
       if @user.update_attributes user_params
         respond_with @user
       else
-        respond_with status: 500
+        render json: @user.errors.full_messages, status: 500
       end
     end
 
@@ -50,7 +50,7 @@ module Api
       if user.save
         render json: @user
       else
-        respond_with status: 500
+        render json: @user.errors.full_messages, status: 500
       end
     end
 

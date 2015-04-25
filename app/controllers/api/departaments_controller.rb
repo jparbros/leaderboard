@@ -7,8 +7,11 @@ module Api
     end
 
     def create
-      @departament = organization.departaments.create departament_params
-      render json: @departament
+      if @departament = organization.departaments.create(departament_params)
+        render json: @departament
+      else
+        render json: @departament.errors.full_messages, status: 500
+      end
     end
 
     def update
@@ -16,7 +19,7 @@ module Api
       if @departament.update_attributes departament_params
         respond_with @departament
       else
-        respond_with status: 500
+        render json: @departament.errors.full_messages, status: 500
       end
     end
 
@@ -25,7 +28,7 @@ module Api
       if @departament.destroy
         respond_with status: 200
       else
-        respond_with status: 500
+        render json: @departament.errors.full_messages, status: 500
       end
 
     end
