@@ -1,8 +1,15 @@
-LeaderboardApp.controller 'newUserCtrl', ($scope, $location, $timeout, Organization) ->
+LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth, $cookies) ->
   $scope.erroOnLogin = false;
   $scope.registrationForm = {}
   $scope.availableDomain = null
   $scope.recommendedSubdoamin = ""
+
+  $scope.submitRegistrationForm = (registrationForm) ->
+    $cookies['subdomain'] = registrationForm.organization_attributes.subdomain
+    $auth.submitRegistration(registrationForm).catch((respond)->
+      $scope.erroOnLogin = true
+    )
+
 
   $scope.hideSubdomainFeedback = ->
     return true if $scope.availableDomain == null

@@ -139,7 +139,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $authProvider.configure
       apiUrl: '<%= ENV["AUTH_URL"]%>'
 
-).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout) ->
+).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout, $cookies, RedirectTo) ->
 
   $rootScope.showLoading = true
   $rootScope.organization = {}
@@ -170,7 +170,9 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     loadOrganization()
 
   $rootScope.$on 'auth:registration-email-success', (ev) ->
-    $location.path('/signin')
+    subdomain = $cookies['subdomain']
+    console.log(subdomain)
+    RedirectTo.subdomain(subdomain)
 
   $rootScope.$on 'auth:logout-success', (ev) ->
     $location.path('/signin')

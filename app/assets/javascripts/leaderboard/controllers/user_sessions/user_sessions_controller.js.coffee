@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $timeout, $window) ->
+LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $timeout, $window, RedirectTo) ->
   $scope.erroOnLogin = false;
   $scope.loginForm = {}
   $scope.subdomain = subdomain
@@ -7,8 +7,7 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
     if subdomain
       $location.path('/')
     else
-      console.log(window.location.protocol + '//' + $scope.loginForm.subdomain + '.' + window.location.host)
-      $window.location.href = window.location.protocol + '//' + $scope.loginForm.subdomain + '.' + window.location.host
+      RedirectTo.subdomain(registrationForm.subdomain)
 
   $scope.$on 'auth:login-error', (ev, reason) ->
     $scope.erroOnLogin = true;
