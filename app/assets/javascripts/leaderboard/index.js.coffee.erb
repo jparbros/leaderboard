@@ -19,6 +19,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
+            console.log("validate")
+            console.log($auth.validateUser())
             $auth.validateUser()
         access:
           requiredPermissions: ['admin']
@@ -92,9 +94,6 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
             $auth.validateUser()
         access:
           requiredPermissions: ['admin']
-        access:
-          requiredPermissions: ['admin']
-
       }
       .when '/records', {
         templateUrl: 'leaderboard/templates/records/index.html',
@@ -103,7 +102,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
           auth: ($auth) ->
             $auth.validateUser()
         access:
-          requiredPermissions: ['user']
+          requiredPermissions: ['user', 'admin']
       }
       .when '/board/login', {
         templateUrl: 'leaderboard/templates/index.html',
@@ -161,6 +160,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     , 800)
 
   $rootScope.$on '$routeChangeError', (ev) ->
+    console.log("routeChangeError")
     $location.path('/signin')
 
   $rootScope.$on 'auth:validation-success', (ev) ->
@@ -171,7 +171,6 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
 
   $rootScope.$on 'auth:registration-email-success', (ev) ->
     subdomain = $cookies['subdomain']
-    console.log(subdomain)
     RedirectTo.subdomain(subdomain)
 
   $rootScope.$on 'auth:logout-success', (ev) ->

@@ -7,7 +7,9 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
     if subdomain
       $location.path('/')
     else
-      RedirectTo.subdomain(registrationForm.subdomain)
+      $timeout(->
+        RedirectTo.subdomain($scope.loginForm.subdomain)
+      , 500)
 
   $scope.$on 'auth:login-error', (ev, reason) ->
     $scope.erroOnLogin = true;
