@@ -4,6 +4,10 @@ LeaderboardApp.factory('RedirectTo', ['$location', function ($location) {
     window.location.href = window.location.protocol + '//' + subdomain + '.' + host()
   }
 
+  validate_token = function (subdomain, uid, auth_token) {
+    window.location.href = window.location.protocol + '//' + subdomain + '.' + host() + "/validate_token?uid=" + uid + "&auth_token=" + auth_token
+  }
+
   host = function () {
     var hostname = window.location.host.split('.');
     if (hostname.length >= 3) {
@@ -13,7 +17,8 @@ LeaderboardApp.factory('RedirectTo', ['$location', function ($location) {
   }
 
   return {
-    subdomain: subdomain
+    subdomain: subdomain,
+    validate_token: validate_token
   };
 }
 
