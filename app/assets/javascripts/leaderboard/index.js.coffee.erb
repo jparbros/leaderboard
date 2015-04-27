@@ -131,6 +131,15 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         access:
           requiredPermissions: ['admin']
       }
+      .when '/password/edit', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'editPasswordCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+        access:
+          requiredPermissions: ['admin', 'user']
+      }
       .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)

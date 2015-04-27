@@ -33,15 +33,6 @@ Rails.application.routes.draw do
 
   get '/signup' => 'welcome#index'
   get '/signin' => 'welcome#index'
-  get '/profile' => 'welcome#index'
-  get '/teams' => 'welcome#index'
-  get '/users' => 'welcome#index'
-  get '/users/new' => 'welcome#index'
-  get '/users/:id/edit' => 'welcome#index'
-  get '/leaderboard' => 'welcome#index'
-  get '/input' => 'welcome#index'
-  get '/records' => 'welcome#index'
-  get '/boardlogin/settings' => 'welcome#index'
 
   constraints Subdomain do
     get '/signin' => 'welcome#index'
@@ -54,6 +45,7 @@ Rails.application.routes.draw do
     get '/input' => 'welcome#index'
     get '/records' => 'welcome#index'
     get '/boardlogin/settings' => 'welcome#index'
+    get '/password/edit' => 'welcome#index'
     get '/' => 'welcome#index'
     get '*path' => 'welcome#index'
   end

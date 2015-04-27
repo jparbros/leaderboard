@@ -15,6 +15,12 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.selectPeriod = (period) ->
     $scope.selectedPeriod = period
 
+  $scope.showPeriod = (period) ->
+    _.contains($scope.selectedTeam.period, period)
+
+  $scope.ulClass = ->
+    "periods-#{$scope.selectedTeam.period.length}"
+
   $scope.getInputs = (newValue, oldValue) ->
     Input.query({organization_id: $scope.organization.id, departament_id: $scope.selectedTeam.id, period: $scope.selectedPeriod, group_by_user: true}, (inputs) ->
       angular.forEach(inputs, (input) ->

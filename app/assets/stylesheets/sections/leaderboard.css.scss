@@ -56,6 +56,36 @@
       list-style: none;
       padding: 0;
 
+      &.periods-1 {
+        li {
+          width: 100%;
+        }
+      }
+
+      &.periods-2 {
+        li {
+          width: 50%;
+        }
+      }
+
+      &.periods-3 {
+        li {
+          width: 33.33%;
+        }
+      }
+
+      &.periods-4 {
+        li {
+          width: 25%;
+        }
+      }
+
+      &.periods-5 {
+        li {
+          width: 20%;
+        }
+      }
+
       li {
         background-color: $green;
         border-right: 1px solid $white;
@@ -63,7 +93,6 @@
         height: 40px;
         padding: 9px 0;
         text-align: center;
-        width: 20%;
 
         &.active {
           background-color: $light-gray-2;

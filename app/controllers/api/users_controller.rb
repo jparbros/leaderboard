@@ -61,7 +61,7 @@ module Api
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :alias, :departament_id, :active, target: [:daily, :monthly, :quartly, :yearly])
+      params.require(:user).permit(:name, :email, :alias, :departament_id, :active, target: [:daily, :weekly, :monthly, :quartly, :yearly])
     end
 
     def user
