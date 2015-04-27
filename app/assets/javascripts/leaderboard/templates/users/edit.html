@@ -56,13 +56,13 @@
   <fieldset>
     <legend>Change Password</legend>
 
-    <div class="alert alert-warning animate-show" ng-show="erroOnupdate">
+    <div class="alert alert-warning animate-show" ng-show="erroOnPassword">
       There was an error when trying to update your password.
       <br>
-      {{$scope.msgError}}
+      {{$scope.passwordMsgError}}
     </div>
 
-    <div class="alert alert-success animate-show" ng-show="updateSuccessfully">
+    <div class="alert alert-success animate-show" ng-show="passwordSuccessfully">
       Your password was successfully updated.
     </div>
 
