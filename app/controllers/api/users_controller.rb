@@ -23,7 +23,8 @@ module Api
 
         @user.save!
 
-        UsersMailer.new_user_notification(@user).deliver
+        token = @user.create_password_token_reset
+        UsersMailer.new_user_notification(@user, token).deliver
 
         render json: @user
       else
