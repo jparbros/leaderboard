@@ -131,15 +131,6 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         access:
           requiredPermissions: ['admin']
       }
-      .when '/password/edit', {
-        templateUrl: 'leaderboard/templates/index.html',
-        controller: 'editPasswordCtrl',
-        resolve:
-          auth: ($auth) ->
-            $auth.validateUser()
-        access:
-          requiredPermissions: ['admin', 'user']
-      }
       .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)
@@ -153,11 +144,12 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   $rootScope.organization = {}
 
   $rootScope.$on '$routeChangeStart', (event, next) ->
+    $rootScope.showLoading = true;
     unless $rootScope.organization
       $rootScope.organization = {id: $root}
 
     if next.access != undefined
-      authorised =  Authorization.authorize(next.access.requiredPermissions)
+      authorised = next.access.requiredPermissions.indexOf($rootScope.user.role) > -1
 
       if !authorised
         $timeout( ->
