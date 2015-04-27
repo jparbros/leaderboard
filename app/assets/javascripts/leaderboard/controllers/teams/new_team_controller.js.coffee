@@ -1,6 +1,7 @@
 LeaderboardApp.controller 'newTeamCtrl', ($scope, $modalInstance, Departament) ->
   $scope.erroOnCreate = false;
   $scope.inputForm = {}
+  $scope.msgError = ''
 
   $scope.periodOptions = [
     {id: 'daily', label: 'Daily'},
@@ -25,3 +26,4 @@ LeaderboardApp.controller 'newTeamCtrl', ($scope, $modalInstance, Departament) -
       $modalInstance.close(departament)
     , (error) ->
       $scope.erroOnCreate = true
+      $scope.msgError = error.data[0]

@@ -3,6 +3,7 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
   $scope.registrationForm = {}
   $scope.availableDomain = null
   $scope.recommendedSubdoamin = ""
+  $scope.msgError = ''
 
   $scope.submitRegistrationForm = (registrationForm) ->
     $cookies['subdomain'] = registrationForm.organization_attributes.subdomain
@@ -10,6 +11,7 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
     registrationForm.owner = true
     $auth.submitRegistration(registrationForm).catch((respond)->
       $scope.erroOnLogin = true
+      $scope.msgError = respond.data[0]
     )
 
 

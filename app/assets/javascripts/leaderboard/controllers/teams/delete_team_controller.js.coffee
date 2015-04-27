@@ -1,6 +1,7 @@
 LeaderboardApp.controller 'deleteTeamCtrl', ($scope, $modalInstance, Departament, departament) ->
   $scope.erroOnDelete = false;
   $scope.departament = departament;
+  $scope.msgError = ''
 
   $scope.ok = ->
     $modalInstance.close();
@@ -19,3 +20,4 @@ LeaderboardApp.controller 'deleteTeamCtrl', ($scope, $modalInstance, Departament
       $modalInstance.close($scope.departament)
     , (error) ->
       $scope.erroOnDelete = true
+      $scope.msgError = error.data[0]

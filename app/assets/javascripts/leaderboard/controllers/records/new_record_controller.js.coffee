@@ -1,6 +1,7 @@
 LeaderboardApp.controller 'newRecordCtrl', ($scope, $modalInstance, Input) ->
   $scope.erroOnCreate = false;
   $scope.inputForm = {}
+  $scope.msgError = ''
 
   $scope.ok = ->
     $modalInstance.close();
@@ -20,3 +21,4 @@ LeaderboardApp.controller 'newRecordCtrl', ($scope, $modalInstance, Input) ->
       $modalInstance.close(input)
     , (error) ->
       $scope.erroOnCreate = true
+      $scope.msgError = error.data[0]

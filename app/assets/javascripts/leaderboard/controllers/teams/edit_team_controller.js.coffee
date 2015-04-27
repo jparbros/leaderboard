@@ -2,6 +2,7 @@ LeaderboardApp.controller 'editTeamCtrl', ($scope, $modalInstance, Departament, 
   $scope.erroOnUpdate = false;
   $scope.departament = departament;
   $scope.previous_attributes = angular.copy(departament)
+  $scope.msgError = ''
 
   $scope.periods = [ {id: 'daily', label: 'Daily'},
     {id: 'weekly', label: 'Weekly'},
@@ -41,3 +42,4 @@ LeaderboardApp.controller 'editTeamCtrl', ($scope, $modalInstance, Departament, 
       $modalInstance.close(departament)
     , (error) ->
       $scope.erroOnUpdate = true
+      $scope.msgError = error.data[0]

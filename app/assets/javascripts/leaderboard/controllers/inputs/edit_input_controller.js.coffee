@@ -2,6 +2,7 @@ LeaderboardApp.controller 'editInputCtrl', ($scope, $modalInstance, Input, input
   $scope.erroOnUpdate = false;
   $scope.inputForm = input;
   $scope.previous_attributes = angular.copy(input)
+  $scope.msgError = ''
 
   $scope.ok = ->
     $modalInstance.close();
@@ -23,3 +24,4 @@ LeaderboardApp.controller 'editInputCtrl', ($scope, $modalInstance, Input, input
       $modalInstance.close(input)
     , (error) ->
       $scope.erroOnUpdate = true
+      $scope.msgError = error.data[0]

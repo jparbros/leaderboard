@@ -4,6 +4,7 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
   $scope.erroOnCreate = false
   $scope.userForm = new User()
   $scope.selectedTeam = null
+  $scope.msgError = ''
 
   Departament.query({organization_id: $scope.organization.id}, (teams) ->
     $scope.teams = teams
@@ -21,3 +22,4 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
       $location.path('/users')
     , (error) ->
       $scope.erroOnCreate = true
+      $scope.msgError = error.data[0]

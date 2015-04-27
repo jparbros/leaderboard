@@ -2,12 +2,14 @@ LeaderboardApp.controller 'editUsersCtrl', ($scope, $location, $upload) ->
   $scope.erroOnupdate = false;
   $scope.updateSuccessfully = false;
   $scope.partialUrl = "leaderboard/templates/users/edit.html";
+  $scope.msgError = ''
 
   $scope.$on 'auth:account-update-success', (ev, user) ->
     $scope.updateSuccessfully = true;
 
-  $scope.$on 'auth:account-update-error', (ev, reason) ->
+  $scope.$on 'auth:account-update-error', (ev, error) ->
     $scope.erroOnupdate = true;
+    $scope.msgError = error.data[0]
 
   # $scope.$watch 'files', ->
   #   $scope.upload($scope.files);

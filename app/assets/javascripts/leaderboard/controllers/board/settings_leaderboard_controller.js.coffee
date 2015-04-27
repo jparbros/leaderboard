@@ -2,7 +2,7 @@ LeaderboardApp.controller 'settingsBoardCtrl', ($scope, Organization) ->
   $scope.erroOnUpdate = false;
   $scope.partialUrl = "leaderboard/templates/board/settings.html";
   $scope.boardSettingsActive = true;
-
+  $scope.msgError = ''
 
   Organization.query({id: $scope.organization.id}, (data) ->
     $scope.organization = data
@@ -14,3 +14,4 @@ LeaderboardApp.controller 'settingsBoardCtrl', ($scope, Organization) ->
       data
     , (error) ->
       $scope.erroOnUpdate = true;
+      $scope.msgError = error.data[0]

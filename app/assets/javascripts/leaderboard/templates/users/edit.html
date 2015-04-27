@@ -5,6 +5,8 @@
 
     <div class="alert alert-warning animate-show" ng-show="erroOnupdate">
       There was an error when trying to update your account.
+      <br>
+      {{$scope.msgError}}
     </div>
 
     <div class="alert alert-success animate-show" ng-show="updateSuccessfully">
@@ -56,6 +58,8 @@
 
     <div class="alert alert-warning animate-show" ng-show="erroOnupdate">
       There was an error when trying to update your password.
+      <br>
+      {{$scope.msgError}}
     </div>
 
     <div class="alert alert-success animate-show" ng-show="updateSuccessfully">

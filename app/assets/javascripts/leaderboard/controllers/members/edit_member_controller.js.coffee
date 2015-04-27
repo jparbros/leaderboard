@@ -3,6 +3,7 @@ LeaderboardApp.controller 'editMemberCtrl', ($scope, $rootScope, $location, User
   $scope.usersActive = true;
   $scope.erroOnCreate = false
   $scope.selectedTeam = null
+  $scope.msgError = ''
 
   User.get({id: $routeParams.id, organization_id: $scope.organization.id}, (user) ->
     $scope.userForm = user
@@ -27,3 +28,4 @@ LeaderboardApp.controller 'editMemberCtrl', ($scope, $rootScope, $location, User
       $location.path('/users')
     , (error) ->
       $scope.erroOnCreate = true
+      $scope.msgError = error.data[0]
