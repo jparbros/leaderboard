@@ -1,12 +1,14 @@
-LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $timeout, $window, RedirectTo) ->
+LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $timeout, $window, RedirectTo, $cookies) ->
   $scope.erroOnLogin = false;
   $scope.loginForm = {}
   $scope.subdomain = subdomain
 
   $scope.$on 'auth:login-success', (ev, user) ->
     if subdomain
+      $cookies['subdomain'] = $scope.subdomain
       $location.path('/')
     else
+      $cookies['subdomain'] = $scope.loginForm.subdomain
       $timeout(->
         RedirectTo.subdomain($scope.loginForm.subdomain)
       , 500)

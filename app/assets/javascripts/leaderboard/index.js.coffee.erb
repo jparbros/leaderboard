@@ -19,8 +19,6 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         controller: 'indexInputsCtrl',
         resolve:
           auth: ($auth) ->
-            console.log("validate")
-            console.log($auth.validateUser())
             $auth.validateUser()
         access:
           requiredPermissions: ['admin']
@@ -138,30 +136,24 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $authProvider.configure
       apiUrl: '<%= ENV["AUTH_URL"]%>'
 
-).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout, $cookies, RedirectTo) ->
+).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout, $cookies, RedirectTo, subdomain) ->
 
   $rootScope.showLoading = true
   $rootScope.organization = {}
+  $rootScope.redirectToSubdomain = false
 
   $rootScope.$on '$routeChangeStart', (event, next) ->
     $rootScope.showLoading = true;
+    $rootScope.redirectToSubdomain = false
+
     unless $rootScope.organization
       $rootScope.organization = {id: $root}
 
-    if next.access != undefined
-      authorised = next.access.requiredPermissions.indexOf($rootScope.user.role) > -1
+    redirectToSubdomain()
 
-      if !authorised
-        $timeout( ->
-          manageRoleAccess();
-        , 500)
-
-    $timeout( ->
-      $rootScope.showLoading = false;
-    , 800)
+    manageAccess(next)
 
   $rootScope.$on '$routeChangeError', (ev) ->
-    console.log("routeChangeError")
     $location.path('/signin')
 
   $rootScope.$on 'auth:validation-success', (ev) ->
@@ -196,4 +188,24 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     Organization.get({id: $rootScope.user.organization_id }, (organization) ->
       $rootScope.organization = organization
     )
+
+  manageAccess = (next) ->
+    if !$rootScope.redirectToSubdomain
+      if next.access != undefined
+        authorised = next.access.requiredPermissions.indexOf($rootScope.user.role) > -1
+
+        if !authorised
+          $timeout( ->
+            manageRoleAccess();
+          , 500)
+
+      $timeout( ->
+        $rootScope.showLoading = false;
+      , 800)
+
+  redirectToSubdomain = ->
+    if !subdomain and $cookies['subdomain']
+      $rootScope.redirectToSubdomain = true
+      RedirectTo.subdomain($cookies['subdomain'])
+
 )

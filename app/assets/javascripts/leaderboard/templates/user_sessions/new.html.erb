@@ -1,64 +1,70 @@
-<nav class="navbar navbar-fixed-top navbar-layout">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/"><%= image_tag 'logo_color.png'%></a>
+<div class="loading-view" ng-show="showLoading">
+  <%= image_tag 'logo_color.png'%>
+</div>
+
+<div ng-hide="showLoading" class="ng-content">
+  <nav class="navbar navbar-fixed-top navbar-layout">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><%= image_tag 'logo_color.png'%></a>
+      </div>
+
+      <div class="nav navbar-nav navbar-right navbar-links">
+        <a href="#">Pricing</a>
+        <a href="/signin">Login</a>
+        <a href="/signup" class="btn btn-success">Free Trial</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid leaderboard-container">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+
+        <form class="form-horizontal" ng-submit="submitLogin(loginForm)" role="form" id="new-session-form">
+          <fieldset>
+            <legend>Login Form</legend>
+
+            <div class="alert alert-warning animate-show" ng-show="erroOnLogin">
+              There was an error when trying to login. Please check your credentials.
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">Email/Username</label>
+              <div class="col-sm-10">
+                <input type="text " placeholder="Email" ng-model="loginForm.email" required  class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" ng-model="loginForm.password" placeholder="Password" required class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group" ng-hide="subdomain">
+              <label for="name" class="col-sm-2 control-label">Subdomain</label>
+              <div class="col-sm-10">
+                <input type="text" ng-model="loginForm.subdomain" placeholder="subdomain" ng-required="!subdomain" class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-success btn-lg">Login</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </div>
 
-    <div class="nav navbar-nav navbar-right navbar-links">
-      <a href="#">Pricing</a>
-      <a href="/signin">Login</a>
-      <a href="/signup" class="btn btn-success">Free Trial</a>
-    </div>
-  </div>
-</nav>
-
-<div class="container-fluid leaderboard-container">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-
-      <form class="form-horizontal" ng-submit="submitLogin(loginForm)" role="form" id="new-session-form">
-        <fieldset>
-          <legend>Login Form</legend>
-
-          <div class="alert alert-warning animate-show" ng-show="erroOnLogin">
-            There was an error when trying to login. Please check your credentials.
-          </div>
-
-          <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Email/Username</label>
-            <div class="col-sm-10">
-              <input type="text " placeholder="Email" ng-model="loginForm.email" required  class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" ng-model="loginForm.password" placeholder="Password" required class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group" ng-hide="subdomain">
-            <label for="name" class="col-sm-2 control-label">Subdomain</label>
-            <div class="col-sm-10">
-              <input type="text" ng-model="loginForm.subdomain" placeholder="subdomain" ng-required="!subdomain" class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12 text-center">
-              <button type="submit" class="btn btn-success btn-lg">Login</button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3 text-center">
-      <h4>Don't have an account? <a href="/signup">Get started</a></h4>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3 text-center">
+        <h4>Don't have an account? <a href="/signup">Get started</a></h4>
+      </div>
     </div>
   </div>
 </div>
