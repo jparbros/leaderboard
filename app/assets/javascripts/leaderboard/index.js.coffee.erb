@@ -197,11 +197,17 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         if !authorised
           $timeout( ->
             manageRoleAccess();
-          , 500)
+          , manageRoleAccessWaitTime())
 
       $timeout( ->
         $rootScope.showLoading = false;
-      , 800)
+      , showContentWaitTime())
+
+  manageRoleAccessWaitTime = ->
+    if $rootScope.user.role then 0 else 500
+
+  showContentWaitTime = ->
+    if $rootScope.user.role then 0 else 800
 
   redirectToSubdomain = ->
     if !subdomain and $cookies['subdomain']
