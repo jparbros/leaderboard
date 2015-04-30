@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:account_update) << {organization_attributes: [:name]}
     devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :role
+    devise_parameter_sanitizer.for(:sign_up) << :owner
     devise_parameter_sanitizer.for(:sign_up) << {organization_attributes: [:name, :subdomain]}
   end
 
