@@ -2,16 +2,22 @@
 
 .leaderboard-container {
   margin-top: 60px;
+  height: 100%;
+
+  & > .row {
+    height: 100%;
+  }
 
   .teams {
-    padding-right: 0;
+    background-color: $light-gray;
+    padding: 0;
+    height: 100%;
 
     ul.teams-list {
       list-style: none;
       padding: 0;
 
       li {
-        background-color: $light-gray;
         border-bottom: 1px solid $white;
         color: $black-text;
         font-size: 20px;
@@ -138,7 +144,9 @@
   }
 
   .leader {
-    padding-left: 0;
+    padding: 0;
+    height: 100%;
+    background: $light-gray;
 
     .leader-title {
       text-align: center;
@@ -150,7 +158,6 @@
     }
 
     .leader-details {
-      background: $light-gray;
       padding-top: 20px;
 
       .leader-picture {

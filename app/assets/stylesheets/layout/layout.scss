@@ -1,8 +1,13 @@
 @import "colors";
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: $light-gray-background;
   font-family: 'Open Sans', sans-serif;
+  height: 100%;
 }
 
 a{
@@ -12,28 +17,31 @@ a{
   font-weight: 400;
 }
 
-body > div > .container {
-  background-color: $white;
-  padding: 0;
 
+.ng-main,
+.ng-content {
+  height: 100%;
+}
+
+.main-container {
+  margin-top: 130px;
+  height: 100%;
+
+  & > .row {
+    height: 100%;
+  }
 }
 
 .main {
   background: $white;
   height: 100%;
-  margin: 130px 0 0 0;
-  padding: 0px 15px 0 0;
+  padding: 0;
 }
 
 .sidebar {
   background-color: $light-gray;
-  bottom: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: fixed;
-  top: 130px;
-  width: 20%;
-  z-index: 10;
+  padding: 0;
+  height: 100%;
 
 
   li {

@@ -26,6 +26,13 @@
 }
 
 .users-container {
+  height: 100%;
+  margin-top: 130px;
+
+  & > .row {
+    height: 100%;
+  }
+
   .sidebar {
     li {
       height: 70px;

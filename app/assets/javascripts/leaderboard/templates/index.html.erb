@@ -2,7 +2,7 @@
   LOADING
 </div>
 
-<div ng-hide="showLoading">
+<div ng-hide="showLoading" class="ng-content">
   <nav class="navbar navbar-fixed-top navbar-layout">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -43,11 +43,11 @@
   </nav>
 
 
-  <div class="container">
+  <div class="container main-container">
     <div class="row">
 
-      <div class="col-md-3">
-        <ul class="nav nav-pills nav-stacked sidebar">
+      <div class="col-md-3 sidebar">
+        <ul class="nav nav-pills nav-stacked">
           <li ng-class="{active:departamentsActive}"><a href="/teams">Teams & Periods</a></li>
           <li ng-class="{active:boardLoginActive}"><a href="/board/login">Board Login Details</a></li>
           <li ng-class="{active:boardSettingsActive}"><a href="/board/settings">Leaderboard Settings</a></li>
@@ -56,7 +56,7 @@
         </ul>
       </div>
 
-      <div class="col-md-9 col-md-offset-3 main">
+      <div class="col-md-9 main">
          <div ng-include='partialUrl'></div>
       </div>
     </div>
