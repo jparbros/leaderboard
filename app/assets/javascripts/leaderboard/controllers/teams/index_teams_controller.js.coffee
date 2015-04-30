@@ -20,9 +20,8 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
   }
 
   $scope.submitDepartament = (departament) ->
-    departament.period = _.flatten(_.map(departament.period, (period) ->
-      _.values(period)
-    ))
+    flatPeriods departament
+
     departament.$save {organization_id: $scope.organization.id}, (departament)->
       $scope.departaments.push(departament)
       $scope.departament =  new Departament({period: []})
@@ -30,6 +29,9 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
       $scope.erroOnCreate = true
 
   $scope.openEditDepartament = (departament) ->
+    departament.period = _.map(departament.period, (period) ->
+      {id: period, label: period }
+    )
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/teams/edit.html',
       controller: 'editTeamCtrl',
@@ -37,6 +39,9 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
       resolve:
         departament: ->
           departament
+
+    modalInstance.result.then (modal_departament) ->
+      departament.$get({organization_id: $scope.organization.id})
 
   $scope.openDialogDeleteDepartament = (departament) ->
     modalInstance = $modal.open
@@ -50,3 +55,8 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
     modalInstance.result.then (departament) ->
       index = $scope.departaments.indexOf(departament)
       $scope.departaments.splice(index, 1)
+
+  flatPeriods = (departament) ->
+    departament.period = _.flatten(_.map(departament.period, (period) ->
+      _.values(period)
+    ))

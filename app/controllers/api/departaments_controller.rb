@@ -33,6 +33,11 @@ module Api
 
     end
 
+    def show
+      @departament = organization.departaments.find params[:id]
+      respond_with @departament
+    end
+
     private
 
     def organization

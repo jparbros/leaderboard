@@ -17,11 +17,10 @@ LeaderboardApp.controller 'editTeamCtrl', ($scope, $modalInstance, Departament, 
   }
 
   $scope.ok = ->
-    $modalInstance.close();
+    $modalInstance.close($scope.previous_attributes);
 
   $scope.cancel = ->
-    $modalInstance.dismiss('cancel');
-    angular.extend($scope.inputForm, $scope.previous_attributes);
+    $modalInstance.close($scope.previous_attributes)
 
   $scope.open = ($event) ->
     $event.preventDefault();
@@ -29,15 +28,11 @@ LeaderboardApp.controller 'editTeamCtrl', ($scope, $modalInstance, Departament, 
 
     $scope.opened = true;
 
-  $scope.submitInput = (inputForm) ->
-    input = new Input(inputForm)
-    input.$update {user_id: $scope.user.id}, (input)->
-      $modalInstance.close(input)
-    , (error) ->
-      $scope.erroOnUpdate = true
-
   $scope.submitDepartament = (departament) ->
-    departament = new Departament(departament)
+    departament.period = _.uniq(_.flatten(_.map(departament.period, (period) ->
+      _.values(period)
+    )))
+
     departament.$update {organization_id: $scope.organization.id}, (departament)->
       $modalInstance.close(departament)
     , (error) ->
