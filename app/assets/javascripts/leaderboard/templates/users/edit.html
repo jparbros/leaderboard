@@ -14,39 +14,45 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-3 text-center upload-picture">
+      <div class="col-md-3 text-center upload-picture">
         <img ng-src="{{user.picture}}">
         <div ng-file-select ng-file-change="upload(files)" ng-model="files">Change picture</div>
       </div>
 
-      <div class="col-sm-9">
+      <div class="col-md-9">
         <div class="form-group">
-          <label for="name" class="col-sm-2 control-label">Email</label>
-          <div class="col-sm-9">
+          <label for="name" class="col-md-2 control-label">Email</label>
+          <div class="col-md-9">
             <input type="email" placeholder="Email" ng-model="updateAccountForm.email" class="form-control">
           </div>
         </div>
 
         <div class="form-group">
-          <label for="name" class="col-sm-2 control-label">Full name</label>
-          <div class="col-sm-9">
+          <label for="name" class="col-md-2 control-label">Full name</label>
+          <div class="col-md-9">
             <input type="text" placeholder="Full Name"  ng-model="updateAccountForm.name" class="form-control">
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="name" class="col-sm-2 control-label">Company</label>
-          <div class="col-sm-9">
+        <div class="form-group" ng-show="user.role == 'admin'">
+          <label for="name" class="col-md-2 control-label">Company</label>
+          <div class="col-md-9">
             <input type="text" placeholder="Company" ng-model="updateAccountForm.organization_attributes.name" class="form-control">
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="col-sm-9">
-            <button type="submit" class="btn btn-primary">Update Profile</button>
-          </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="updateAccountForm.newsletter"> Subscribe to newsletter
+          </label>
         </div>
       </div>
+
+      <div class="form-group col-md-12 text-right">
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+      </div>
+
+    </div>
     </div>
   </fieldset>
 </form>
@@ -66,23 +72,25 @@
       Your password was successfully updated.
     </div>
 
-    <div class="form-group">
-      <label for="name" class="col-sm-2 control-label">Password</label>
-      <div class="col-sm-9">
-        <input type="password" placeholder="Password" ng-model="changePasswordForm.password" class="form-control" required>
+    <div class="row">
+      <div class="form-group">
+        <label for="name" class="col-md-2 control-label">Password</label>
+        <div class="col-md-9">
+          <input type="password" placeholder="Password" ng-model="changePasswordForm.password" class="form-control" required>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="name" class="col-sm-2 control-label">Password Confirmation</label>
-      <div class="col-sm-9">
-        <input type="password" placeholder="Password Confirmation"  ng-model="changePasswordForm.password_confirmation" class="form-control" required>
+      <div class="form-group">
+        <label for="name" class="col-md-2 control-label">Password Confirmation</label>
+        <div class="col-md-9">
+          <input type="password" placeholder="Password Confirmation"  ng-model="changePasswordForm.password_confirmation" class="form-control" required>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-9 text-right">
-        <button type="submit" class="btn btn-primary">Update Password</button>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-9 text-right">
+          <button type="submit" class="btn btn-primary">Update Password</button>
+        </div>
       </div>
     </div>
 
