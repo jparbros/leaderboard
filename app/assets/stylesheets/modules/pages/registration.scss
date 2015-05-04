@@ -9,4 +9,46 @@ form#create-trial-form, form#new-session-form {
   p {
     margin: 40px 0;
   }
+
+  .subdomain-input {
+    .form-control-feedback {
+       right: 0px;
+     }
+
+     .input-group-addon {
+       padding-right: 25px;
+     }
+  }
+
+  .has-feedback {
+    .glyphicon.glyphicon-ok {
+      display: none;
+    }
+
+    .glyphicon.glyphicon-remove {
+      display: none;
+    }
+
+    &.has-success {
+      .glyphicon.glyphicon-ok {
+        display: block;
+      }
+
+      .glyphicon.glyphicon-remove {
+        display: none;
+      }
+    }
+
+    &.has-error {
+      .glyphicon.glyphicon-ok {
+        display: none;
+      }
+
+      .glyphicon.glyphicon-remove {
+        display: block;
+      }
+    }
+  }
+
+
 }

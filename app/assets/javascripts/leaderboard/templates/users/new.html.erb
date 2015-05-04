@@ -16,7 +16,7 @@
 <div class="container-fluid leaderboard-container">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
-      <form class="form-horizontal" ng-submit="submitRegistrationForm(registrationForm)" role="form" id="create-trial-form">
+      <form class="form-horizontal" ng-submit="submitRegistrationForm(registrationForm)" role="form" id="create-trial-form" name="form" novalidate>
         <div class="alert alert-warning animate-show" ng-show="erroOnLogin">
           There was an error when trying to create the account. <br>
           {{msgError}}
@@ -25,41 +25,50 @@
         <fieldset>
           <legend>Let's get started</legend>
 
-          <div class="form-group">
+          <div class="form-group has-feedback" ng-class="{'has-success': form.email.$valid, 'has-error': (form.email.$touched && form.email.$invalid)}">
             <div class="col-sm-12">
-              <input type="email" placeholder="Email" ng-model="registrationForm.email" required class="form-control">
+              <input type="email" placeholder="Email" ng-model="registrationForm.email" required class="form-control" name="email">
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" ng-class="{'has-success': form.password.$valid, 'has-error': (form.password.$touched && form.password.$invalid)}">
+            <div class="col-sm-12">
+              <input type="password" placeholder="Password" ng-model="registrationForm.password" required class="form-control" name="password" minlength="5">
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-12">
-              <input type="password" placeholder="Password" ng-model="registrationForm.password" required class="form-control">
+              <input type="password" placeholder="Password confirmation" ng-model="registrationForm.password_confirmation" required class="form-control" name="password_confirmation" minlength="5" password-confirmation compareTo="registrationForm.password">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-12">
-              <input type="password" placeholder="Password confirmation" ng-model="registrationForm.password_confirmation" required class="form-control">
+              <input type="text" placeholder="Full Name" ng-model="registrationForm.name" required class="form-control" name="full_name">
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group has-feedback" ng-class="{'has-success': form.organization.$valid, 'has-error': (form.organization.$touched && form.organization.$invalid)}">
             <div class="col-sm-12">
-              <input type="text" placeholder="Full Name" ng-model="registrationForm.name" required class="form-control">
+              <input type="text" placeholder="Organization" ng-model="registrationForm.organization_attributes.name" required class="form-control" ng-change="organizationToSubdomain()" name="organization">
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group has-feedback subdomain-input" ng-class="{'has-success': availableDomain, 'has-error': !hideSubdomainFeedback()}">
             <div class="col-sm-12">
-              <input type="text" placeholder="Organization" ng-model="registrationForm.organization_attributes.name" required class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group has-feedback" ng-class="{'has-success': availableDomain, 'has-error': !hideSubdomainFeedback()}">
-            <div class="col-sm-12">
-              <input type="text" placeholder="example.rankingdesk.com" ng-model="registrationForm.organization_attributes.subdomain" required class="form-control" ng-blur="subdomainAvailability()">
-              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-show="availableDomain"></span>
-              <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-hide="hideSubdomainFeedback()"></span>
+              <div class="input-group">
+                <input type="text" placeholder="example" ng-model="registrationForm.organization_attributes.subdomain" required class="form-control" ng-blur="subdomainAvailability()">
+                <span class="input-group-addon" id="basic-addon2">.rankingdesk.com</span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-show="availableDomain"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-hide="hideSubdomainFeedback()"></span>
+              </div>
               <div ng-hide="hideSubdomainFeedback()">
                 Recommended subdomain: <strong>{{recommendedSubdoamin}}</strong>
               </div>

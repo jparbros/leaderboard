@@ -12,7 +12,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   'angularjs-dropdown-multiselect',
   'angularFileUpload',
   'angularPayments'
-  ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider) ->
+  ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider, $logProvider) ->
+    $logProvider.debugEnabled(true);
     $routeProvider
       .when '/', {
         templateUrl: 'leaderboard/templates/index.html',

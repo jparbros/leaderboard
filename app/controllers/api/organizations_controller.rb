@@ -7,7 +7,7 @@ module Api
     end
 
     def availability
-      render json: Organization.availability(params[:subdomain])
+      render json: Organization.availability(params[:subdomain_to_check])
     end
 
     def update

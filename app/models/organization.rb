@@ -17,12 +17,16 @@ class Organization < ActiveRecord::Base
     super(options.merge({methods: [:days_left]}))
   end
 
-  def self.availability(subdomain)
-    organizations = where(subdomain: subdomain)
+  def self.availability(subdomain_to_check)
+    #
+    organizations = where("subdomain like ?", "#{subdomain_to_check}")
+
     if organizations.empty?
       {available: true}
     else
-      {available: false, recommendation: "#{subdomain}#{organizations.count+1}"}
+      subdomain_to_check = subdomain_to_check.gsub(/\d*$/, '')
+      organization_count = where("subdomain like ?", "#{subdomain_to_check}%").count + 1
+      {available: false, recommendation: "#{subdomain_to_check}#{organization_count}"}
     end
   end
 

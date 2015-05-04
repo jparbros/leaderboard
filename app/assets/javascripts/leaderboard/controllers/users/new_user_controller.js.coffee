@@ -22,9 +22,19 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
 
   $scope.subdomainAvailability = ->
     subdomain = $scope.registrationForm.organization_attributes.subdomain
-    Organization.availability({subdomain: subdomain}, (respond) ->
-      $scope.availableDomain = respond.available
-      $scope.recommendedSubdoamin = respond.recommendation unless respond.available
-    )
+    if subdomain
+      Organization.availability({subdomain_to_check: subdomain}, (respond) ->
+        $scope.availableDomain = respond.available
+        $scope.recommendedSubdoamin = respond.recommendation unless respond.available
+      )
 
+  $scope.organizationToSubdomain = ->
+    subdomain = $scope.registrationForm.organization_attributes.name.parameterize()
+    Organization.availability({subdomain_to_check: subdomain}, (respond) ->
+      $scope.availableDomain = true
+      if respond.available
+        $scope.registrationForm.organization_attributes.subdomain = subdomain
+      else
+        $scope.registrationForm.organization_attributes.subdomain = respond.recommendation
+   )
 
