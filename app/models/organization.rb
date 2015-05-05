@@ -37,4 +37,8 @@ class Organization < ActiveRecord::Base
   def guest_user
     users.find_by(provider: 'username')
   end
+
+  def active
+    (trial_end_at > Time.now) || suscribed
+  end
 end

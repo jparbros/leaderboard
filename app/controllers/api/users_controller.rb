@@ -10,7 +10,7 @@ module Api
       @user = organization.users.new(user_params)
       @user.set_password
       @user.provider = "email"
-      @user.role = "user"
+      @user.role = "user" if user_params[:role].empty?
       User.skip_callback("create", :after, :send_on_create_confirmation_instructions)
       if @user.save!
         @client_id = SecureRandom.urlsafe_base64(nil, false)
@@ -62,7 +62,7 @@ module Api
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :alias, :departament_id, :active, target: [:daily, :weekly, :monthly, :quartly, :yearly])
+      params.require(:user).permit(:name, :email, :alias, :departament_id, :active, :role, target: [:daily, :weekly, :monthly, :quartly, :yearly])
     end
 
     def user

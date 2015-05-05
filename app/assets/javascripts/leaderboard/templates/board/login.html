@@ -1,8 +1,12 @@
-<form class="col-md-6 col-md-offset-2 with-margin" ng-submit="submitBoardLogin()">
-  <div class="alert alert-warning animate-show" ng-show="erroOnUpdate">
-    {{erroMessage}}
-  </div>
+<div class="alert alert-warning animate-show" ng-show="erroOnUpdate">
+  {{erroMessage}}
+</div>
 
+<div class="alert alert-success animate-show" ng-show="updateSuccessfully">
+  Your board login was successfully updated.
+</div>
+
+<form class="col-md-6 col-md-offset-2 with-margin" ng-submit="submitBoardLogin()">
   <div class="form-group">
     <label >Username</label>
     <input type="text" ng-model="guestUser.uid" class="form-control ng-pristine ng-untouched ng-valid">

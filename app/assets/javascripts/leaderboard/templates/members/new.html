@@ -53,6 +53,17 @@
   </fieldset>
 
   <fieldset class="col-md-12">
+    <div class="col-md-4 col-md-offset-2">
+      <label class="col-md-3 control-label">Role</label>
+      <div class="col-md-9">
+        <select ng-model="userForm.role" class="form-control">
+          <option value="user">User</option>
+          <option value="team-lead">Team Leader</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+    </div>
+
     <div class="checkbox col-md-4 col-md-offset-2">
       <label>
         <input type="checkbox" ng-model="userForm.active"> Active

@@ -1,8 +1,9 @@
-LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser) ->
+LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
   $scope.erroOnUpdate = false;
   $scope.erroMessage = '';
   $scope.partialUrl = "leaderboard/templates/board/login.html";
   $scope.boardLoginActive = true;
+  $scope.updateSuccessfully = false;
 
   GuestUser.query({organization_id: $scope.organization.id}, (data) ->
     $scope.guestUser = data
@@ -14,10 +15,16 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser) ->
 
     if $scope.guestUser.id
       $scope.guestUser.$update({organization_id: $scope.organization.id}, (data) ->
-        data
+        $scope.updateSuccessfully= true
+        $timeout( ->
+          $scope.updateSuccessfully= false;
+        , 3000)
       , (error) ->
         $scope.erroMessage = error.data[0]
         $scope.erroOnUpdate = true
+        $timeout( ->
+          $scope.erroOnUpdate = false
+        , 3000)
       )
     else
       $scope.guestUser.$save({organization_id: $scope.organization.id}, (data) ->
@@ -25,4 +32,7 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser) ->
       , (error) ->
         $scope.erroMessage = error.data[0]
         $scope.erroOnUpdate = true
+        $timeout( ->
+          $scope.erroOnUpdate = false
+        , 3000)
       )
