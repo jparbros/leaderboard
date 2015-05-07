@@ -18,13 +18,16 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" ng-click='signOut()'>Sign Out</a>
-          </li>
-        </ul>
-      </div>
+
+      <% if admin_signed_in? %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" ng-click='signOut()'>Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </nav>
 
@@ -40,14 +43,16 @@
   <div class="container users-container">
     <div class="row">
 
-      <div class="col-md-3">
-        <ul class="nav nav-pills nav-stacked sidebar">
-          <li class="<%= clients_active_menu %>"><%= link_to 'Clients', admin_clients_path %></li>
-          <li class="<%= emails_active_menu %>"><%= link_to 'Emails', admin_emails_path %></li>
-        </ul>
-      </div>
+      <% if admin_signed_in? %>
+        <div class="col-md-3">
+          <ul class="nav nav-pills nav-stacked sidebar">
+            <li class="<%= clients_active_menu %>"><%= link_to 'Clients', admin_clients_path %></li>
+            <li class="<%= emails_active_menu %>"><%= link_to 'Emails', admin_emails_path %></li>
+          </ul>
+        </div>
+      <% end %>
 
-      <div class="col-md-9 main">
+      <div class="<%= admin_signed_in? ? 'col-md-9' : 'col-md-12' %> main">
         <%= yield %>
       </div>
     </div>

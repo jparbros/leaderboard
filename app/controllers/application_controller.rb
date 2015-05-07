@@ -3,10 +3,14 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :subdomain_exist?
+  devise_group :admin, contains: [:admin]
 
-  respond_to :json
+  respond_to :json, :html
+
+  layout :layout_by_resource
 
   def default_serializer_options
     {root: false}
@@ -25,9 +29,19 @@ class ApplicationController < ActionController::Base
   end
 
   def subdomain_exist?
-    if request.subdomain.present? && request.subdomain != 'www' && request.subdomain != 'demo'
+    if Subdomain.matches?(request)
       organization = Organization.find_by subdomain: request.subdomain
       redirect_to root_url(subdomain: false) unless organization
+    elsif Subdomain.admin?(request)
+      redirect_to '/admin' unless devise_controller?
+    end
+  end
+
+  def layout_by_resource
+    if devise_controller?  && resource_name == :admin
+      "admin"
+    else
+      "application"
     end
   end
 end
