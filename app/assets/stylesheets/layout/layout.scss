@@ -27,8 +27,12 @@ a{
   margin-top: 130px;
   height: 100%;
 
-  & > .row {
+  .main-row {
     height: 100%;
+  }
+
+  .alert-cookie {
+    margin-bottom: 0;
   }
 }
 
