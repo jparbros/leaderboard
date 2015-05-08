@@ -28,3 +28,11 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
 
     modalInstance.result.then (input) ->
       $scope.inputs.push(input)
+
+  $scope.openForgotSubdomain = ->
+    modalInstance = $modal.open
+      templateUrl: 'leaderboard/templates/subdomain/forgot.html',
+      controller: 'forgotSubdomainCtrl',
+
+    modalInstance.result.then (input) ->
+      $scope.inputs.push(input)

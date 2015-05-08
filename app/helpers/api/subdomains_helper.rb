@@ -1,0 +1,2 @@
+module Api::SubdomainsHelper
+end

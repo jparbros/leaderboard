@@ -1,0 +1,29 @@
+<form class="form-horizontal" ng-submit="submitForgotSubdomain(forgotSubdomainForm)" role="form" ng-init="forgotSubdomainForm = {}">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Forgot your subdomain?</h4>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-warning animate-show" ng-show="erroOnUpdate">
+      There was an error when trying to remember your password.<br>
+      {{msgError}}
+    </div>
+
+
+    <div class="form-group" ng-hide="forgottenSubdomain">
+      <label for="name" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" placeholder="Email" ng-model="forgotSubdomainForm.email" class="form-control" required>
+        </p>
+      </div>
+    </div>
+
+    <div ng-show="forgottenSubdomain">
+      <h3>Your subdomain is {{forgottenSubdomain}}</h3>
+    </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
+    <button type="submit" class="btn btn-primary">Remember subdomain</button>
+  </div>
+</form>

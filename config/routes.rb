@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'organizations/availability', to: 'organizations#availability'
     get 'locations/countries', to: 'locations#countries'
     get 'locations/countries/:country', to: 'locations#regions'
+    get 'subdomains/forgot', to: 'subdomains#forgot'
     resources :organizations, defaults: { format: 'json' } do
       resources :departaments, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
       resource :guest_user, defaults: { format: 'json' }
