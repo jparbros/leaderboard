@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $timeout, $window, RedirectTo, $cookies) ->
+LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $timeout, $window, RedirectTo, $cookies, $modal) ->
   $scope.erroOnLogin = false;
   $scope.loginForm = {}
   $scope.subdomain = subdomain
@@ -21,3 +21,10 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
       $scope.erroOnLogin = false;
     , 3000)
 
+  $scope.openForgotPassword = ->
+    modalInstance = $modal.open
+      templateUrl: 'leaderboard/templates/password/reset.html',
+      controller: 'passwordResetCtrl',
+
+    modalInstance.result.then (input) ->
+      $scope.inputs.push(input)
