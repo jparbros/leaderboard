@@ -5,8 +5,28 @@ class Admin::ClientsController < Admin::BaseController
   end
 
   def become
-    # return unless current_user.is_an_admin?
-    sign_in(:user, User.find(params[:client_id]))
-    redirect_to input_url(subdomain: 'demo')
+    @user = User.find(params[:client_id])
+
+    if @user
+      @client_id = SecureRandom.urlsafe_base64(nil, false)
+      @token     = SecureRandom.urlsafe_base64(nil, false)
+
+      @user.tokens[@client_id] = {
+        token: BCrypt::Password.create(@token),
+        expiry: (Time.now + DeviseTokenAuth.token_lifespan).to_i
+      }
+      @user.save!
+
+      sign_in(:user, @user, store: false, bypass: false)
+
+      redirect_to input_url(
+        subdomain:      @user.organization.subdomain,
+        token:          @token,
+        client_id:      @client_id,
+        uid:            @user.uid
+      )
+    else
+      redirect_to admin_clients_url
+    end
   end
 end
