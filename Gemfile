@@ -17,7 +17,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'letter_opener', :group => :development
 gem 'liquid'
-gem 'mercury-rails', :github => "jejacks0n/mercury"
 gem 'ng-rails-csrf'
 gem 'omniauth'
 gem 'paperclip'
