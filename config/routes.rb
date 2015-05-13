@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     get '/boardlogin/settings' => 'welcome#index'
     get '/password/edit' => 'welcome#index'
     get '/' => 'welcome#index'
+    get 'cms-css/:site_id/:identifier(/:cache_buster)' => 'comfy/cms/assets#render_css', :as => 'render_css'
+    get 'cms-js/:site_id/:identifier(/:cache_buster)'  => 'comfy/cms/assets#render_js',  :as => 'render_js'
     get '*path' => 'welcome#index'
   end
 
