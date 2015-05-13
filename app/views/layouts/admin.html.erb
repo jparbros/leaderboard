@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" ng-click='signOut()'>Sign Out</a>
+              <%= link_to 'Sign Out', destroy_admin_session_path, method: :delete %>
             </li>
           </ul>
         </div>

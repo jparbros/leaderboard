@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def subdomain_exist?
     if Subdomain.matches?(request)
       organization = Organization.find_by subdomain: request.subdomain
-      redirect_to root_url(subdomain: false) unless organization
+      redirect_to root_url(subdomain: false) unless organization || Subdomain.assets?(request)
     elsif Subdomain.admin?(request)
       redirect_to '/admin' unless devise_controller?
     end
