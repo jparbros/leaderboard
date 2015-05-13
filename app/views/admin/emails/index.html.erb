@@ -1,5 +1,8 @@
 <% content_for :admin_header do %>
-  <ul class="col-md-9 admin-table-header admin-emails-header col-md-offset-3">
+  <div class="col-md-3">
+    <%= link_to 'New Email', new_admin_email_path, class: 'btn btn-success' %>
+  </div>
+  <ul class="col-md-9 admin-table-header admin-emails-header ">
     <li>Id</li>
     <li>Name</li>
     <li></li>
@@ -14,6 +17,8 @@
         <td><%= email.name %></td>
         <td>
           <%= link_to 'Edit', edit_admin_email_path(email), class: 'btn btn-success' %>
+
+          <%= link_to 'Send email', '', class: 'btn btn-success' %>
         </td>
       </tr>
     <% end %>

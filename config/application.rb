@@ -27,7 +27,10 @@ module Leaderboard
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.active_record.observers = :user_observer
+
     config.railties_order = [ :all, ComfortableMexicanSofa::Engine ]
+
     config.autoload_paths << Rails.root.join('lib')
 
     config.paperclip_defaults = {

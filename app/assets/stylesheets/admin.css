@@ -14,5 +14,6 @@
  *= require_tree ./layout/
  *= require_tree ./modules/
  *= require_tree ./sections/
+ *= require redactor
  *= require_self
  */

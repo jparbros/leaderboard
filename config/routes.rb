@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  Mercury::Engine.routes
   comfy_route :cms_admin, :path => '/cms'
 
   mount_devise_token_auth_for 'User', at: '/auth', controllers: {
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
       resources :clients, only: [:index] do
         get '/become' => 'clients#become'
       end
-      resources :emails, only: [:index, :edit, :update]
+      resources :emails
     end
   end
 

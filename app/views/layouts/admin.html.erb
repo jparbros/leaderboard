@@ -41,10 +41,10 @@
 
 
   <div class="container users-container">
-    <div class="row">
+    <div class="row main-row">
 
       <% if admin_signed_in? %>
-        <div class="col-md-3">
+        <div class="col-md-3 sidebar">
           <ul class="nav nav-pills nav-stacked sidebar">
             <li class="<%= clients_active_menu %>"><%= link_to 'Clients', admin_clients_path %></li>
             <li class="<%= emails_active_menu %>"><%= link_to 'Emails', admin_emails_path %></li>
@@ -60,5 +60,10 @@
 </body>
 
 <%= javascript_include_tag 'admin', 'data-turbolinks-track' => true %>
+
+<script type="text/javascript">
+  <%= yield(:javascript)%>
+</script>
+
 
 </html>

@@ -15,10 +15,10 @@
 
       <div class="form-group email-template-editor">
         <label>Email Template</label>
-        <%= form.text_area :body, class: 'form-control', id: 'rich-text-editor', rows: 30 %>
+        <%= form.text_area :body, class: 'form-control', id: 'rich-text-editor', rows: 30, value: render(file: 'layouts/mailer') %>
       </div>
 
-      <button type="submit" class="btn btn-success">Update Email</button>
+      <button type="submit" class="btn btn-success">Create Email</button>
     <% end %>
   </div>
 </div>

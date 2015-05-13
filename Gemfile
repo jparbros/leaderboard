@@ -12,10 +12,12 @@ gem 'comfortable_mexican_sofa', '~> 1.12.0'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'fog'
+gem 'gibbon', '1.1.5'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'letter_opener', :group => :development
 gem 'liquid'
+gem 'mercury-rails', :github => "jejacks0n/mercury"
 gem 'ng-rails-csrf'
 gem 'omniauth'
 gem 'paperclip'
@@ -23,9 +25,11 @@ gem 'pg'
 gem 'pry', group: :development
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rails', '4.1.8'
+gem 'rails-observers'
 gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sidekiq'
 gem 'spring',        group: :development
 gem 'time_difference'
 gem 'turbolinks'
