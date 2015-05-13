@@ -1,6 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
-  Mercury::Engine.routes
+  mount Sidekiq::Web => '/sidekiq'
   comfy_route :cms_admin, :path => '/cms'
 
   mount_devise_token_auth_for 'User', at: '/auth', controllers: {
