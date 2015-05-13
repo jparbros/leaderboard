@@ -1,4 +1,4 @@
-module Mailchimp
+module UserMailchimp
   extend ActiveSupport::Concern
 
   def subscribe

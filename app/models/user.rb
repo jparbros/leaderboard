@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
-  include Mailchimp
+  include UserMailchimp
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

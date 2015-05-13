@@ -35,7 +35,10 @@ Rails.application.routes.draw do
       resources :clients, only: [:index] do
         get '/become' => 'clients#become'
       end
-      resources :emails
+
+      resources :emails do
+        resource :send_emails, only: [:create]
+      end
     end
   end
 

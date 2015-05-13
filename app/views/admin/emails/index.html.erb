@@ -16,9 +16,13 @@
         <td><%= email.id %></td>
         <td><%= email.name %></td>
         <td>
-          <%= link_to 'Edit', edit_admin_email_path(email), class: 'btn btn-success' %>
+          <% if email.email_sent %>
+            <%= link_to 'View Details', admin_email_path(email), class: 'btn btn-success' %>
+          <% else %>
+            <%= link_to 'Edit', edit_admin_email_path(email), class: 'btn btn-success' %>
 
-          <%= link_to 'Send email', '', class: 'btn btn-success' %>
+            <%= link_to 'Send email', admin_email_send_emails_path(email), class: 'btn btn-success', method: :post %>
+          <% end %>
         </td>
       </tr>
     <% end %>

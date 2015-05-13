@@ -1,0 +1,19 @@
+<div class="row main-row">
+  <div class="col-md-10 col-md-offset-1 main-row">
+    <h1>Email Details - <%= @email.name %></h1>
+
+    <dl>
+      <dt>Subject</dt>
+      <dd><%= @email.subject%></dd>
+
+      <dt>Email</dt>
+      <dd><%= @email.body.html_safe %></dd>
+
+      <dt>Emails sent</dt>
+      <dd><%= @email.sent_total %></dd>
+
+      <dt>Emails opened</dt>
+      <dd><%= @email.opened_total %></dd>
+    </dl>
+  </div>
+</div>
