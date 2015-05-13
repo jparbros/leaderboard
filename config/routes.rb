@@ -3,7 +3,6 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
-  comfy_route :cms_admin, :path => '/cms'
 
   mount_devise_token_auth_for 'User', at: '/auth', controllers: {
     token_validations:  'token_validations'
@@ -60,5 +59,6 @@ Rails.application.routes.draw do
   end
 
   root :to => "comfy/cms/content#show"
+  comfy_route :cms_admin, :path => '/cms'
   comfy_route :cms, :path => '/', :sitemap => false
 end
