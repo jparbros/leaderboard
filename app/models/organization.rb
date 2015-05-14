@@ -1,5 +1,7 @@
 class Organization < ActiveRecord::Base
 
+  include OrganizationDefaultData
+
   has_many :departaments
   has_many :users
   has_many :inputs, through: :users

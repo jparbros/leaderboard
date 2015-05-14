@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:sign_up) << :role
     devise_parameter_sanitizer.for(:sign_up) << :owner
+    devise_parameter_sanitizer.for(:sign_up) << :active
     devise_parameter_sanitizer.for(:sign_up) << {organization_attributes: [:name, :subdomain]}
   end
 

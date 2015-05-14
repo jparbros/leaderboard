@@ -9,6 +9,7 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
     $cookies['subdomain'] = registrationForm.organization_attributes.subdomain
     registrationForm.role = 'admin'
     registrationForm.owner = true
+    registrationForm.active = true
     $auth.submitRegistration(registrationForm).catch((respond)->
       $scope.erroOnLogin = true
       $scope.msgError = respond.data[0]
