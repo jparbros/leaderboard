@@ -14,5 +14,6 @@
   <body>
     <%= yield %>
     <%= javascript_include_tag 'cms_layout', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag comfy_cms_render_js_path(@cms_site.id, @cms_page.layout.identifier), 'data-turbolinks-track' => true %>
   </body>
 </html>
