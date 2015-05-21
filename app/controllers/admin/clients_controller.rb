@@ -1,7 +1,7 @@
 class Admin::ClientsController < Admin::BaseController
 
   def index
-    @organizations = Organization.all
+    @organizations = Organization.order(params[:order]).includes(:subscription)
   end
 
   def become

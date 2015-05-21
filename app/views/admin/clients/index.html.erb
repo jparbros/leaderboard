@@ -1,7 +1,7 @@
 <% content_for :admin_header do %>
   <ul class="col-md-9 admin-table-header admin-clients-header col-md-offset-3">
-    <li>Id</li>
-    <li>Company</li>
+    <li><%= link_to_with_order 'Id', 'id'%></li>
+    <li><%= link_to_with_order 'Company', 'name'%></li>
     <li>Full name of admin</li>
     <li>Email</li>
   </ul>

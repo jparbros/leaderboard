@@ -33,7 +33,7 @@ class Organization < ActiveRecord::Base
   end
 
   def owner
-    users.find_by(owner: true)
+    @owner ||= users.find_by(owner: true)
   end
 
   def guest_user
