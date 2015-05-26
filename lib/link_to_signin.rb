@@ -1,4 +1,5 @@
 class LinkToSignin < Liquid::Tag
+  include ActionView::Helpers::UrlHelper
 
   def initialize(tag_name, params, tokens)
     @params = params
