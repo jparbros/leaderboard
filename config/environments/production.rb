@@ -88,3 +88,5 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 end
+
+Rails.application.routes.default_url_options[:host] = 'rankingdesk.com'
