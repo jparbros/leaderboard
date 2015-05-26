@@ -30,9 +30,9 @@ class UsersMailer < Devise::Mailer
 
   def reset_password_instructions(record, token, opts={})
     @email = EmailTemplate.find_by name: 'reset_password_instructions'
-    subdomain = user.organization.subdomain
-    body = Liquid::Template.parse(@email.body).render('user_name' => user.name, 'user_email' => user.email, 'token' => token, 'subdomain' => subdomain)
-    mail(to: user.email, subject: @email.subject) do |format|
+    subdomain = record.organization.subdomain
+    body = Liquid::Template.parse(@email.body).render('user_name' => record.name, 'user_email' => record.email, 'token' => token, 'subdomain' => subdomain)
+    mail(to: record.email, subject: @email.subject) do |format|
       format.html { render html: body.html_safe}
     end
   end
