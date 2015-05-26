@@ -41,10 +41,6 @@ class User < ActiveRecord::Base
     raw
   end
 
-  def owner?
-    role == 'owner'
-  end
-
   protected
 
   # NOTE: ensure that fragment comes AFTER querystring for proper $location
