@@ -7,4 +7,8 @@ module Admin::BaseHelper
   def emails_active_menu
     controller_name == 'emails' ? 'active' : ''
   end
+
+  def email_templates_active_menu
+    controller_name == 'email_templates' ? 'active' : ''
+  end
 end

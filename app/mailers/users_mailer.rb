@@ -7,9 +7,21 @@ class UsersMailer < Devise::Mailer
   layout 'mailer'
 
   def new_user_notification(user, token)
-    @user = user
-    @token = token
-    mail(to: @user.email, subject: 'Welcome to RankingDesk')
+    @email = EmailTemplate.find_by name: 'new_user_notification'
+    subdomain = user.organization.subdomain
+    body = Liquid::Template.parse(@email.body).render('user_name' => user.name, 'user_email' => user.email, 'token' => token, 'subdomain' => subdomain)
+    mail(to: user.email, subject: @email.subject) do |format|
+      format.html { render html: body.html_safe}
+    end
+  end
+
+  def new_client_notification(user)
+    @email = EmailTemplate.find_by name: 'new_client_notification'
+    subdomain = user.organization.subdomain
+    body = Liquid::Template.parse(@email.body).render('client_name' => user.name, 'client_email' => user.email, 'subdomain' => subdomain)
+    mail(to: user.email, subject: @email.subject) do |format|
+      format.html { render html: body.html_safe}
+    end
   end
 
   def confirmation_instructions(record, token, opts={})
@@ -17,7 +29,12 @@ class UsersMailer < Devise::Mailer
   end
 
   def reset_password_instructions(record, token, opts={})
-    super
+    @email = EmailTemplate.find_by name: 'reset_password_instructions'
+    subdomain = user.organization.subdomain
+    body = Liquid::Template.parse(@email.body).render('user_name' => user.name, 'user_email' => user.email, 'token' => token, 'subdomain' => subdomain)
+    mail(to: user.email, subject: @email.subject) do |format|
+      format.html { render html: body.html_safe}
+    end
   end
 
   def unlock_instructions(record, token, opts={})

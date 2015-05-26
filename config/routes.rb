@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       resources :emails do
         resource :send_emails, only: [:create]
       end
+
+      resources :email_templates
     end
   end
 

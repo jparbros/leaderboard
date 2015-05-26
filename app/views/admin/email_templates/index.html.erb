@@ -1,0 +1,29 @@
+<% content_for :admin_header do %>
+  <div class="col-md-3">
+    <%= link_to 'New Email', new_admin_email_path, class: 'btn btn-success' %>
+  </div>
+  <ul class="col-md-9 admin-table-header admin-emails-header ">
+    <li>Id</li>
+    <li>Name</li>
+    <li></li>
+  </ul>
+<% end %>
+
+<table class="table table-striped admin-emails-table">
+  <tbody>
+    <% @emails.each do |email| %>
+      <tr>
+        <td><%= email.id %></td>
+        <td><%= email.name %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_email_template_path(email), class: 'btn btn-success' %>
+        </td>
+      </tr>
+    <% end %>
+    <% if @emails.size < 1 %>
+      <tr ng-show="!inputs.length">
+        <td colspan="3">There is no record.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
