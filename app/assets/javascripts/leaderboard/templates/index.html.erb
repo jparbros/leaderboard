@@ -46,8 +46,8 @@
   <div class="container main-container">
 
     <div class="row">
-      <div class="alert alert-warning alert-dismissible alert-cookie" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="alert alert-warning alert-dismissible alert-cookie" role="alert" ng-hide='cookiesMessageViewed'>
+        <button type="button" class="close" aria-label="Close" ng-click="markCookiesMessageViewed()"><span aria-hidden="true" >&times;</span></button>
         We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we'll assume that you are happy to receive all cookies from this website. If you would like to change your preferences you may do so by following the instructions <a href="http://www.aboutcookies.org/Default.aspx?page=1" target="_blank">here</a>
       </div>
     </div>
