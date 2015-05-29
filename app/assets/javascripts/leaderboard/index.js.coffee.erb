@@ -11,7 +11,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   'chart.js',
   'angularjs-dropdown-multiselect',
   'angularFileUpload',
-  'angularPayments'
+  'angularPayments',
+  'willPaginate'
   ]).config( ($routeProvider, $locationProvider, $authProvider, $httpProvider, $logProvider) ->
     $logProvider.debugEnabled(true);
     $routeProvider

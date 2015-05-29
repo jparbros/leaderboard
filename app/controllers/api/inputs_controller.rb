@@ -11,6 +11,7 @@ module Api
       @inputs = @inputs.by_year if params[:period] == 'year'
       @inputs = @inputs.by_departament(params[:departament_id]) if params[:departament_id]
       @inputs = @inputs.group_by_user if params[:group_by_user]
+      @inputs = @inputs.paginate(page: params[:page], per_page: 20) if params[:page]
       leader = @inputs.get_leader if params[:get_leader]
       if params[:group_by_user]
         if params[:get_leader]
@@ -19,7 +20,17 @@ module Api
           render json: @inputs
         end
       else
-        respond_with @inputs
+        if params[:page]
+          render json: {
+            current_page: @inputs.current_page,
+            per_page: @inputs.per_page,
+            total_entries: @inputs.total_entries,
+            total_pages: @inputs.total_pages,
+            entries: @inputs.map {|input| InputSerializer.new(input).as_json(root: false)}
+          }
+        else
+          respond_with @inputs
+        end
       end
     end
 

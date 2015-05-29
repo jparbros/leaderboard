@@ -36,3 +36,4 @@ gem 'spring',        group: :development
 gem 'time_difference'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'will_paginate'

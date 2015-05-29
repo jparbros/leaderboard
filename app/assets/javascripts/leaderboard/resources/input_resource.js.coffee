@@ -7,4 +7,5 @@ LeaderboardApp.factory "Input", ($resource) ->
    remove: {method: 'DELETE'},
    delete: {method: 'DELETE'}
    update: {method: "PUT"}
+   paginate: {method: 'GET'},
   })
