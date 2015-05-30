@@ -1,10 +1,26 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Team</th>
-      <th>Date</th>
-      <th>Value</th>
+      <th>
+        <a href="#" ng-click="getOrderedPage('name')">Name</a>
+        <span ng-show="inputsOrder.field == 'name' && inputsOrder.direction == 'ASC'" class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+        <span ng-show="inputsOrder.field == 'name' && inputsOrder.direction == 'DESC'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+      </th>
+      <th>
+        <a href="#" ng-click="getOrderedPage('team')">Team</a>
+        <span ng-show="inputsOrder.field == 'team' && inputsOrder.direction == 'ASC'" class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+        <span ng-show="inputsOrder.field == 'team' && inputsOrder.direction == 'DESC'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+      </th>
+      <th>
+        <a href="#" ng-click="getOrderedPage('date')">Date</a>
+        <span ng-show="inputsOrder.field == 'date' && inputsOrder.direction == 'ASC'" class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+        <span ng-show="inputsOrder.field == 'date' && inputsOrder.direction == 'DESC'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+      </th>
+      <th>
+        <a href="#" ng-click="getOrderedPage('value')">Value</a>
+        <span ng-show="inputsOrder.field == 'value' && inputsOrder.direction == 'ASC'" class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+        <span ng-show="inputsOrder.field == 'value' && inputsOrder.direction == 'DESC'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+      </th>
       <th>Description</th>
       <th></th>
     </tr>

@@ -2,16 +2,7 @@ module Api
   class InputsController < ApplicationController
 
     def index
-      @inputs = organization.inputs
-      @inputs = @inputs.by_user(params[:user_id]) if params[:user_id]
-      @inputs = @inputs.by_today if params[:period] == 'today'
-      @inputs = @inputs.by_week if params[:period] == 'week'
-      @inputs = @inputs.by_month if params[:period] == 'month'
-      @inputs = @inputs.by_quarter if params[:period] == 'quarter'
-      @inputs = @inputs.by_year if params[:period] == 'year'
-      @inputs = @inputs.by_departament(params[:departament_id]) if params[:departament_id]
-      @inputs = @inputs.group_by_user if params[:group_by_user]
-      @inputs = @inputs.paginate(page: params[:page], per_page: 20) if params[:page]
+      @inputs = organization.inputs.search(params)
       leader = @inputs.get_leader if params[:get_leader]
       if params[:group_by_user]
         if params[:get_leader]

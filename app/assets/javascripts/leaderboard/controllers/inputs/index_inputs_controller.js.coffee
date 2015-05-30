@@ -18,14 +18,31 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
     outerWindow: 3
   };
 
+  $scope.inputsOrder = {
+    field: 'date',
+    direction: 'desc'
+  }
+
   $scope.getPage = (page) ->
-    Input.paginate({organization_id: $scope.organization.id, page: page }, (inputs) ->
+    Input.paginate({organization_id: $scope.organization.id, page: page, order: $scope.inputsOrder.field, order_direction: $scope.inputsOrder.direction}, (inputs) ->
       $scope.inputs = inputs.entries
       $scope.willPaginateCollection.currentPage = inputs.current_page
       $scope.willPaginateCollection.perPage = inputs.per_page
       $scope.willPaginateCollection.totalEntries = inputs.total_entries
       $scope.willPaginateCollection.totalPages = inputs.total_pages
     );
+
+  $scope.getOrderedPage = (field) ->
+    if $scope.inputsOrder.field == field
+      if $scope.inputsOrder.direction == 'ASC'
+        $scope.inputsOrder.direction = 'DESC'
+      else
+        $scope.inputsOrder.direction = 'ASC'
+    else
+      $scope.inputsOrder.field = field
+      $scope.inputsOrder.direction = 'DESC'
+
+    $scope.getPage(1);
 
   $scope.getPage(1);
 
