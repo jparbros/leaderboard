@@ -12,6 +12,10 @@ module DeviseTokenAuth
         email = resource_params[:email]
       end
 
+      puts "\n=======================\n"
+      puts request.subdomain
+      puts "\n=======================\n"
+
       q = "users.uid='#{email}' AND (users.provider='email' OR users.provider='username') AND users.active = true AND organizations.subdomain = '#{request.subdomain}'"
 
       if ActiveRecord::Base.connection.adapter_name.downcase.starts_with? 'mysql'
