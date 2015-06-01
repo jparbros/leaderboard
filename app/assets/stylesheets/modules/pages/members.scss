@@ -1,0 +1,11 @@
+.members-by-team {
+  clear: both;
+}
+
+.members.sub-nav {
+  &:after {
+    clear: both;
+    content: ' ';
+    display: table;
+  }
+}

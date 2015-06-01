@@ -12,13 +12,13 @@ module DeviseTokenAuth
         email = resource_params[:email]
       end
 
-      q = "uid='#{email}' AND provider='email' OR provider='username'"
+      q = "users.uid='#{email}' AND (users.provider='email' OR users.provider='username') AND users.active = true AND organizations.subdomain = '#{request.subdomain}'"
 
       if ActiveRecord::Base.connection.adapter_name.downcase.starts_with? 'mysql'
         q = "BINARY uid='#{email}' AND provider='email'"
       end
 
-      @resource = resource_class.where(q).first
+      @resource = resource_class.joins(:organization).where(q).first
 
       if @resource and valid_params? and @resource.valid_password?(resource_params[:password]) and @resource.confirmed?
         # create client id

@@ -1,9 +1,9 @@
-<ul class="col-md-12 sub-nav text-center">
+<ul class="col-md-12 sub-nav text-center members">
   <li class="col-md-6 active"><a href="/users">All Users</a></li>
   <li class="col-md-6"><a href="/users/new">New User</a></li>
 </ul>
 
-<div ng-repeat="departament in departaments">
+<div class='members-by-team' ng-repeat="departament in departaments">
   <h1 class="text-center">{{departament.name}}</h1>
 
   <table class="table table-striped ">

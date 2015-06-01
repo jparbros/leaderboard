@@ -30,7 +30,7 @@
       <ul class="teams-list">
         <li class="title">Team</li>
         <li ng-class="{active:selectedTeam==team}" ng-repeat='team in teams'><a href="#" ng-click="selectTeam(team)">{{team.name}}</a></li>
-        <li><a href="#" ng-click="selectTotalTeam()">Total Team</a></li>
+        <li><a href="#" ng-click="selectTeam(allTeams)">Total Team</a></li>
       </ul>
     </div>
 
@@ -64,6 +64,9 @@
             <td>{{input.difference | number:2}}</td>
             <td>{{input.fullfilment | number:2}}%</td>
           </tr>
+          <tr>
+            <td colspan="5" ng-show="inputs.length < 1">There is no data to show</td>
+          </tr>
         </tbody>
       </table>
 
@@ -77,7 +80,7 @@
         <span class="leader-alias">{{leader.alias}}</span>
         <div class="leader-chart">
           <span>Total Fullfilment</span>
-          <canvas id="bar" class="chart chart-bar" data="data" labels="labels"></canvas>
+          <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels"></canvas>
         </div>
       </div>
     </div>

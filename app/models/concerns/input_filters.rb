@@ -45,14 +45,18 @@ module InputFilters
     end
 
     def by_departament(departament_id)
-      joins(:departament).where(departaments: {id: departament_id})
+      if departament_id == 'all_teams'
+        joins(:departament)
+      else
+        joins(:departament).where(departaments: {id: departament_id})
+      end
     end
 
     def group_by_user
       all.group_by {|input| input.user_id}.values.map do |values|
         user = values.first.user
         {realized: values.map(&:value).inject(0, &:+).round(2), username: user.name, picture: user.avatar.url(:medium), target: user.target}
-      end
+      end.sort {|x,y| x[:realized] <=> y[:realized]}.take(5)
     end
 
     def get_leader
