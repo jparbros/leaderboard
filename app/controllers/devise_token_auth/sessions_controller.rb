@@ -6,17 +6,15 @@ module DeviseTokenAuth
     def create
       # honor devise configuration for case_insensitive_keys
 
+      subdomain = params[:subdomain]
+
       if resource_class.case_insensitive_keys.include?(:email)
         email = resource_params[:email].downcase
       else
         email = resource_params[:email]
       end
 
-      puts "\n=======================\n"
-      puts request.subdomain
-      puts "\n=======================\n"
-
-      q = "users.uid='#{email}' AND (users.provider='email' OR users.provider='username') AND users.active = true AND organizations.subdomain = '#{request.subdomain}'"
+      q = "users.uid='#{email}' AND (users.provider='email' OR users.provider='username') AND users.active = true AND organizations.subdomain = '#{subdomain}'"
 
       if ActiveRecord::Base.connection.adapter_name.downcase.starts_with? 'mysql'
         q = "BINARY uid='#{email}' AND provider='email'"

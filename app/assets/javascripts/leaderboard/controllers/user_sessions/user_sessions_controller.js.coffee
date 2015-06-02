@@ -2,6 +2,7 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
   $scope.erroOnLogin = false;
   $scope.loginForm = {}
   $scope.subdomain = subdomain
+  $scope.loginForm.subdomain = $scope.subdomain
 
   $scope.$on 'auth:login-success', (ev, user) ->
     if subdomain
