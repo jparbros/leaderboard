@@ -19,7 +19,8 @@
               {{user.name || user.email}} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="/profile">Profile</a></li>
+              <li ng-hide="user.role == 'boardlogin'"><a href="/profile">Profile</a></li>
+              <li ng-show="user.role == 'admin'"><a href="/billing">Billing</a></li>
               <li class="divider"></li>
               <li><a href="#" ng-click='signOut()'>Sign Out</a></li>
             </ul>

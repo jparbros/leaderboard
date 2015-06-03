@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521103916) do
+ActiveRecord::Schema.define(version: 20150603124308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,6 +233,10 @@ ActiveRecord::Schema.define(version: 20150521103916) do
     t.string   "subscription_kind"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "billing_start"
+    t.integer  "billing_day"
+    t.string   "card_type"
+    t.string   "order_number"
   end
 
   create_table "transactions", force: true do |t|
@@ -244,6 +248,8 @@ ActiveRecord::Schema.define(version: 20150521103916) do
     t.boolean  "success",              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "order_number"
+    t.string   "message"
   end
 
   create_table "users", force: true do |t|

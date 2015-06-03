@@ -131,6 +131,15 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         access:
           requiredPermissions: ['admin']
       }
+      .when '/billing', {
+        templateUrl: 'leaderboard/templates/index.html',
+        controller: 'billingCtrl',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+        access:
+          requiredPermissions: ['admin']
+      }
       .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)

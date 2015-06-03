@@ -1,0 +1,44 @@
+.cc {
+  height: 36px;
+  background: image-url('cc.png');
+  margin: 0 auto;
+
+  &.master {
+    background-position:0px 0px;
+    height:32px;
+    width:56px;
+  }
+
+  &.visa {
+    background-position:-56px 0px;
+    height:32px;
+    width:56px;
+  }
+
+  &.discover {
+    background-position:-112px 0px;
+    height:32px;
+    width:56px;
+  }
+
+  &.american_express {
+    background-position:-168px 0px;
+    height:32px;
+    width:56px;
+  }
+}
+
+.payment-method-table,
+.subscription-table {
+  td,
+  th {
+    width: 33%;
+  }
+}
+
+.billing-table {
+  td,
+  th {
+    width: 25%;
+  }
+}

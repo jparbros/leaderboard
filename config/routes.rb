@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :organizations, defaults: { format: 'json' } do
       resources :departaments, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }
       resource :guest_user, defaults: { format: 'json' }
+      resource :subscription
     end
 
     resources :users, defaults: { format: 'json' } do

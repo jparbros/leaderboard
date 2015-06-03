@@ -39,6 +39,7 @@ a{
 .main {
   background: $white;
   height: 100%;
+  overflow: auto;
   padding: 0;
 }
 
@@ -107,4 +108,13 @@ ul.sub-nav {
     left: 50%;
     margin: -38px 0 0 -269px;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $main-green-blue;
 }

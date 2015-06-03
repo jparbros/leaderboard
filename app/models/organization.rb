@@ -7,20 +7,17 @@ class Organization < ActiveRecord::Base
   has_many :inputs, through: :users
   has_one :subscription
 
+  DEMO_PERIOD = 30
+
   def days_left
-    TimeDifference.between(trial_end_at, Time.now).in_days.round
+    (trial_end_at > Time.now) ? TimeDifference.between(trial_end_at, Time.now).in_days.round : 0
   end
 
   def trial_end_at
     created_at + 30.days
   end
 
-  def to_json(options)
-    super(options.merge({methods: [:days_left]}))
-  end
-
   def self.availability(subdomain_to_check)
-    #
     organizations = where("subdomain like ?", "#{subdomain_to_check}")
 
     if organizations.empty?
@@ -41,6 +38,6 @@ class Organization < ActiveRecord::Base
   end
 
   def active
-    (trial_end_at > Time.now) || suscribed
+    subscription.active ? subscription.active : (trial_end_at > Time.now)
   end
 end
