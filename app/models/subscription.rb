@@ -68,7 +68,7 @@ class Subscription < ActiveRecord::Base
       authorization_number: response.authorization,
       amount_cents: response.params['amount'],
       currency: response.params['currency'],
-      order_number: response.params['ordernumber']
+      order_number: response.params['ordernumber'],
       success: response.success?,
       message: response.message }
   end
