@@ -36,6 +36,13 @@
               <input type="text" placeholder="Email" ng-model="registrationForm.email" required class="form-control" name="email" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$">
               <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+              <div class="tooltip right tooltip-registration tooltip-email" role="tooltip">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner">
+                  Email address not valid
+                </div>
+              </div>
             </div>
           </div>
 
@@ -44,6 +51,12 @@
               <input type="password" placeholder="Password" ng-model="registrationForm.password" required class="form-control" name="password" minlength="5">
               <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+              <div class="tooltip right tooltip-registration tooltip-password" role="tooltip">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner">
+                  Password shall be at least 5 characters
+                </div>
+              </div>
             </div>
           </div>
 
@@ -52,6 +65,13 @@
               <input type="password" placeholder="Password confirmation" ng-model="registrationForm.password_confirmation" required class="form-control" name="password_confirmation" minlength="5" compare-to="registrationForm.password">
               <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+              <div class="tooltip right tooltip-registration tooltip-password-confirmation" role="tooltip">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner">
+                   Not the same password as above
+                </div>
+              </div>
             </div>
           </div>
 
@@ -60,6 +80,12 @@
               <input type="text" placeholder="Full Name" ng-model="registrationForm.name" required class="form-control" name="full_name" full-name-validation>
               <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+              <div class="tooltip right tooltip-registration tooltip-name" role="tooltip">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner">
+                   Please enter both first and last name
+                </div>
+              </div>
             </div>
           </div>
 

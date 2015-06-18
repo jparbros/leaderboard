@@ -47,8 +47,37 @@ form#create-trial-form, form#new-session-form {
       .glyphicon.glyphicon-remove {
         display: block;
       }
+
+      .tooltip-registration {
+        opacity: 1;
+      }
     }
   }
 
+  .tooltip-registration {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+
+    &.tooltip-email {
+      right: -135px;
+      top: 5px;
+    }
+
+    &.tooltip-password {
+      right: -190px;
+      top: -2px;
+    }
+
+    &.tooltip-password-confirmation {
+      right: -190px;
+      top: -2px;
+    }
+
+    &.tooltip-name {
+      right: -190px;
+      top: -2px;
+    }
+  }
 
 }
