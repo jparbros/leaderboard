@@ -11,8 +11,11 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
     registrationForm.owner = true
     registrationForm.active = true
     $auth.submitRegistration(registrationForm).catch((respond)->
+      delete $cookies['subdomain']
       $scope.erroOnLogin = true
-      $scope.msgError = respond.data[0]
+      error_key = Object.keys(respond.data['errors'])[0];
+      console.log(respond.data['errors'][error_key][0])
+      $scope.msgError = respond.data['errors'][error_key][0]
     )
 
 

@@ -7,6 +7,8 @@ class Organization < ActiveRecord::Base
   has_many :inputs, through: :users
   has_one :subscription
 
+  validates :subdomain, uniqueness: true
+
   DEMO_PERIOD = 30
 
   def days_left
