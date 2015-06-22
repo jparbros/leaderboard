@@ -152,7 +152,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   $rootScope.showLoading = true
   $rootScope.organization = {}
   $rootScope.redirectToSubdomain = false
-  $rootScope.cookiesMessageViewed = false
+  $rootScope.cookiesMessageViewed = $cookies['cookiesMessageViewed'] || false
 
   $rootScope.$on '$routeChangeStart', (event, next) ->
     $rootScope.showLoading = true;
@@ -227,6 +227,6 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
       RedirectTo.subdomain($cookies['subdomain'])
 
   $rootScope.markCookiesMessageViewed = ->
-    console.log('ola')
     $rootScope.cookiesMessageViewed = true
+    $cookies['cookiesMessageViewed'] = true
 )
