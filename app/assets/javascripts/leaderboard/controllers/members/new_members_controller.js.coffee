@@ -2,7 +2,7 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
   $scope.partialUrl = "leaderboard/templates/members/new.html";
   $scope.usersActive = true;
   $scope.erroOnCreate = false
-  $scope.userForm = new User()
+  $scope.userForm = new User({active: true})
   $scope.selectedTeam = null
   $scope.msgError = ''
 
