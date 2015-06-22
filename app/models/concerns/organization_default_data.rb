@@ -4,6 +4,7 @@ module OrganizationDefaultData
   def create_default_data
     create_teams
     create_users
+    create_dummy_data
     create_new_subscription
   end
 
@@ -34,6 +35,25 @@ module OrganizationDefaultData
     user.active = true
     User.skip_callback("create", :after, :send_on_create_confirmation_instructions)
     user.save!
+  end
+
+  def create_dummy_data
+    users.each do |user|
+      rand(1..10).times do
+        create_input(user)
+      end
+    end
+  end
+
+  def create_input(user)
+     a_day_ago = Time.now - 60 * 60 * 24 * 90
+     date = rand(a_day_ago..Time.now)
+     value = rand(0.0..200.00).round(2)
+     user.inputs.create(
+       value: value,
+       date: date,
+       description: "Input of #{user.email} by #{value} at #{date.to_s(:short)}"
+     )
   end
 
   def create_new_subscription
