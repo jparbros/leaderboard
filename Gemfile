@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'activemerchant'
 gem 'active_model_serializers'
 gem 'airbrake'
 gem 'angular-rails-templates'
@@ -33,6 +32,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'sidekiq'
 gem 'sinatra'
 gem 'spring',        group: :development
+gem 'stripe'
 gem 'time_difference'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'

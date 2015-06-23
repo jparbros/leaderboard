@@ -4,6 +4,7 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = organization.subscription
     @subscription.attributes = subscription_params
     if @subscription.save
+      @subscription.subscribe
       render json: @subscription
     else
       render json: @subscription
@@ -18,10 +19,7 @@ class Api::SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:subscription_kind, credit_card_attributes: [
-      :type, :first_name, :last_name, :number, :verification_value, :month, :year],
-      billing_address: []
-    )
+    params.require(:subscription).permit(:subscription_kind, :card_number, :card_type, :token)
   end
 
   def organization

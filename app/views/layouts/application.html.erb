@@ -16,5 +16,8 @@
 </body>
 
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+  Stripe.setPublishableKey('pk_test_mR4Q3PLJ3OAQfHWOigpAeFxO');
+</script>
 </html>

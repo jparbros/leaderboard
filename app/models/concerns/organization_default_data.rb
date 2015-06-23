@@ -59,8 +59,7 @@ module OrganizationDefaultData
   def create_new_subscription
     subscription = self.build_subscription
     date = Date.today + Organization::DEMO_PERIOD
-    subscription.billing_start ||= date
-    subscription.billing_day   ||= [date.day, 28].min
+    subscription.active_until = date
     subscription.save
   end
 end

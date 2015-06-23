@@ -1,36 +1,32 @@
-LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscription) ->
+LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscription, $location, $rootScope, Organization) ->
   $scope.partialUrl = "leaderboard/templates/buy/new.html";
   $scope.erroOnCreate = false
-  $scope.buyForm = {
-    subscription_kind: $routeParams.plan,
-    credit_card_attributes: {},
-    billing_address: {}
-  }
+  $scope.subscription_kind = $routeParams.plan
 
   $http.get('/api/locations/countries').success (data) ->
     $scope.countries = data
 
-  $scope.getRegions = ->
-    country =  $scope.buyForm.billing_address.country
-    $http.get('/api/locations/countries/' + country.alpha_2_code).success (data) ->
+  $scope.getRegions = (scope) ->
+    $http.get('/api/locations/countries/' + scope.addressCountry.alpha_2_code).success (data) ->
       $scope.regions = data
 
-  $scope.submitForm = ->
+  $scope.submitForm = (status, response) ->
     subscription = new Subscription({subscription: $scope.buyForm})
     subscription.$save({organization_id: $scope.organization.id})
-    console.log(subscription)
 
-
-  $scope.$watch('buyForm.credit_card_attributes.name', ->
-    if $scope.buyForm.credit_card_attributes.name
-      creditCardName = $scope.buyForm.credit_card_attributes.name.split(' ')
-      $scope.buyForm.credit_card_attributes.first_name = creditCardName[0]
-      $scope.buyForm.credit_card_attributes.last_name = creditCardName[creditCardName.length - 1]
-  )
-
-  $scope.$watch('buyForm.credit_card_attributes.expiry', ->
-    if $scope.buyForm.credit_card_attributes.expiry
-      creditCardExpiry = $scope.buyForm.credit_card_attributes.expiry.split('/')
-      $scope.buyForm.credit_card_attributes.month = creditCardExpiry[0]
-      $scope.buyForm.credit_card_attributes.year = creditCardExpiry[creditCardExpiry.length - 1]
-  )
+  $scope.stripeResponse = (status, response) ->
+    if(response.error)
+      $scope.erroOnCreate = true
+    else
+      subscription = new Subscription({subscription: {
+        subscription_kind: $scope.subscription_kind,
+        card_number: response.card.last4,
+        card_type: response.card.brand,
+        token: response.id
+      }})
+      subscription.$save({organization_id: $scope.organization.id}, (data) ->
+        Organization.get({id: $rootScope.user.organization_id }, (organization) ->
+          $rootScope.organization = organization
+          $location.path('/billing')
+        )
+      )

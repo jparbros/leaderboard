@@ -35,13 +35,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
-    ::GATEWAY = ActiveMerchant::Billing::QuickpayGateway.new(
-      login: ENV['MERCHANT_ID'],
-      password: ENV['MERCHANT_PASSWORD'])
-  end
-
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { :host => 'lvh.me:3000' }
 end

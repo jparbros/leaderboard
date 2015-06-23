@@ -15,10 +15,6 @@ class Organization < ActiveRecord::Base
     (trial_end_at > Time.now) ? TimeDifference.between(trial_end_at, Time.now).in_days.round : 0
   end
 
-  def trial_end_at
-    created_at + 30.days
-  end
-
   def self.availability(subdomain_to_check)
     organizations = where("subdomain like ?", "#{subdomain_to_check}")
 
@@ -40,6 +36,12 @@ class Organization < ActiveRecord::Base
   end
 
   def active
-    subscription.active ? subscription.active : (trial_end_at > Time.now)
+    subscription.active
+  end
+
+  private
+
+  def trial_end_at
+    created_at + 30.days
   end
 end
