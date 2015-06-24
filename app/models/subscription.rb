@@ -21,7 +21,7 @@ class Subscription < ActiveRecord::Base
   private
 
   def cart_type_downcase
-    self.card_type = self.card_type.downcase if card_type
+    self.card_type = self.card_type.try(:downcase) if card_type
   end
 
   def subscription_plan

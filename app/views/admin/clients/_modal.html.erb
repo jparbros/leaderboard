@@ -11,10 +11,10 @@
           <dd><%= organization.created_at.to_date.to_s(:short_date) %></dd>
 
           <dt>Date of payment:</dt>
-          <dd>...</dd>
+          <dd><%= organization.subscription.active_until %></dd>
 
           <dt>Expiry date:</dt>
-          <dd>...</dd>
+          <dd><%= organization.subscription.active_until %></dd>
 
           <dt>Last login date:</dt>
           <dd><%= (organization.try(:owner).try(:last_sign_in_at) || Time.now).to_date.to_s(:short_date) %></dd>
