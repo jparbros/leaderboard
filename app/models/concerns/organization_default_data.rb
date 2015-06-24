@@ -48,7 +48,7 @@ module OrganizationDefaultData
   def create_input(user)
      a_day_ago = Time.now - 60 * 60 * 24 * 90
      date = rand(a_day_ago..Time.now)
-     value = rand(0.0..200.00).round(2)
+     value = rand(1000.0..2000.0).round(2)
      user.inputs.create(
        value: value,
        date: date,

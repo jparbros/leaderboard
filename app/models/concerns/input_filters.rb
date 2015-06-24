@@ -56,7 +56,7 @@ module InputFilters
       all.group_by {|input| input.user_id}.values.map do |values|
         user = values.first.user
         {realized: values.map(&:value).inject(0, &:+).round(2), username: user.name, picture: user.avatar.url(:medium), target: user.target}
-      end.sort {|x,y| x[:realized] <=> y[:realized]}.take(5)
+      end.sort {|x,y| y[:realized] <=> x[:realized]}.take(5)
     end
 
     def get_leader
@@ -72,7 +72,6 @@ module InputFilters
     end
 
     def order_by_name(direction = 'DESC')
-      puts direction
       order("users.name #{direction}")
     end
 
