@@ -9,7 +9,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{user.name || user.email}} <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img ng-src="{{user.picture_thumb}}">
+            {{user.name || user.email}} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/profile">Profile</a></li>
             <li class="divider"></li>
@@ -25,7 +27,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <a class="btn btn-primary new-record" ng-click="openNewRecord()">New Record</a>
+        <a href="/leaderboard" class="btn btn-primary new-record">Leaderboard</a>
       </div>
 
       <ul class="col-md-9 users-table-header">
@@ -44,6 +46,7 @@
 
     <div class="col-md-3 sidebar">
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#" ng-click="openNewRecord()">New Record</a></li>
         <li ng-class="{active:selectedPeriod==key}" ng-repeat="(key, value) in currentUser.target"><a href="#" ng-click="selectPeriod(key)">{{key || uppercase}} (Goal: {{value}})</a></li>
       </ul>
     </div>

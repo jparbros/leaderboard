@@ -55,6 +55,7 @@ LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input, 
       $scope.selectPeriod($scope.selectedPeriod)
 
   $scope.openDialogDeleteInput = (input) ->
+    console.log(input)
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/records/delete.html',
       controller: 'deleteRecordCtrl',

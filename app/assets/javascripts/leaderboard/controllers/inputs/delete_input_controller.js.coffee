@@ -1,6 +1,6 @@
 LeaderboardApp.controller 'deleteInputCtrl', ($scope, $modalInstance, Input, input) ->
   $scope.erroOnDelete = false;
-  $scope.input = input;
+  $scope.input = new Input(input);
   $scope.msgError = ''
 
   $scope.ok = ->
@@ -10,13 +10,14 @@ LeaderboardApp.controller 'deleteInputCtrl', ($scope, $modalInstance, Input, inp
     $modalInstance.dismiss('cancel');
 
   $scope.open = ($event) ->
+    console.log($scope.input)
     $event.preventDefault();
     $event.stopPropagation();
 
     $scope.opened = true;
 
   $scope.deleteInput = ->
-    $scope.input.$delete {user_id: $scope.user.id}, ->
+    $scope.input.$delete {user_id: $scope.input.user.id, organization_id: $scope.user.organization_id}, ->
       $modalInstance.close($scope.input)
     , (error) ->
       $scope.erroOnDelete = true

@@ -50,7 +50,6 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/inputs/new.html',
       controller: 'newInputCtrl',
-      size: 'lg'
 
     modalInstance.result.then (input) ->
       $scope.inputs.push(input)
@@ -59,7 +58,6 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/records/edit.html',
       controller: 'editRecordCtrl',
-      size: 'lg',
       resolve:
         input: ->
           input
@@ -67,10 +65,10 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
     modalInstance.result
 
   $scope.openDialogDeleteInput = (input) ->
+    console.log(input)
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/inputs/delete.html',
       controller: 'deleteInputCtrl',
-      size: 'lg',
       resolve:
         input: ->
           input
