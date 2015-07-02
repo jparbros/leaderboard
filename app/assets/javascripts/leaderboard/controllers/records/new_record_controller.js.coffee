@@ -3,6 +3,11 @@ LeaderboardApp.controller 'newRecordCtrl', ($scope, $modalInstance, Input) ->
   $scope.inputForm = {}
   $scope.msgError = ''
 
+  $scope.today = ->
+    $scope.inputForm.date = new Date().toISOString().slice(0, 10)
+
+  $scope.today()
+
   $scope.ok = ->
     $modalInstance.close();
 
