@@ -8,11 +8,6 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
 
-  Departament.query({organization_id: $scope.organization.id}, (teams)->
-    $scope.teams = teams
-    $scope.selectedTeam = teams[0]
-  );
-
 
   $scope.selectTeam = (team) ->
     $scope.selectedTeam = team
@@ -23,6 +18,11 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
       when 'quarterly' then 'quarter'
       when 'yearly' then 'year'
 
+
+  Departament.query({organization_id: $scope.organization.id}, (teams)->
+    $scope.teams = teams
+    $scope.selectTeam(teams[0])
+  );
 
   $scope.selectPeriod = (period) ->
     $scope.selectedPeriod = period
