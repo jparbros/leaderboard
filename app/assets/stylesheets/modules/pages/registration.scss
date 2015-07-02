@@ -1,4 +1,5 @@
-form#create-trial-form, form#new-session-form {
+form#create-trial-form,
+form#new-session-form {
   margin: 100px 0 0 0;
 
   legend {
@@ -18,40 +19,6 @@ form#create-trial-form, form#new-session-form {
      .input-group-addon {
        padding-right: 25px;
      }
-  }
-
-  .has-feedback {
-    .glyphicon.glyphicon-ok {
-      display: none;
-    }
-
-    .glyphicon.glyphicon-remove {
-      display: none;
-    }
-
-    &.has-success {
-      .glyphicon.glyphicon-ok {
-        display: block;
-      }
-
-      .glyphicon.glyphicon-remove {
-        display: none;
-      }
-    }
-
-    &.has-error {
-      .glyphicon.glyphicon-ok {
-        display: none;
-      }
-
-      .glyphicon.glyphicon-remove {
-        display: block;
-      }
-
-      .tooltip-registration {
-        opacity: 1;
-      }
-    }
   }
 
   .tooltip-registration {

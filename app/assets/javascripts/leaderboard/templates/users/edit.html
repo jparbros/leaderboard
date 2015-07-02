@@ -57,15 +57,13 @@
   </fieldset>
 </form>
 
-<form class="form-horizontal" ng-submit="updatePassword(changePasswordForm)" role="form" ng-init="changePasswordForm = {}">
+<form class="form-horizontal" ng-submit="updatePassword(changePasswordForm)" role="form" ng-init="changePasswordForm = {}" name="form_password" >
 
   <fieldset>
     <legend>Change Password</legend>
 
     <div class="alert alert-warning animate-show" ng-show="erroOnPassword">
-      There was an error when trying to update your password.
-      <br>
-      {{$scope.passwordMsgError}}
+      {{passwordMsgError}}
     </div>
 
     <div class="alert alert-success animate-show" ng-show="passwordSuccessfully">
@@ -73,17 +71,21 @@
     </div>
 
     <div class="row">
-      <div class="form-group">
+      <div class="form-group has-feedback" ng-class="{'has-success': form_password.password.$valid, 'has-error': (form_password.password.$touched && form_password.password.$invalid)}" >
         <label for="name" class="col-md-2 control-label">Password</label>
         <div class="col-md-9">
-          <input type="password" placeholder="Password" ng-model="changePasswordForm.password" class="form-control" required>
+          <input type="password" placeholder="Password" ng-model="changePasswordForm.password" class="form-control" required minlength="5" name="password">
+          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group has-feedback" ng-class="{'has-success': form_password.password_confirmation.$valid, 'has-error': (form_password.password_confirmation.$touched && form_password.password_confirmation.$invalid)}">
         <label for="name" class="col-md-2 control-label">Password Confirmation</label>
         <div class="col-md-9">
-          <input type="password" placeholder="Password Confirmation"  ng-model="changePasswordForm.password_confirmation" class="form-control" required>
+          <input type="password" placeholder="Password Confirmation"  ng-model="changePasswordForm.password_confirmation" class="form-control" required minlength="5" compare-to="changePasswordForm.password" name="password_confirmation">
+          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
         </div>
       </div>
 

@@ -20,4 +20,38 @@ form {
   .ng-invalid {
     border: 1px solid red;
   }
+
+  .has-feedback {
+    .glyphicon.glyphicon-ok {
+      display: none;
+    }
+
+    .glyphicon.glyphicon-remove {
+      display: none;
+    }
+
+    &.has-success {
+      .glyphicon.glyphicon-ok {
+        display: block;
+      }
+
+      .glyphicon.glyphicon-remove {
+        display: none;
+      }
+    }
+
+    &.has-error {
+      .glyphicon.glyphicon-ok {
+        display: none;
+      }
+
+      .glyphicon.glyphicon-remove {
+        display: block;
+      }
+
+      .tooltip-registration {
+        opacity: 1;
+      }
+    }
+  }
 }

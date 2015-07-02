@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'editUsersCtrl', ($scope, $location, $upload) ->
+LeaderboardApp.controller 'editUsersCtrl', ($scope, $location, $upload, $timeout) ->
   $scope.erroOnupdate = false;
   $scope.erroOnPassword = false;
   $scope.updateSuccessfully = false;
@@ -16,10 +16,17 @@ LeaderboardApp.controller 'editUsersCtrl', ($scope, $location, $upload) ->
 
   $scope.$on 'auth:password-change-success', (ev, user) ->
     $scope.passwordSuccessfully = true;
+    $timeout( ->
+      $scope.passwordSuccessfully = false
+    , 3000)
 
   $scope.$on 'auth:password-change-error', (ev, error) ->
     $scope.erroOnPassword = true;
-    $scope.passwordMsgError = error.data[0]
+    console.log(error.errors[0])
+    $scope.passwordMsgError = error.errors[0]
+    $timeout( ->
+      $scope.erroOnPassword = false
+    , 3000)
 
   # $scope.$watch 'files', ->
   #   $scope.upload($scope.files);
