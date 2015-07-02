@@ -14,7 +14,6 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
       delete $cookies['subdomain']
       $scope.erroOnLogin = true
       error_key = Object.keys(respond.data['errors'])[0];
-      console.log(respond.data['errors'][error_key][0])
       $scope.msgError = respond.data['errors'][error_key][0]
     )
 

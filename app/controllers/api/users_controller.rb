@@ -11,9 +11,10 @@ module Api
       @user = organization.users.new(user_params)
       @user.set_password
       @user.provider = "email"
-      @user.role = "user" if user_params[:role].empty?
+      @user.role = "user" if user_params[:role].nil? || user_params[:role].empty?
       User.skip_callback("create", :after, :send_on_create_confirmation_instructions)
-      if @user.save!
+
+      if @user.save
         @client_id = SecureRandom.urlsafe_base64(nil, false)
         @token     = SecureRandom.urlsafe_base64(nil, false)
 
@@ -22,14 +23,14 @@ module Api
           expiry: (Time.now + DeviseTokenAuth.token_lifespan).to_i
         }
 
-        @user.save!
+        @user.save
 
         token = @user.create_password_token_reset
         UsersMailer.new_user_notification(@user, token).deliver
 
-        render json: @user
+        respond_with json: @user
       else
-        render json: @user.errors.full_messages, status: 500
+        render json: @user.errors, status: 500
       end
     end
 

@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User, Departament, $filter) ->
+LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User, Departament, $filter, $timeout) ->
   $scope.partialUrl = "leaderboard/templates/members/new.html";
   $scope.usersActive = true;
   $scope.erroOnCreate = false
@@ -20,6 +20,10 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
     userObject = new User(userForm)
     userObject.$save {organization_id: $scope.organization.id}, (userData)->
       $location.path('/users')
-    , (error) ->
+    , (respond) ->
       $scope.erroOnCreate = true
-      $scope.msgError = error.data[0]
+      error_key = Object.keys(respond.data)[0];
+      $scope.msgError = respond.data[error_key][0]
+      $timeout( ->
+        $scope.erroOnCreate = false
+      , 5000)
