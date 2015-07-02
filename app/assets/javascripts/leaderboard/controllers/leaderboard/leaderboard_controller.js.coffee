@@ -3,7 +3,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.selectedPeriod = 'today'
   $scope.inputs = []
   $scope.leader = null
-  $scope.allTeams = {id: 'all_teams', period: ['daily', 'weekly', 'monthly', 'quartly', 'yearly'], name: 'Total Team'}
+  $scope.allTeams = {id: 'all_teams', period: ['daily', 'weekly', 'monthly', 'quarterly', 'yearly'], name: 'Total Team'}
 
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
@@ -20,7 +20,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
       when 'daily' then 'today'
       when 'weekly' then 'week'
       when 'monthly' then 'month'
-      when 'quartly' then 'quarter'
+      when 'quarterly' then 'quarter'
       when 'yearly' then 'year'
 
 
@@ -50,7 +50,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
         when 'today' then parseInt(input.target.daily)
         when 'week' then parseInt(input.target.weekly)
         when 'month' then parseInt(input.target.monthly)
-        when 'quarter' then parseInt(input.target.quartly)
+        when 'quarter' then parseInt(input.target.quarterly)
         when 'year' then parseInt(input.target.yearly)
       input.difference = input.currentTarget - input.realized
       input.fullfilment = (input.realized*100) / input.currentTarget

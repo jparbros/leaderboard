@@ -9,16 +9,16 @@ module OrganizationDefaultData
   end
 
   def create_teams
-    @team_1 = self.departaments.create(name: 'Team 1', period: ['weekly', 'quartly'])
+    @team_1 = self.departaments.create(name: 'Team 1', period: ['weekly', 'quarterly'])
     @team_2 = self.departaments.create(name: 'Team 2', period: ['monthly', 'yearly'])
   end
 
   def create_users
     create_user({ email: "player1@#{self.subdomain}.com", departament_id: @team_1.id,
-      alias: 'Player 1', name: 'Player 1', target: { weekly: 10000, quartly: 120000 }})
+      alias: 'Player 1', name: 'Player 1', target: { weekly: 10000, quarterly: 120000 }})
 
     create_user({ email: "player2@#{self.subdomain}.com", departament_id: @team_1.id,
-      alias: 'Player 2', name: 'Player 2', target: { weekly: 15000, quartly: 180000 }})
+      alias: 'Player 2', name: 'Player 2', target: { weekly: 15000, quarterly: 180000 }})
 
     create_user({ email: "player3@#{self.subdomain}.com", departament_id: @team_2.id,
       alias: 'Player 3', name: 'Player 3', target: { monthly: 100000, yearly: 1200000 }})

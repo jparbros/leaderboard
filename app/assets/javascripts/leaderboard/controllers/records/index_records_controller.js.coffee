@@ -8,7 +8,7 @@ LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input, 
     'daily': 'today'
     'weekly': 'week'
     'monthly': 'month'
-    'quartly': 'quarter'
+    'quarterly': 'quarter'
     'yearly': 'year'
 
   $scope.selectPeriod = (period) ->
@@ -31,7 +31,8 @@ LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input, 
         $scope.fullfilment = (0*100) / $scope.periodDetails.currentTarget
     )
 
-  $scope.selectPeriod('daily')
+  firstPeriod = Object.keys($scope.currentUser.target)[0];
+  $scope.selectPeriod(firstPeriod)
 
   $scope.openNewRecord = ->
     modalInstance = $modal.open

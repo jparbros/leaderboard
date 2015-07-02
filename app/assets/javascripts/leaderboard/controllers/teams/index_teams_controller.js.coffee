@@ -8,7 +8,7 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
   $scope.periods = [ {id: 'daily', label: 'Daily'},
     {id: 'weekly', label: 'Weekly'},
     {id: 'monthly', label: 'Monthly'},
-    {id: 'quartly', label: 'Quartly'},
+    {id: 'quarterly', label: 'Quarterly'},
     {id: 'yearly', label: 'Yearly'}
   ]
 
