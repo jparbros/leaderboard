@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     token_validations:  'token_validations'
   }
 
+
+
   namespace :api do
     get 'organizations/availability', to: 'organizations#availability'
     get 'locations/countries', to: 'locations#countries'
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
       resource :guest_user, defaults: { format: 'json' }
       resource :subscription
     end
+
+    mount StripeEvent::Engine, at: '/stripe'
 
     resources :users, defaults: { format: 'json' } do
       post 'upload'
