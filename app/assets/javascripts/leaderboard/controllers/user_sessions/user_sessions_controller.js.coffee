@@ -20,7 +20,7 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
     $scope.loginForm.password = ""
     $timeout( ->
       $scope.erroOnLogin = false;
-    , 3000)
+    , 6000)
 
   $scope.openForgotPassword = ->
     modalInstance = $modal.open
