@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
       allow_destroy: true,
       reject_if: :all_blank
 
+  validates :email, uniqueness: true
+
   def confirmed?
    true
   end

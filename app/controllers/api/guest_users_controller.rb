@@ -5,8 +5,9 @@ class Api::GuestUsersController < ApplicationController
   end
 
   def create
-    @user = organization.users.create(guest_user_params)
+    @user = organization.users.new(guest_user_params)
     User.skip_callback("create", :after, :send_on_create_confirmation_instructions)
+
     if @user.save
       @client_id = SecureRandom.urlsafe_base64(nil, false)
       @token     = SecureRandom.urlsafe_base64(nil, false)
@@ -40,7 +41,13 @@ class Api::GuestUsersController < ApplicationController
   end
 
   def guest_user_params
-    params.require(:guest_user).permit(:uid, :password, :password_confirmation).merge({provider: 'username', role: 'boardlogin'})
+    params.require(:guest_user).permit(
+      :uid,
+      :password,
+      :password_confirmation).merge({
+        provider: 'username',
+        role: 'boardlogin',
+        email: "#{params[:guest_user][:uid]}@boardlogin.rankingdesk.com"})
   end
 
 end

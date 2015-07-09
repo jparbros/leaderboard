@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'settingsBoardCtrl', ($scope, Organization) ->
+LeaderboardApp.controller 'settingsBoardCtrl', ($scope, Organization, $timeout) ->
   $scope.erroOnUpdate = false;
   $scope.partialUrl = "leaderboard/templates/board/settings.html";
   $scope.boardSettingsActive = true;
