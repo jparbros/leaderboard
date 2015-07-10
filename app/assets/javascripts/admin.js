@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require redactor
+
+
+$('tr').click(function() {
+  popupId = $(this).data('popup')
+  $(popupId).modal('show')
+})

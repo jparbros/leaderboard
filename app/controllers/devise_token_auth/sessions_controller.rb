@@ -36,9 +36,7 @@ module DeviseTokenAuth
         sign_in(:user, @resource, store: false, bypass: false)
 
         render json: {
-          data: @resource.as_json(except: [
-            :tokens, :created_at, :updated_at
-          ])
+          data: UserSerializer.new(@resource).as_json(root: false)
         }
 
       elsif @resource and not @resource.confirmed?

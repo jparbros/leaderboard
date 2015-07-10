@@ -47,6 +47,7 @@ class Api::GuestUsersController < ApplicationController
       :password_confirmation).merge({
         provider: 'username',
         role: 'boardlogin',
+        active: true,
         email: "#{params[:guest_user][:uid]}@boardlogin.rankingdesk.com"})
   end
 

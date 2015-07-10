@@ -16,7 +16,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <img ng-src="{{user.picture_thumb}}">
-              {{user.name || user.email}} <span class="caret"></span>
+              {{user.username}} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
               <li ng-hide="user.role == 'boardlogin'"><a href="/profile">Profile</a></li>
@@ -45,14 +45,6 @@
 
 
   <div class="container main-container">
-
-    <div class="row">
-      <div class="alert alert-warning alert-dismissible alert-cookie" role="alert" ng-hide='cookiesMessageViewed'>
-        <button type="button" class="close" aria-label="Close" ng-click="markCookiesMessageViewed()"><span aria-hidden="true" >&times;</span></button>
-        We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we'll assume that you are happy to receive all cookies from this website. If you would like to change your preferences you may do so by following the instructions <a href="http://www.aboutcookies.org/Default.aspx?page=1" target="_blank">here</a>
-      </div>
-    </div>
-
     <div class="row main-row">
       <div class="col-md-3 sidebar">
         <ul class="nav nav-pills nav-stacked">

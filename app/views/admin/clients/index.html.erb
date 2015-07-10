@@ -10,7 +10,7 @@
 <table class="table table-striped admin-clients-table">
   <tbody>
     <% @organizations.each do |organization| %>
-      <tr>
+      <tr data-popup="#client-modal-<%= organization.id %>">
         <td><%= organization.id %></td>
         <td><a href="#" data-toggle="modal" data-target="#client-modal-<%= organization.id %>"><%= organization.name %></a></td>
         <td><%= organization.owner.try(:name) %></td>

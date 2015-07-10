@@ -19,6 +19,8 @@ gem 'letter_opener', :group => :development
 gem 'liquid'
 gem 'newrelic_rpm'
 gem 'ng-rails-csrf'
+gem 'oj'
+gem 'oj_mimic_json'
 gem 'omniauth'
 gem 'paperclip'
 gem 'pg'
