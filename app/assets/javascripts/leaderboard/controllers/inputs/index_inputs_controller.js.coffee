@@ -1,6 +1,7 @@
 LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $modal, Input) ->
   $scope.partialUrl = "leaderboard/templates/inputs/main.html";
   $scope.inputsActive = true;
+  $scope.currentPage = 1
 
   $scope.inputs = []
 
@@ -24,6 +25,7 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
   }
 
   $scope.getPage = (page) ->
+    $scope.currentPage = page
     Input.paginate({organization_id: $scope.organization.id, page: page, order: $scope.inputsOrder.field, order_direction: $scope.inputsOrder.direction}, (inputs) ->
       $scope.inputs = inputs.entries
       $scope.willPaginateCollection.currentPage = inputs.current_page
@@ -65,7 +67,6 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
     modalInstance.result
 
   $scope.openDialogDeleteInput = (input) ->
-    console.log(input)
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/inputs/delete.html',
       controller: 'deleteInputCtrl',
@@ -74,6 +75,4 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
           input
 
     modalInstance.result.then (input) ->
-      index = $scope.inputs.indexOf(input)
-      $scope.inputs.splice(index, 1)
-
+      $scope.getPage($scope.currentPage)
