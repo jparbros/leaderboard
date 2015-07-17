@@ -122,7 +122,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         access:
           requiredPermissions: ['admin']
       }
-      .when '/buy/new/:plan', {
+      .when '/buy/new', {
         templateUrl: 'leaderboard/templates/index.html',
         controller: 'newBuyCtrl',
         resolve:

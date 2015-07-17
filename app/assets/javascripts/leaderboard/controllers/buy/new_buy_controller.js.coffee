@@ -1,7 +1,7 @@
 LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscription, $location, $rootScope, Organization) ->
   $scope.partialUrl = "leaderboard/templates/buy/new.html";
   $scope.erroOnCreate = false
-  $scope.subscription_kind = $routeParams.plan
+  $scope.subscription_kind = null
 
   $http.get('/api/locations/countries').success (data) ->
     $scope.countries = data
@@ -13,6 +13,9 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
   $scope.submitForm = (status, response) ->
     subscription = new Subscription({subscription: $scope.buyForm})
     subscription.$save({organization_id: $scope.organization.id})
+
+  $scope.selectSubscriptionKind = (subscriptionKind) ->
+    $scope.subscription_kind = subscriptionKind
 
   $scope.stripeResponse = (status, response) ->
     if(response.error)
