@@ -7,12 +7,12 @@
   </ul>
 <% end %>
 
-<table class="table table-striped admin-clients-table">
+<table class="table table-striped table-hover admin-clients-table">
   <tbody>
     <% @organizations.each do |organization| %>
       <tr data-popup="#client-modal-<%= organization.id %>">
         <td><%= organization.id %></td>
-        <td><a href="#" data-toggle="modal" data-target="#client-modal-<%= organization.id %>"><%= organization.name %></a></td>
+        <td><%= organization.name %></td>
         <td><%= organization.owner.try(:name) %></td>
         <td><%= organization.owner.try(:email) %></td>
       </tr>

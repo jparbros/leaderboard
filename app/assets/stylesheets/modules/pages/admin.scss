@@ -30,6 +30,11 @@
 }
 
 .admin-clients-table {
+
+  tr {
+    cursor: pointer;
+  }
+
   td {
     width: 25%;
   }

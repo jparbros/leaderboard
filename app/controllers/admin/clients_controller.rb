@@ -1,6 +1,7 @@
 class Admin::ClientsController < Admin::BaseController
 
   def index
+    params[:order] ||= 'id DESC'
     @organizations = Organization.order(params[:order]).includes(:subscription)
   end
 
