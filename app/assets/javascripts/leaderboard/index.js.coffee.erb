@@ -147,12 +147,12 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $authProvider.configure
       apiUrl: '<%= ENV["AUTH_URL"]%>'
 
-).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout, $cookies, RedirectTo, subdomain) ->
+).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout, ipCookie, RedirectTo, subdomain) ->
 
   $rootScope.showLoading = true
   $rootScope.organization = {}
   $rootScope.redirectToSubdomain = false
-  $rootScope.cookiesMessageViewed = $cookies['cookiesMessageViewed'] || false
+  $rootScope.cookiesMessageViewed = ipCookie('cookiesMessageViewed') || false
 
   $rootScope.$on '$routeChangeStart', (event, next) ->
     $rootScope.showLoading = true;
@@ -175,7 +175,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     loadOrganization()
 
   $rootScope.$on 'auth:registration-email-success', (ev) ->
-    subdomain = $cookies['subdomain']
+    subdomain = ipCookie('subdomain')
     RedirectTo.subdomain(subdomain)
 
   $rootScope.$on 'auth:logout-success', (ev) ->
@@ -222,11 +222,11 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     if $rootScope.user.role then 0 else 800
 
   redirectToSubdomain = ->
-    if !subdomain and $cookies['subdomain']
+    if !subdomain and ipCookie('subdomain')
       $rootScope.redirectToSubdomain = true
-      RedirectTo.subdomain($cookies['subdomain'])
+      RedirectTo.subdomain(ipCookie('subdomain'))
 
   $rootScope.markCookiesMessageViewed = ->
     $rootScope.cookiesMessageViewed = true
-    $cookies['cookiesMessageViewed'] = true
+    ipCookie('cookiesMessageViewed', true, { path: '/', domain: 'rankingdesk.com' })
 )

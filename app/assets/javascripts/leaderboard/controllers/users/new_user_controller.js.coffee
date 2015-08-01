@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth, $cookies) ->
+LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth, ipCookie) ->
   $scope.erroOnLogin = false;
   $scope.registrationForm = {}
   $scope.availableDomain = null
@@ -6,12 +6,12 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
   $scope.msgError = ''
 
   $scope.submitRegistrationForm = (registrationForm) ->
-    $cookies['subdomain'] = registrationForm.organization_attributes.subdomain
+    ipCookie('subdomain', registrationForm.organization_attributes.subdomain, { path: '/', domain: 'rankingdesk.com' })
     registrationForm.role = 'admin'
     registrationForm.owner = true
     registrationForm.active = true
     $auth.submitRegistration(registrationForm).catch((respond)->
-      delete $cookies['subdomain']
+      ipCookie.remove('subdomain')
       $scope.erroOnLogin = true
       error_key = Object.keys(respond.data['errors'])[0];
       $scope.msgError = respond.data['errors'][error_key][0]

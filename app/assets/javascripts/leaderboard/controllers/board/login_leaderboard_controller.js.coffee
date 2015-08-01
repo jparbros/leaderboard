@@ -18,13 +18,13 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
         $scope.updateSuccessfully= true
         $timeout( ->
           $scope.updateSuccessfully= false;
-        , 3000)
+        , 6000)
       , (error) ->
         $scope.erroMessage = error.data[0]
         $scope.erroOnUpdate = true
         $timeout( ->
           $scope.erroOnUpdate = false
-        , 3000)
+        , 6000)
       )
     else
       $scope.guestUser.$save({organization_id: $scope.organization.id}, (data) ->
@@ -34,5 +34,5 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
         $scope.erroOnUpdate = true
         $timeout( ->
           $scope.erroOnUpdate = false
-        , 3000)
+        , 6000)
       )

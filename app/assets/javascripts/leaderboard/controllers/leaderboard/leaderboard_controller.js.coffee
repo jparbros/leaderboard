@@ -8,7 +8,6 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
 
-
   $scope.selectTeam = (team) ->
     $scope.selectedTeam = team
     $scope.selectedPeriod = switch team.period[0]

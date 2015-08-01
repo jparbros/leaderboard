@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $timeout, $window, RedirectTo, $cookies, $modal) ->
+LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $timeout, $window, RedirectTo, ipCookie, $modal) ->
   $scope.erroOnLogin = false;
   $scope.loginForm = {}
   $scope.subdomain = subdomain
@@ -6,10 +6,10 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
 
   $scope.$on 'auth:login-success', (ev, user) ->
     if subdomain
-      $cookies['subdomain'] = $scope.subdomain
+      ipCookie('subdomain', $scope.subdomain, { path: '/', domain: 'rankingdesk.com' })
       $location.path('/')
     else
-      $cookies['subdomain'] = $scope.loginForm.subdomain
+      ipCookie('subdomain', $scope.loginForm.subdomain, { path: '/', domain: 'rankingdesk.com' })
       $timeout(->
         RedirectTo.subdomain($scope.loginForm.subdomain)
       , 500)
