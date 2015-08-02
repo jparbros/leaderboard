@@ -1,4 +1,4 @@
-<form class="form-horizontal" enctype="multipart/form-data" ng-submit="updateAccount(updateAccountForm)" role="form" ng-init="updateAccountForm = user">
+<form class="form-horizontal" enctype="multipart/form-data" ng-submit="updateAccount(updateAccountForm)" role="form">
 
   <fieldset>
     <legend>Edit Profile</legend>
@@ -38,6 +38,13 @@
           <label for="name" class="col-md-2 control-label">Company</label>
           <div class="col-md-9">
             <input type="text" placeholder="Company" ng-model="updateAccountForm.organization_attributes.name" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group" ng-show="user.role == 'admin'">
+          <label for="name" class="col-md-2 control-label">Vat No.</label>
+          <div class="col-md-9">
+            <input type="text" placeholder="Vat No." ng-model="updateAccountForm.organization_attributes.vat" class="form-control">
           </div>
         </div>
 
