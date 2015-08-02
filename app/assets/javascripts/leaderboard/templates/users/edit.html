@@ -3,13 +3,13 @@
   <fieldset>
     <legend>Edit Profile</legend>
 
-    <div class="alert alert-warning animate-show" ng-show="erroOnupdate">
+    <div class="alert alert-warning animate-show ng-hide" ng-show="erroOnupdate">
       There was an error when trying to update your account.
       <br>
       {{$scope.msgError}}
     </div>
 
-    <div class="alert alert-success animate-show" ng-show="updateSuccessfully">
+    <div class="alert alert-success animate-show ng-hide" ng-show="updateSuccessfully">
       Your account was successfully updated.
     </div>
 

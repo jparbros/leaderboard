@@ -4,11 +4,11 @@
     <h4 class="modal-title">Forgot your password?</h4>
   </div>
   <div class="modal-body">
-    <div class="alert alert-warning animate-show" ng-show="erroOnUpdate">
+    <div class="alert alert-warning animate-show ng-hide" ng-show="erroOnUpdate">
       {{errorMessage}}
     </div>
 
-    <div class="alert alert-success animate-show" ng-show="successOnUpdate">
+    <div class="alert alert-success animate-show ng-hide" ng-show="successOnUpdate">
       We have sent an email with instructions to reset your password.
     </div>
 

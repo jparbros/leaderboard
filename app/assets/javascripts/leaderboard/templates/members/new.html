@@ -5,7 +5,7 @@
 
 <form class="form-horizontal row" ng-submit="submitUser(userForm)" role="form" >
 
-  <div class="alert alert-warning animate-show" ng-show="erroOnCreate">
+  <div class="alert alert-warning animate-show ng-hide" ng-show="erroOnCreate">
     {{msgError}}
   </div>
 

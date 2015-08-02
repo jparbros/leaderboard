@@ -23,7 +23,7 @@
 
     <div class="col-sm-4 col-sm-offset-4">
       <form class="form-horizontal" ng-submit="submitRegistrationForm(registrationForm)" role="form" id="create-trial-form" name="form">
-        <div class="alert alert-warning animate-show" ng-show="erroOnLogin">
+        <div class="alert alert-warning animate-show ng-hide" ng-show="erroOnLogin">
           {{msgError}}
         </div>
 
@@ -115,7 +115,7 @@
             <strong>
               By clicking “Create my trial” you agree to the
               <br/>
-              <a href="http://demo.rankingdesk.com/terms">Terms of Service</a> and <a href="http://demo.rankingdesk.com/privacy-policy">Privacy Policy</a>.
+              <a href="http://demo.rankingdesk.com/terms" _target="self">Terms of Service</a> and <a href="http://demo.rankingdesk.com/privacy-policy" _target="self">Privacy Policy</a>.
             </strong>
           </p>
 
