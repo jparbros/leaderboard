@@ -1,6 +1,8 @@
 module Api
   class UsersController < ApplicationController
 
+    respond_to :json
+
     def index
       @users = organization.users.where.not(role: 'boardlogin')
       @users = @users.where(departament_id: params[:departament_id]) if params[:departament_id]
@@ -32,7 +34,7 @@ module Api
           UsersMailer.new_user_notification(@user, token).deliver
         end
 
-        respond_with json: @user
+        render json: @user.errors, location: api_users_url
       else
         render json: @user.errors, status: 500
       end
