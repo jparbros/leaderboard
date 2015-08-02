@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:account_update) << :newsletter
-    devise_parameter_sanitizer.for(:account_update) << {organization_attributes: [:name]}
+    devise_parameter_sanitizer.for(:account_update) << {organization_attributes: [:name, :vat]}
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:sign_up) << :role
     devise_parameter_sanitizer.for(:sign_up) << :owner
