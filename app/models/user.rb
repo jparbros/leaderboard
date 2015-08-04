@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
       reject_if: :all_blank
 
   validates :email, uniqueness: true
-  validates :name, presence: true
+  validates :name, presence: true, on: :update
 
   def confirmed?
    true
