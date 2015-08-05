@@ -18,11 +18,12 @@
     </div>
 
     <div ng-show="forgottenSubdomain">
-      <h3>Your subdomain is {{forgottenSubdomain}}</h3>
+      <h3>Your subdomain is "{{forgottenSubdomain}}"</h3>
     </div>
 
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
-    <button type="submit" class="btn btn-primary">Remember subdomain</button>
+    <button type="submit" class="btn btn-primary" ng-hide="forgottenSubdomain">Remember subdomain</button>
+    <button ng-click="goToSubdomain()" class="btn btn-primary" ng-show="forgottenSubdomain">Go to subdomain</button>
   </div>
 </form>

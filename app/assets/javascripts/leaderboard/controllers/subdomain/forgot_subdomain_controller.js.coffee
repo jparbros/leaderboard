@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'forgotSubdomainCtrl', ($scope, $modalInstance, $http, $timeout) ->
+LeaderboardApp.controller 'forgotSubdomainCtrl', ($scope, $modalInstance, $http, $timeout, RedirectTo) ->
   $scope.erroOnUpdate = false
   $scope.forgottenSubdomain = false
   $scope.email = ''
@@ -24,3 +24,6 @@ LeaderboardApp.controller 'forgotSubdomainCtrl', ($scope, $modalInstance, $http,
           $scope.erroOnUpdate = false
         , 3000)
       );
+
+  $scope.goToSubdomain =  ->
+    RedirectTo.subdomain($scope.forgottenSubdomain)
