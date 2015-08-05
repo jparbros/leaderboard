@@ -1,7 +1,10 @@
 LeaderboardApp.factory('RedirectTo', ['$location', function ($location) {
   subdomain = function  (subdomain) {
-    console.log("Redirect to:" + window.location.protocol + '//' + subdomain + '.' + host())
     window.location.href = window.location.protocol + '//' + subdomain + '.' + host()
+  }
+
+  signIn = function (subdomain) {
+    window.location.href = window.location.protocol + '//' + subdomain + '.' + host() + '/signin'
   }
 
   validate_token = function (subdomain, uid, auth_token) {
@@ -18,7 +21,8 @@ LeaderboardApp.factory('RedirectTo', ['$location', function ($location) {
 
   return {
     subdomain: subdomain,
-    validate_token: validate_token
+    validate_token: validate_token,
+    sign_in: signIn
   };
 }
 

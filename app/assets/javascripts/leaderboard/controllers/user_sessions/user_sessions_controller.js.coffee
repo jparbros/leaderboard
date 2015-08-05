@@ -30,6 +30,10 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
     modalInstance.result.then (input) ->
       $scope.inputs.push(input)
 
+  $scope.changeSubdomain = ->
+    ipCookie.remove('subdomain')
+    RedirectTo.sign_in('demo')
+
   $scope.openForgotSubdomain = ->
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/subdomain/forgot.html',
