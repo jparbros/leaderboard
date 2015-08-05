@@ -22,7 +22,7 @@ module Api
     private
 
     def organization_params
-      params.require(:organization).permit(:boardname, :rolling, :rolling_time)
+      params.require(:organization).permit(:boardname, :rolling, :rolling_time, :name, :vat)
     end
 
   end

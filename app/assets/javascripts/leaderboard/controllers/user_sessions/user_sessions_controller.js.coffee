@@ -31,7 +31,7 @@ LeaderboardApp.controller 'UserSessionsCtrl', ($scope, subdomain, $location, $ti
       $scope.inputs.push(input)
 
   $scope.changeSubdomain = ->
-    ipCookie.remove('subdomain')
+    ipCookie.remove('subdomain', { path: '/', domain: 'rankingdesk.com' })
     RedirectTo.sign_in('demo')
 
   $scope.openForgotSubdomain = ->
