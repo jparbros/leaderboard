@@ -7,8 +7,18 @@
       </div>
       <div class="modal-body">
         <dl class="dl-horizontal admin-client-details">
+          <dt>Company Name:</dt>
+          <dd><%= organization.name %></dd>
+
           <dt>Signup date:</dt>
           <dd><%= organization.created_at.to_date.to_s(:short_date) %></dd>
+
+          <dt>Date of last payment:</dt>
+          <% if organization.subscription.transactions.last %>
+            <dd><%= organization.subscription.transactions.last.created_at.to_date.to_s(:short_date) %></dd>
+          <% else %>
+            <dd>N/A</dd>
+          <% end %>
 
           <dt>Date of next payment:</dt>
           <dd><%= organization.subscription.active_until %></dd>
