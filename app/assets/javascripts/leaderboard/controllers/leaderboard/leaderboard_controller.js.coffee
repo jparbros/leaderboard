@@ -17,6 +17,12 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
       when 'quarterly' then 'quarter'
       when 'yearly' then 'year'
 
+  $scope.nextTeam = ->
+    nextTeam = $scope.teams.indexOf($scope.selectedTeam) + 1
+    if nextTeam >= $scope.teams.length
+      nextTeam = 0
+    team = $scope.teams[nextTeam]
+    $scope.selectTeam(team)
 
   Departament.query({organization_id: $scope.organization.id}, (teams)->
     $scope.teams = teams
@@ -59,6 +65,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
     if $scope.organization.rolling
       $timeout( ->
         $scope.getInputs();
+        $scope.nextTeam();
         $scope.rollingLeaderboard()
       , ($scope.organization.rolling_time * 1000))
 
