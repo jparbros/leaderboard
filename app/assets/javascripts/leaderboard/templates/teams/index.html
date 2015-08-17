@@ -2,7 +2,7 @@
   <div class="col-md-8 col-md-offset-1">
     <form  ng-submit="submitDepartament(departament)" role="form" class="new-team-form with-margin">
         <div class="alert alert-warning animate-show ng-hide" ng-show="erroOnCreate">
-          There was an error when trying to create the team.
+          {{errorMsg}}
         </div>
 
         <div class="row">
@@ -30,7 +30,6 @@
         <div class="row">
           <div class="form-group">
             <div class="col-md-6">
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
               <button type="submit" class="btn btn-success">Add Team</button>
             </div>
         </div>

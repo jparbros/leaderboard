@@ -1,7 +1,8 @@
-LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootScope, Departament) ->
+LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootScope, Departament, $timeout) ->
   $scope.partialUrl = "leaderboard/templates/teams/index.html";
   $scope.departamentsActive = true;
   $scope.erroOnCreate = false;
+  $scope.errorMsg = 'There was an error when trying to create the team.'
 
   $scope.departaments = Departament.query({organization_id: $scope.organization.id});
 
@@ -22,11 +23,19 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
   $scope.submitDepartament = (departament) ->
     flatPeriods departament
 
-    departament.$save {organization_id: $scope.organization.id}, (departament)->
-      $scope.departaments.push(departament)
-      $scope.departament =  new Departament({period: []})
-    , (error) ->
-      $scope.erroOnCreate = true
+    if departament.period.length > 0
+      departament.$save {organization_id: $scope.organization.id}, (departament)->
+        $scope.departaments.push(departament)
+        $scope.departament =  new Departament({period: []})
+      , (error) ->
+        $scope.erroOnCreate = true
+    else
+      $scope.errorMsg = 'Please, select a period for the team.'
+      $scope.erroOnCreate =  true
+      $timeout( ->
+        $scope.erroOnCreate =  false
+        $scope.errorMsg = 'There was an error when trying to create the team.'
+      , 3000)
 
   $scope.openEditDepartament = (departament) ->
     departament.period = _.map(departament.period, (period) ->
