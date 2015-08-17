@@ -4,14 +4,12 @@
     <tr>
       <th>Card Type</th>
       <th>Card Number</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td> <div class="cc" ng-class="subscription.card_type"></div></td>
       <td>{{subscription.card_number}}</td>
-      <td><a href="#" class="btn btn-primary">Change</a></td>
     </tr>
   </tbody>
 </table>
@@ -29,7 +27,6 @@
     <tr>
       <td> {{subscription.subscription_kind || uppercase}}</td>
       <td>{{subscription.description}}</td>
-      <td><a href="#" class="btn btn-primary">Change</a></td>
     </tr>
   </tbody>
 </table>
@@ -40,16 +37,12 @@
     <tr>
       <th>Billing period</th>
       <th>Payment Due</th>
-      <th>Amount</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td> {{subscription.subscription_kind || uppercase}}</td>
       <td>{{subscription.description}}</td>
-      <th></th>
-      <td><a href="#" class="btn btn-primary">Download as PDF</a></td>
     </tr>
   </tbody>
 </table>
