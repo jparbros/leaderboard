@@ -45,8 +45,8 @@ LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input, 
 
   $scope.openEditInput =  (input) ->
     modalInstance = $modal.open
-      templateUrl: 'leaderboard/templates/inputs/edit.html',
-      controller: 'editInputCtrl',
+      templateUrl: 'leaderboard/templates/records/edit.html',
+      controller: 'editRecordCtrl',
       resolve:
         input: ->
           input
@@ -55,7 +55,6 @@ LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input, 
       $scope.selectPeriod($scope.selectedPeriod)
 
   $scope.openDialogDeleteInput = (input) ->
-    console.log(input)
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/records/delete.html',
       controller: 'deleteRecordCtrl',
