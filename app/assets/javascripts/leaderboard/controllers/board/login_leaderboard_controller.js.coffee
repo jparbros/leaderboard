@@ -39,3 +39,6 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
           $scope.erroOnUpdate = false
         , 6000)
       )
+
+    if($scope.erroMessage.length < 10)
+      $scope.erroMessage = 'There was an error trying to update your boardlogin details.'
