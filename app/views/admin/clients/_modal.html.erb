@@ -11,7 +11,11 @@
           <dd><%= organization.name %></dd>
 
           <dt>VAT No.:</dt>
-          <dd><%= organization.vat %></dd>
+          <% if organization.vat.present? %>
+            <dd><%= organization.vat %></dd>
+          <% else %>
+            <dd>N/A</dd>
+          <% end %>
 
           <dt>Signup date:</dt>
           <dd><%= organization.created_at.to_date.to_s(:short_date) %></dd>
