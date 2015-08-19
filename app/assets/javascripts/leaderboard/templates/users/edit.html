@@ -34,20 +34,6 @@
           </div>
         </div>
 
-        <div class="form-group" ng-show="user.role == 'admin'">
-          <label for="name" class="col-md-2 control-label">Company</label>
-          <div class="col-md-9">
-            <input type="text" placeholder="Company" ng-model="updateAccountForm.organization_attributes.name" class="form-control">
-          </div>
-        </div>
-
-        <div class="form-group" ng-show="user.role == 'admin'">
-          <label for="name" class="col-md-2 control-label">Vat No.</label>
-          <div class="col-md-9">
-            <input type="text" placeholder="Vat No." ng-model="updateAccountForm.organization_attributes.vat" class="form-control">
-          </div>
-        </div>
-
         <div class="checkbox">
           <label>
             <input type="checkbox" ng-model="updateAccountForm.newsletter"> Subscribe to newsletter
@@ -61,6 +47,46 @@
 
     </div>
     </div>
+  </fieldset>
+</form>
+
+<form class="form-horizontal" ng-submit="updateOrganization()" role="form" name="form_password" ng-show="user.role == 'admin'">
+
+  <fieldset>
+    <legend>Organization Settings</legend>
+
+    <div class="alert alert-warning animate-show" ng-show="erroOnOrganization">
+      {{organizationMsgError}}
+    </div>
+
+    <div class="alert alert-success animate-show" ng-show="organizationSuccessfully">
+      Your Organization was successfully updated.
+    </div>
+
+    <div class="row">
+
+      <div class="form-group">
+        <label for="name" class="col-md-2 control-label">Company</label>
+        <div class="col-md-9">
+          <input type="text" placeholder="Company" ng-model="organizationForm.name" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name" class="col-md-2 control-label">Vat No.</label>
+        <div class="col-md-9">
+          <input type="text" placeholder="Vat No." ng-model="organizationForm.vat" class="form-control">
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-9 text-right">
+          <button type="submit" class="btn btn-primary">Update Organization</button>
+        </div>
+      </div>
+    </div>
+
   </fieldset>
 </form>
 
