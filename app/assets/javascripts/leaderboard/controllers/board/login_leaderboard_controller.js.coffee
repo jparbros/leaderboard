@@ -20,7 +20,12 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
           $scope.updateSuccessfully= false;
         , 6000)
       , (error) ->
-        $scope.erroMessage = error.data[0]
+
+        if error.data[0] > 1
+          $scope.erroMessage = error.data[0]
+        else
+          $scope.erroMessage = 'The username already is taken.'
+
         $scope.erroOnUpdate = true
         $timeout( ->
           $scope.erroOnUpdate = false
@@ -33,12 +38,14 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
           $scope.updateSuccessfully= false;
         , 6000)
       , (error) ->
-        $scope.erroMessage = error.data[0]
+
+        if error.data[0] > 1
+          $scope.erroMessage = error.data[0]
+        else
+          $scope.erroMessage = 'The username already is taken.'
+
         $scope.erroOnUpdate = true
         $timeout( ->
           $scope.erroOnUpdate = false
         , 6000)
       )
-
-    if($scope.erroMessage.length < 10)
-      $scope.erroMessage = 'There was an error trying to update your boardlogin details.'
