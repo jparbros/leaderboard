@@ -6,16 +6,17 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
   $scope.msgError = ''
 
   $scope.submitRegistrationForm = (registrationForm) ->
-    ipCookie('subdomain', registrationForm.organization_attributes.subdomain, { path: '/', domain: 'rankingdesk.com' })
-    registrationForm.role = 'admin'
-    registrationForm.owner = true
-    registrationForm.active = true
-    $auth.submitRegistration(registrationForm).catch((respond)->
-      ipCookie.remove('subdomain')
-      $scope.erroOnLogin = true
-      error_key = Object.keys(respond.data['errors'])[0];
-      $scope.msgError = respond.data['errors'][error_key][0]
-    )
+    if $scope.form.$valid
+      ipCookie('subdomain', registrationForm.organization_attributes.subdomain, { path: '/', domain: 'rankingdesk.com' })
+      registrationForm.role = 'admin'
+      registrationForm.owner = true
+      registrationForm.active = true
+      $auth.submitRegistration(registrationForm).catch((respond)->
+        ipCookie.remove('subdomain')
+        $scope.erroOnLogin = true
+        error_key = Object.keys(respond.data['errors'])[0];
+        $scope.msgError = respond.data['errors'][error_key][0]
+      )
 
 
   $scope.hideSubdomainFeedback = ->
