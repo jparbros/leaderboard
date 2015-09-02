@@ -2,6 +2,13 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
   $scope.partialUrl = "leaderboard/templates/buy/new.html";
   $scope.erroOnCreate = false
   $scope.subscription_kind = null
+  $scope.stripeHandler = StripeCheckout.configure({
+    key: 'pk_test_mR4Q3PLJ3OAQfHWOigpAeFxO',
+    locale: 'auto',
+    currency: 'EUR',
+    token: (token) ->
+      $scope.stripeResponse(token)
+  })
 
   $http.get('/api/locations/countries').success (data) ->
     $scope.countries = data
@@ -16,8 +23,21 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
 
   $scope.selectSubscriptionKind = (subscriptionKind) ->
     $scope.subscription_kind = subscriptionKind
+    if subscriptionKind == 'monthly'
+      description = 'Monthly Subscription'
+      amount = 9900
 
-  $scope.stripeResponse = (status, response) ->
+    if subscriptionKind == 'yearly'
+      description = 'Yearly Subscription'
+      amount = 106800
+
+    $scope.stripeHandler.open({
+      name: 'RankingDesk',
+      description: description,
+      amount: amount
+    });
+
+  $scope.stripeResponse = (response) ->
     if(response.error)
       $scope.erroOnCreate = true
     else
