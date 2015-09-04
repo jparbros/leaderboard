@@ -11,7 +11,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
 
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
-  dispatcher = new WebSocketRails('localhost:3000/websocket');
+  dispatcher = new WebSocketRails('demo.rankingdesk.com/websocket');
 
   Departament.query({organization_id: $scope.organization.id}, (teams)->
     $scope.teams = teams
