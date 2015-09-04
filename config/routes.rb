@@ -70,6 +70,8 @@ Rails.application.routes.draw do
     get '*path' => 'welcome#index'
   end
 
+  match "/websocket", :to => WebsocketRails::ConnectionManager.new, via: [:get, :post]
+
   root :to => "comfy/cms/content#show"
   comfy_route :cms_admin, :path => '/cms'
   comfy_route :cms, :path => '/', :sitemap => false

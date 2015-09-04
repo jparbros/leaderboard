@@ -1,12 +1,34 @@
-LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departament, Input, $timeout) ->
+LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departament, Input, $interval, $timeout) ->
   $scope.users = User.query({organization_id: $scope.organization.id});
   $scope.selectedPeriod = 'today'
   $scope.inputs = []
   $scope.leader = null
   $scope.allTeams = {id: 'all_teams', period: ['daily', 'weekly', 'monthly', 'quarterly', 'yearly'], name: 'Total Team'}
+  $scope.channel = null
+  $scope.rollingLeaderboardSet = false
+  $scope.newInput = {}
+  $scope.showNewInput = false
 
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
+  dispatcher = new WebSocketRails('localhost:3000/websocket');
+
+  Departament.query({organization_id: $scope.organization.id}, (teams)->
+    $scope.teams = teams
+    $scope.selectTeam(teams[0])
+  );
+
+  setWebsocket = ->
+    if $scope.channel == null
+      $scope.channel = dispatcher.subscribe('organization-' + $scope.organization.id);
+      $scope.channel.bind('input_created', (data) ->
+        $scope.newInput = data
+        $scope.showNewInput = true
+        $timeout(->
+          $scope.newInput = {}
+          $scope.showNewInput = false
+        , 7000)
+      );
 
   $scope.selectTeam = (team) ->
     $scope.selectedTeam = team
@@ -16,21 +38,17 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
       when 'monthly' then 'month'
       when 'quarterly' then 'quarter'
       when 'yearly' then 'year'
+    $scope.getInputs()
 
   $scope.nextTeam = ->
     nextTeam = $scope.teams.indexOf($scope.selectedTeam) + 1
-    if nextTeam >= $scope.teams.length
-      nextTeam = 0
+    nextTeam = 0 if nextTeam >= $scope.teams.length
     team = $scope.teams[nextTeam]
     $scope.selectTeam(team)
 
-  Departament.query({organization_id: $scope.organization.id}, (teams)->
-    $scope.teams = teams
-    $scope.selectTeam(teams[0])
-  );
-
   $scope.selectPeriod = (period) ->
     $scope.selectedPeriod = period
+    $scope.getInputs()
 
   $scope.showPeriod = (period) ->
     if $scope.selectedTeam
@@ -62,14 +80,14 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
     )
 
   $scope.rollingLeaderboard = ->
-    if $scope.organization.rolling
-      $timeout( ->
-        $scope.getInputs();
+    if $scope.organization.rolling && $scope.rollingLeaderboardSet == false
+      $scope.rollingLeaderboardSet = true
+      $interval( ->
         $scope.nextTeam();
-        $scope.rollingLeaderboard()
       , ($scope.organization.rolling_time * 1000))
 
 
-  $scope.$watch('selectedTeam', $scope.getInputs)
-  $scope.$watch('selectedPeriod', $scope.getInputs)
+  # $scope.$watch('selectedTeam', $scope.getInputs)
+  # $scope.$watch('selectedPeriod', $scope.getInputs)
   $scope.$watch('organization', $scope.rollingLeaderboard)
+  $scope.$watch('organization', setWebsocket)

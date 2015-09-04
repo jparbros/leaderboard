@@ -23,6 +23,7 @@
 //= require angular-cookie
 //= require angular-payments.min
 //= require angular-will-paginate
+//= require websocket_rails/main
 //= require ui-bootstrap-tpls
 //= require ng-token-auth
 //= require ng-rails-csrf
@@ -36,3 +37,4 @@
 //= require_tree ./leaderboard/templates
 //= require_tree ./leaderboard/resources
 //= require_tree ./leaderboard/controllers
+

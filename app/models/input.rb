@@ -6,4 +6,12 @@ class Input < ActiveRecord::Base
   has_one :departament, through: :user
   has_one :organization, through: :user
 
+  after_create :notify_leaderboard
+
+  private
+
+  def notify_leaderboard
+    WebsocketRails["organization-#{user.organization_id}"].trigger(:input_created, {name: user.name, value: value})
+  end
+
 end

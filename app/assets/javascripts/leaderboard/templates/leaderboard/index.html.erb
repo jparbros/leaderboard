@@ -36,7 +36,7 @@
 
     <div class="main col-md-7">
       <div class="selected-team">
-        {{selectedTeam.name}}
+        {{organization.boardname}} - {{selectedTeam.name}}
       </div>
       <ul ng-class="ulClass()" class="periods-list">
         <li ng-show="showPeriod('daily')" ng-class="{active:selectedPeriod=='today'}"><a href="#" ng-click="selectPeriod('today')">Today<a/></li>
@@ -45,6 +45,12 @@
         <li ng-show="showPeriod('quarterly')" ng-class="{active:selectedPeriod=='quarter'}"><a href="#" ng-click="selectPeriod('quarter')">Quarter<a/></li>
         <li ng-show="showPeriod('yearly')" ng-class="{active:selectedPeriod=='year'}"><a href="#" ng-click="selectPeriod('year')">Year<a/></li>
       </ul>
+
+      <div class="new-input fade" ng-show="showNewInput" >
+        <div class="new-input-title">A new record is entered</div>
+        <div class="new-input-name"><b>Name:</b> {{newInput.name}}</div>
+        <div class="new-input-value"><b>Value:</b> {{newInput.value}}</div>
+      </div>
 
       <table class="table table-striped leaderboard-table">
         <thead>
@@ -69,7 +75,6 @@
           </tr>
         </tbody>
       </table>
-
     </div>
 
     <div class="leader col-md-3">

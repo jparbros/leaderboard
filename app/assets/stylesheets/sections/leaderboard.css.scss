@@ -48,6 +48,23 @@
     margin-top: 0;
     padding: 0;
 
+    .new-input {
+      text-align: center;
+      padding: 15px 0;
+
+      .new-input-title {
+        color: $main-green-blue;
+        font-size: 25px;
+      }
+
+      .new-input-name,
+      .new-input-value {
+        font-size: 20px;
+        display: inline-block;
+      }
+
+    }
+
     .selected-team {
       background-color: $main-green-blue;
       color: $white;
