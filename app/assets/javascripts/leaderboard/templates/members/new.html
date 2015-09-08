@@ -71,6 +71,12 @@
   </fieldset>
 
   <div class="col-md-offset-8 col-md-2">
-    <input type="submit"  value="Save" class="btn btn-success form-control">
+    <input type="submit"  value="Save" class="btn btn-success form-control" data-toggle="tooltip" data-placement="top" title="On save an email will be sent with login information">
   </div>
 </form>
+
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
