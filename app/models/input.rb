@@ -8,6 +8,10 @@ class Input < ActiveRecord::Base
 
   after_create :notify_leaderboard
 
+  def value=(new_value)
+    self[:value] = new_value.gsub(' ', '').gsub(',', '.').to_f
+  end
+
   private
 
   def notify_leaderboard

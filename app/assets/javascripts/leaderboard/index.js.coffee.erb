@@ -218,7 +218,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
       , showContentWaitTime())
 
   manageRoleAccessWaitTime = ->
-    if $rootScope.user.role then 0 else 500
+    if $rootScope.user.role then 0 else 800
 
   showContentWaitTime = ->
     if $rootScope.user.role then 0 else 800
