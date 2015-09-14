@@ -10,11 +10,13 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
       $scope.stripeResponse(token)
   })
 
+  $rootScope.organization.address_attributes = {}
+
   $http.get('/api/locations/countries').success (data) ->
     $scope.countries = data
 
   $scope.getRegions = (scope) ->
-    $http.get('/api/locations/countries/' + scope.addressCountry.alpha_2_code).success (data) ->
+    $http.get('/api/locations/countries/' + $rootScope.organization.address_attributes.country_code.alpha_2_code).success (data) ->
       $scope.regions = data
 
   $scope.submitForm = (status, response) ->
@@ -23,11 +25,13 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
 
   $scope.selectSubscriptionKind = (subscriptionKind) ->
     $scope.subscription_kind = subscriptionKind
-    if subscriptionKind == 'monthly'
+
+  $scope.submitForm = ->
+    if $scope.subscription_kind == 'monthly'
       description = 'Monthly Subscription'
       amount = 9900
 
-    if subscriptionKind == 'yearly'
+    if $scope.subscription_kind == 'yearly'
       description = 'Yearly Subscription'
       amount = 106800
 
@@ -47,8 +51,9 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
         card_type: response.card.brand,
         token: response.id
       }})
+
       subscription.$save({organization_id: $scope.organization.id}, (data) ->
-        Organization.get({id: $rootScope.user.organization_id }, (organization) ->
+        $rootScope.organization.$update({id: $rootScope.user.organization_id }, (organization) ->
           $rootScope.organization = organization
           $location.path('/billing')
         )

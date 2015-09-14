@@ -6,8 +6,13 @@ class Organization < ActiveRecord::Base
   has_many :users
   has_many :inputs, through: :users
   has_one :subscription
+  has_one :address
 
   validates :subdomain, uniqueness: true
+
+  accepts_nested_attributes_for :address,
+      allow_destroy: true,
+      reject_if: :all_blank
 
   DEMO_PERIOD = 30
 
