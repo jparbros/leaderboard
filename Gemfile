@@ -29,7 +29,8 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'rails', '4.2.4'
 gem 'rails-observers'
 gem 'rails_12factor', group: :production
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass', '~> 3.3.0'
+gem 'sass-rails', '~> 5.0.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'sidekiq'
 gem 'sinatra'
