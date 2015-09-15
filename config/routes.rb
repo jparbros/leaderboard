@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     resources :users, defaults: { format: 'json' } do
       post 'upload'
+      get 'resubmit_email'
     end
 
     resources :inputs, only: [:index, :show, :create, :update, :destroy], defaults: { format: 'json' }

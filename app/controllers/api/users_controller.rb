@@ -63,6 +63,12 @@ module Api
       end
     end
 
+    def resubmit_email
+      token = user.create_password_token_reset
+      UsersMailer.new_user_notification(@user, token).deliver
+      render nothing: true, status: 200
+    end
+
     private
 
     def organization

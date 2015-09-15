@@ -87,6 +87,8 @@ Rails.application.configure do
     :domain         => 'rankingdesk.com',
     :enable_starttls_auto => true
   }
+
+  config.middleware.delete Rack::Lock
 end
 
 Rails.application.routes.default_url_options[:host] = 'rankingdesk.com'
