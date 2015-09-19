@@ -65,3 +65,4 @@ LeaderboardApp.controller 'indexRecordsCtrl', ($scope, $rootScope, User, Input, 
     modalInstance.result.then (input) ->
       index = $scope.inputs.indexOf(input)
       $scope.inputs.splice(index, 1)
+      $scope.selectPeriod($scope.selectedPeriod)

@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'settingsBoardCtrl', ($scope, Organization, $timeout) ->
+LeaderboardApp.controller 'settingsBoardCtrl', ($scope, Organization, $timeout, $rootScope) ->
   $scope.erroOnUpdate = false;
   $scope.partialUrl = "leaderboard/templates/board/settings.html";
   $scope.boardSettingsActive = true;
@@ -12,6 +12,7 @@ LeaderboardApp.controller 'settingsBoardCtrl', ($scope, Organization, $timeout) 
   $scope.submitSettings = ->
     $scope.erroOnUpdate = false;
     $scope.organization.$update (data) ->
+      $rootScope.organization = data
       $scope.updateSuccessfully = true;
       $timeout( ->
         $scope.updateSuccessfully= false;

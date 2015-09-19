@@ -5,7 +5,7 @@ module Api
 
     def index
       @users = organization.users.where.not(role: 'boardlogin')
-      @users = @users.where(departament_id: params[:departament_id]) if params[:departament_id]
+      @users = @users.where(departament_id: params[:departament_id]).order('id DESC') if params[:departament_id]
       respond_with @users
     end
 
