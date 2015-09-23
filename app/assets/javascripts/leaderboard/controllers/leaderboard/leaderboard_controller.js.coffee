@@ -20,14 +20,16 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
 
   setWebsocket = ->
     if $scope.channel == null
+      console.log("SET CHANNEL");
       $scope.channel = dispatcher.subscribe('organization-' + $scope.organization.id);
       $scope.channel.bind('input_created', (data) ->
+        console.log("GET DATA:", data);
         $scope.newInput = data
         $scope.showNewInput = true
         $timeout(->
           $scope.newInput = {}
           $scope.showNewInput = false
-        , 7000)
+        , 10000)
       );
 
   $scope.selectTeam = (team) ->
