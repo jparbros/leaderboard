@@ -4,6 +4,7 @@
     <li><%= link_to_with_order 'Company', 'name'%></li>
     <li>Full name of admin</li>
     <li>Email</li>
+    <li>Actions</li>
   </ul>
 <% end %>
 
@@ -15,6 +16,7 @@
         <td><%= organization.name %></td>
         <td><%= organization.owner.try(:name) %></td>
         <td><%= organization.owner.try(:email) %></td>
+        <td><%= link_to 'Cancel', admin_client_path(organization), class: 'btn btn-danger', method: :delete, 'data-confirm' => 'Are you sure?' %></td>
       </tr>
       <%= render partial: 'modal', locals: {organization: organization} %>
     <% end %>

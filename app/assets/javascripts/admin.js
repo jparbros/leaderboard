@@ -17,7 +17,11 @@
 //= require redactor
 
 
-$('tr').click(function() {
-  popupId = $(this).data('popup')
-  $(popupId).modal('show')
-})
+$('tr').on('click', function(event) {
+  console.log();
+  event.stopPropagation();
+  if(event.target.nodeName == 'TD') {
+    popupId = $(this).data('popup');
+    $(popupId).modal('show');
+  }
+});

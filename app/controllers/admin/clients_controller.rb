@@ -5,6 +5,13 @@ class Admin::ClientsController < Admin::BaseController
     @organizations = Organization.order(params[:order]).includes(:subscription)
   end
 
+  def destroy
+    organization = Organization.find params[:id]
+    customer = Stripe::Customer.retrieve(organization.subscription.subscription_id)
+    customer.subscriptions.retrieve(customer.subscriptions.first.id).delete
+    redirect_to :index
+  end
+
   def become
     @user = User.find(params[:client_id])
 
