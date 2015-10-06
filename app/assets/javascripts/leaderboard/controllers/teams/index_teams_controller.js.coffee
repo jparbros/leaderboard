@@ -4,7 +4,11 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
   $scope.erroOnCreate = false;
   $scope.errorMsg = 'There was an error when trying to create the team.'
 
-  $scope.departaments = Departament.query({organization_id: $scope.organization.id});
+  Departament.query({organization_id: $scope.organization.id}, (departaments) ->
+    $scope.departaments = _.each(departaments, (departament) ->
+      departament.periodsToShow = departament.period.join(', ')
+    )
+  );
 
   $scope.periods = [ {id: 'daily', label: 'Daily'},
     {id: 'weekly', label: 'Weekly'},
@@ -50,7 +54,10 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
           departament
 
     modalInstance.result.then (modal_departament) ->
-      departament.$get({organization_id: $scope.organization.id})
+      departament.$get({organization_id: $scope.organization.id}, (data) ->
+        departament.periodsToShow = data.period.join(', ')
+      )
+
 
   $scope.openDialogDeleteDepartament = (departament) ->
     modalInstance = $modal.open
