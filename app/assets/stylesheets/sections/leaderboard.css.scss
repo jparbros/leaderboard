@@ -1,5 +1,32 @@
 @import '../colors';
 
+
+.new-input {
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  height: 200px;
+  left: 50%;
+  padding: 15px 0;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  width: 500px;
+  z-index: 1000;
+  margin-top: -100px;
+  margin-left: -250px;
+
+  .new-input-title {
+    color: $main-green-blue;
+    font-size: 25px;
+  }
+
+  .new-input-name,
+  .new-input-value {
+    font-size: 20px;
+    display: inline-block;
+  }
+}
+
 .leaderboard-container {
   margin-top: 60px;
   height: 100%;
@@ -47,23 +74,6 @@
   .main {
     margin-top: 0;
     padding: 0;
-
-    .new-input {
-      text-align: center;
-      padding: 15px 0;
-
-      .new-input-title {
-        color: $main-green-blue;
-        font-size: 25px;
-      }
-
-      .new-input-name,
-      .new-input-value {
-        font-size: 20px;
-        display: inline-block;
-      }
-
-    }
 
     .selected-team {
       background-color: $main-green-blue;
