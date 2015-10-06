@@ -53,7 +53,7 @@
           <li ng-class="{active:boardSettingsActive}"  ng-show="user.role == 'admin'"><a href="/board/settings">Leaderboard Settings</a></li>
           <li ng-class="{active:usersActive}"  ng-show="user.role == 'admin'"><a href="/users">Users</a></li>
           <li ng-class="{active:inputsActive}"  ng-hide="user.role == 'user'"><a href="/input">Edit Data Input</a></li>
-          <li><a href="/records">Records</a></li>
+          <li ng-hide="user.role == 'admin'"><a href="/records">Records</a></li>
         </ul>
       </div>
 
