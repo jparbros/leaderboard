@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     namespace :admin do
       root :to => "clients#index"
 
-      resources :clients, only: [:index] do
+      resources :clients, only: [:index, :destroy] do
         get '/become' => 'clients#become'
       end
 
