@@ -29,6 +29,7 @@ LeaderboardApp.controller 'indexTeamsCtrl', ($scope, $location, $modal, $rootSco
 
     if departament.period.length > 0
       departament.$save {organization_id: $scope.organization.id}, (departament)->
+        departament.periodsToShow = departament.period.join(', ')
         $scope.departaments.push(departament)
         $scope.departament =  new Departament({period: []})
       , (error) ->
