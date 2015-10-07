@@ -48,6 +48,7 @@
       <ul class="nav nav-pills nav-stacked">
         <li><a href="#" ng-click="openNewRecord()">New Record</a></li>
         <li ng-class="{active:selectedPeriod==key}" ng-repeat="(key, value) in currentUser.target"><a href="#" ng-click="selectPeriod(key)">{{key || uppercase}} (Goal: {{value}})</a></li>
+        <li ng-hide="user.role == 'user'"><a href="/" >Back</a></li>
       </ul>
     </div>
 
