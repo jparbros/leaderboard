@@ -68,5 +68,5 @@ LeaderboardApp.controller 'editUsersCtrl', ($scope, $rootScope, $location, $uplo
         url: "/api/users/#{$scope.user.id}/upload",
         file: file[0]
       }).success((data, status, headers, config) ->
-        $scope.user = data
+        $rootScope.user = data
       )
