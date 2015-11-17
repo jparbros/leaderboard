@@ -13,8 +13,13 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.data = [];
   dispatcher = new WebSocketRails('demo.rankingdesk.com/websocket');
 
+
   Departament.query({organization_id: $scope.organization.id}, (teams)->
-    $scope.teams = teams
+    $scope.teams = angular.forEach(teams, (team) ->
+      team.selected_period = team.period[0]
+    )
+
+    periods = _.pluck($scope.teams, 'period');
     $scope.selectTeam(teams[0])
   );
 
@@ -35,7 +40,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
 
   $scope.selectTeam = (team) ->
     $scope.selectedTeam = team
-    $scope.selectedPeriod = switch team.period[0]
+    $scope.selectedPeriod = switch team.selected_period
       when 'daily' then 'today'
       when 'weekly' then 'week'
       when 'monthly' then 'month'
@@ -47,6 +52,10 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
     nextTeam = $scope.teams.indexOf($scope.selectedTeam) + 1
     nextTeam = 0 if nextTeam >= $scope.teams.length
     team = $scope.teams[nextTeam]
+    if nextTeam == 0
+      nextPeriod = team.period.indexOf(team.selected_period ) + 1
+      nextPeriod = 0 if nextPeriod >= team.period.length
+      team.selected_period = team.period[nextPeriod]
     $scope.selectTeam(team)
 
   $scope.selectPeriod = (period) ->
