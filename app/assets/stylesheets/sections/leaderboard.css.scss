@@ -132,7 +132,7 @@
       }
 
       li {
-        background-color: $green;
+        background-color: $light-gray-2;
         border-right: 1px solid $white;
         float: left;
         height: 40px;
@@ -140,7 +140,7 @@
         text-align: center;
 
         &.active {
-          background-color: $light-gray-2;
+          background-color: $green;
           a { color: $black-text; }
         }
 
