@@ -8,6 +8,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.rollingLeaderboardSet = false
   $scope.newInput = {}
   $scope.showNewInput = false
+  $scope.showTotal = false
 
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
@@ -20,6 +21,16 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
     )
 
     periods = _.pluck($scope.teams, 'period');
+
+    i = 0
+    show_totals = []
+    while i < periods.length
+      if periods[i+1]
+        show_totals.push(periods[i] == periods[i+1])
+      ++i
+    $scope.showTotal =  _.reduce(show_totals, (show_total) ->
+      return show_total;)
+
     $scope.selectTeam(teams[0])
   );
 
