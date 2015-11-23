@@ -3,27 +3,39 @@
 
 .new-input {
   background-color: white;
+  border-top: 8px solid $main-green-blue;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  font-family: 'Alegreya Sans SC', sans-serif;
   height: 200px;
   left: 50%;
+  margin-left: -250px;
+  margin-top: -100px;
   padding: 15px 0;
   position: absolute;
   text-align: center;
   top: 50%;
   width: 500px;
   z-index: 1000;
-  margin-top: -100px;
-  margin-left: -250px;
 
-  .new-input-title {
+  img {
+    border-radius: 120px;
+    border: 3px solid white;
+    display: block;
+    height: 100px;
+    left: 50%;
+    margin-left: -50px;
+    position: relative;
+    top: -50px;
+    width: 100px;
+  }
+
+  .new-input-name {
     color: $main-green-blue;
     font-size: 25px;
   }
 
-  .new-input-name,
   .new-input-value {
     font-size: 20px;
-    display: inline-block;
   }
 }
 

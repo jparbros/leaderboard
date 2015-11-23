@@ -15,7 +15,7 @@ class Input < ActiveRecord::Base
   private
 
   def notify_leaderboard
-    WebsocketRails["organization-#{user.organization_id}"].trigger(:input_created, {name: user.name, value: value})
+    WebsocketRails["organization-#{user.organization_id}"].trigger(:input_created, {name: user.name, value: value, picture: user.avatar.url(:medium)})
   end
 
 end
