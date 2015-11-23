@@ -39,9 +39,7 @@ module OrganizationDefaultData
 
   def create_dummy_data
     users.each do |user|
-      rand(1..10).times do
-        create_input(user)
-      end
+      create_input(user)
     end
   end
 
