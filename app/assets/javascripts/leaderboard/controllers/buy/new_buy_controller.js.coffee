@@ -16,7 +16,7 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
     $scope.countries = data
 
   $scope.getRegions = (scope) ->
-    $http.get('/api/locations/countries/' + $rootScope.organization.address_attributes.country_code.alpha_2_code).success (data) ->
+    $http.get('/api/locations/countries/' + $rootScope.organization.address_attributes.country.alpha_2_code).success (data) ->
       $scope.regions = data
 
   $scope.submitForm = (status, response) ->

@@ -12,6 +12,10 @@ module Api
 
     def update
       @organization = Organization.find params[:id]
+      if address_params
+        @organization.build_address unless @organization.address
+        @organization.address.attributes = address_params
+      end
       if @organization.update_attributes organization_params
         respond_with @organization
       else
@@ -23,6 +27,12 @@ module Api
 
     def organization_params
       params.require(:organization).permit(:boardname, :rolling, :rolling_time, :name, :vat)
+    end
+
+    def address_params
+      params[:address_attributes][:country_code] = params[:address_attributes][:country][:alpha_2_code]
+      params[:address_attributes][:region_code] = params[:address_attributes][:region][:code]
+      params.require(:address_attributes).permit(:address, :address_2, :country_code, :city, :zip_code, :region_code)
     end
 
   end

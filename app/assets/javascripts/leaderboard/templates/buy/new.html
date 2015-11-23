@@ -1,4 +1,4 @@
-<form class="col-md-12 with-margin">
+<form class="col-md-12 with-margin" ng-submit="submitForm()">
   <div class="prices">
     <div class="pricing" ng-click="selectSubscriptionKind('monthly')" ng-class="{selected:subscription_kind == 'monthly'}">
       <span class="price">&euro; 99 Eu</span>
@@ -19,17 +19,17 @@
     </div>
 
     <div class="form-group">
-      <input type="text" class="form-control"  placeholder="Address line 2" ng-model="organization.address_attributes.address2">
+      <input type="text" class="form-control"  placeholder="Address line 2" ng-model="organization.address_attributes.address_2">
     </div>
 
     <div class="form-group">
       <label>Country</label>
-      <select ng-model="organization.address_attributes.country_code" ng-options="c.name for c in countries" ng-change="getRegions(this)" class="form-control"></select>
+      <select ng-model="organization.address_attributes.country" ng-options="c.name for c in countries" ng-change="getRegions(this)" class="form-control"></select>
     </div>
 
     <div class="form-group">
       <label>State</label>
-      <select ng-model="organization.address_attributes.region_code" ng-options="r.name for r in regions" ng-show="regions" class="form-control"></select>
+      <select ng-model="organization.address_attributes.region" ng-options="r.name for r in regions" ng-show="regions" class="form-control"></select>
     </div>
 
     <div class="form-group">
@@ -44,6 +44,6 @@
   </fieldset>
 
   <div class="form-group">
-    <input type="submit" class="btn btn-primary" value="Get subscription" ng-click="submitForm()">
+    <input type="submit" class="btn btn-primary" value="Get subscription">
   </div>
 </form>
