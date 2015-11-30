@@ -43,5 +43,6 @@ module Leaderboard
       fog_directory: ENV['GOOGLE_DIRECTORY'],
       fog_public: true
     }
+    config.middleware.delete Rack::Lock if Rails.env.development?
   end
 end
