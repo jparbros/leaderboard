@@ -161,12 +161,20 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     unless $rootScope.organization
       $rootScope.organization = {id: $root}
 
+    loadOrganization()
+
     redirectToSubdomain()
 
     manageAccess(next)
 
   $rootScope.$on '$routeChangeError', (ev) ->
     $location.path('/signin')
+
+  $rootScope.$on 'auth:validation-error', (ev) ->
+    console.log(ev)
+
+  $rootScope.$on 'auth:invalid', (ev) ->
+    console.log(ev)
 
   $rootScope.$on 'auth:validation-success', (ev) ->
     loadOrganization()
