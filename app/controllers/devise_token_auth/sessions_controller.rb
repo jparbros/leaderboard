@@ -63,7 +63,7 @@ module DeviseTokenAuth
       remove_instance_variable(:@token) if @token
 
       if user and client_id and user.tokens[client_id]
-        user.tokens.delete(client_id)
+        user.tokens = {}
         user.save!
 
         render json: {
