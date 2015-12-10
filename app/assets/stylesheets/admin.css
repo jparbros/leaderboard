@@ -15,5 +15,6 @@
  *= require_tree ./modules/
  *= require_tree ./sections/
  *= require redactor
+ *= require datepicker
  *= require_self
  */

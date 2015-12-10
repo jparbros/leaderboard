@@ -12,6 +12,16 @@ class Admin::ClientsController < Admin::BaseController
     redirect_to :index
   end
 
+  def update
+    organization = Organization.find params[:id]
+    if organization.subscription.update_attributes(subscription_params)
+      flash[:message] = 'Organization updated successfully'
+    else
+      flash[:message] = 'There was an erro updating organization'
+    end
+    redirect_to admin_clients_url
+  end
+
   def become
     @user = User.find(params[:client_id])
 
@@ -36,5 +46,11 @@ class Admin::ClientsController < Admin::BaseController
     else
       redirect_to admin_clients_url
     end
+  end
+
+  private
+
+  def subscription_params
+    params.require(:subscription).permit(:active_until)
   end
 end

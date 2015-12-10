@@ -6,43 +6,47 @@
         <h4 class="modal-title"><%= organization.owner.try(:name) %></h4>
       </div>
       <div class="modal-body">
-        <dl class="dl-horizontal admin-client-details">
-          <dt>Company Name:</dt>
-          <dd><%= organization.name %></dd>
+        <form action='/admin/clients/<%= organization.id %>' method="post">
+          <input type="hidden" name="_method" value="put">
+          <dl class="dl-horizontal admin-client-details">
+            <dt>Company Name:</dt>
+            <dd><%= organization.name %></dd>
 
-          <dt>VAT No.:</dt>
-          <% if organization.vat.present? %>
-            <dd><%= organization.vat %></dd>
-          <% else %>
-            <dd>N/A</dd>
-          <% end %>
+            <dt>VAT No.:</dt>
+            <% if organization.vat.present? %>
+              <dd><%= organization.vat %></dd>
+            <% else %>
+              <dd>N/A</dd>
+            <% end %>
 
-          <dt>Signup date:</dt>
-          <dd><%= organization.created_at.to_date.to_s(:short_date) %></dd>
+            <dt>Signup date:</dt>
+            <dd><%= organization.created_at.to_date.to_s(:short_date) %></dd>
 
-          <dt>Date of last payment:</dt>
-          <% if organization.subscription.transactions.last %>
-            <dd><%= organization.subscription.transactions.last.created_at.to_date.to_s(:short_date) %></dd>
-          <% else %>
-            <dd>N/A</dd>
-          <% end %>
+            <dt>Date of last payment:</dt>
+            <% if organization.subscription.transactions.last %>
+              <dd><%= organization.subscription.transactions.last.created_at.to_date.to_s(:short_date) %></dd>
+            <% else %>
+              <dd>N/A</dd>
+            <% end %>
 
-          <dt>Date of next payment:</dt>
-          <dd><%= organization.subscription.active_until %></dd>
+            <dt>Date of next payment:</dt>
+            <dd><%= organization.subscription.active_until %></dd>
 
-          <dt>Expiry date:</dt>
-          <dd><%= organization.subscription.active_until %></dd>
+            <dt>Expiry date:</dt>
+            <dd><input class="form-control bfh-datepicker" data-date-format="yyyy-mm-dd" value="<%= organization.subscription.active_until %>" name="subscription[active_until]"></dd>
 
-          <dt>Last login date:</dt>
-          <dd><%= (organization.try(:owner).try(:last_sign_in_at) || Time.now).to_date.to_s(:short_date) %></dd>
+            <dt>Last login date:</dt>
+            <dd><%= (organization.try(:owner).try(:last_sign_in_at) || Time.now).to_date.to_s(:short_date) %></dd>
 
-          <dt>Active:</dt>
-          <dd><%= organization.subscription.try(:active) ? 'Yes' : 'No' %></dd>
-        </dl>
+            <dt>Active:</dt>
+            <dd><%= organization.subscription.try(:active) ? 'Yes' : 'No' %></dd>
+          </dl>
 
-        <div class="text-center">
-          <%= link_to  'Client Panel', admin_client_become_path(client_id: organization.try(:owner).try(:id) || 1), class: 'btn btn-success', target: '_blank' %>
-        </div>
+          <div class="text-center">
+            <input type="submit" class="btn btn-default">
+            <%= link_to  'Client Panel', admin_client_become_path(client_id: organization.try(:owner).try(:id) || 1), class: 'btn btn-success', target: '_blank' %>
+          </div>
+        </form>
       </div>
     </div>
   </div>

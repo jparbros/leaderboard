@@ -15,13 +15,18 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require redactor
-
+//= require bootstrap-datepicker
 
 $('tr').on('click', function(event) {
-  console.log();
   event.stopPropagation();
   if(event.target.nodeName == 'TD') {
     popupId = $(this).data('popup');
     $(popupId).modal('show');
   }
 });
+
+$(document).ready(function() {
+  $('.bfh-datepicker').datepicker().on('changeDate', function(event) {
+    $('.bfh-datepicker').datepicker('hide');
+  });
+})
