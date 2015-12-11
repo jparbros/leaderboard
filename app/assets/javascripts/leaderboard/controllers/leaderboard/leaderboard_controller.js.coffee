@@ -42,7 +42,6 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
         console.log("GET DATA:", data);
         $scope.newInput = data
         $scope.showNewInput = true
-        console.log($scope);
         $timeout(->
           $scope.newInput = {}
           $scope.showNewInput = false

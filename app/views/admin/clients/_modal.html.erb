@@ -40,6 +40,17 @@
 
             <dt>Active:</dt>
             <dd><%= organization.subscription.try(:active) ? 'Yes' : 'No' %></dd>
+
+            <dt>Address</dt>
+            <dd>
+              <% if organization.address %>
+                <%= organization.address.address %><br/>
+                <%= organization.address.address_2 %><br/>
+                <%= organization.address.city %>, <%= organization.address.region_code %>, <%= organization.address.city %><br/>
+              <% else %>
+                N/A
+              <% end %>
+            </dd>
           </dl>
 
           <div class="text-center">
