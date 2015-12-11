@@ -13,26 +13,28 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
   dispatcher = new WebSocketRails('demo.rankingdesk.com/websocket');
+  $scope.periods = [];
 
 
   Departament.query({organization_id: $scope.organization.id}, (teams)->
     $scope.teams = angular.forEach(teams, (team) ->
       team.selected_period = team.period[0]
     )
-
-    periods = _.pluck($scope.teams, 'period');
-
-    i = 0
-    show_totals = []
-    while i < periods.length
-      if periods[i+1]
-        show_totals.push(periods[i] == periods[i+1])
-      ++i
-    $scope.showTotal =  _.reduce(show_totals, (show_total) ->
-      return show_total;)
+    $scope.periods = _.pluck($scope.teams, 'period');
 
     $scope.selectTeam(teams[0])
   );
+
+  $scope.showTotal = ->
+    _showTotal = true
+    _.each($scope.periods, (period, index) ->
+      if($scope.periods[index+1])
+        if !_.isEqual(period, $scope.periods[index+1])
+          _showTotal = false
+    )
+    console.log(_showTotal)
+    console.log('========')
+    _showTotal
 
   setWebsocket = ->
     if $scope.channel == null
