@@ -15,10 +15,6 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
   $http.get('/api/locations/countries').success (data) ->
     $scope.countries = data
 
-  $scope.getRegions = (scope) ->
-    $http.get('/api/locations/countries/' + $rootScope.organization.address_attributes.country.alpha_2_code).success (data) ->
-      $scope.regions = data
-
   $scope.submitForm = (status, response) ->
     subscription = new Subscription({subscription: $scope.buyForm})
     subscription.$save({organization_id: $scope.organization.id})

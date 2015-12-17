@@ -32,7 +32,6 @@ module Api
     def address_params
       return false unless params[:address_attributes]
       params[:address_attributes][:country_code] = params[:address_attributes][:country][:alpha_2_code]
-      params[:address_attributes][:region_code] = params[:address_attributes][:region][:code]
       params.require(:address_attributes).permit(:address, :address_2, :country_code, :city, :zip_code, :region_code)
     end
 

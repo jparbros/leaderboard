@@ -32,16 +32,12 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
         if !_.isEqual(period, $scope.periods[index+1])
           _showTotal = false
     )
-    console.log(_showTotal)
-    console.log('========')
     _showTotal
 
   setWebsocket = ->
     if $scope.channel == null
-      console.log("SET CHANNEL");
       $scope.channel = dispatcher.subscribe('organization-' + $scope.organization.id);
       $scope.channel.bind('input_created', (data) ->
-        console.log("GET DATA:", data);
         $scope.newInput = data
         $scope.showNewInput = true
         $timeout(->
@@ -59,15 +55,18 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
       when 'quarterly' then 'quarter'
       when 'yearly' then 'year'
     $scope.getInputs()
+    $scope.nextPeriod()
+
+  $scope.nextPeriod = ->
+    nextPeriod = $scope.selectedTeam.period.indexOf($scope.selectedTeam.selected_period)
+    nextPeriod = nextPeriod + 1
+    nextPeriod = 0 if nextPeriod >= $scope.selectedTeam.period.length
+    $scope.selectedTeam.selected_period = $scope.selectedTeam.period[nextPeriod]
 
   $scope.nextTeam = ->
     nextTeam = $scope.teams.indexOf($scope.selectedTeam) + 1
     nextTeam = 0 if nextTeam >= $scope.teams.length
     team = $scope.teams[nextTeam]
-    if nextTeam == 0
-      nextPeriod = team.period.indexOf(team.selected_period ) + 1
-      nextPeriod = 0 if nextPeriod >= team.period.length
-      team.selected_period = team.period[nextPeriod]
     $scope.selectTeam(team)
 
   $scope.selectPeriod = (period) ->

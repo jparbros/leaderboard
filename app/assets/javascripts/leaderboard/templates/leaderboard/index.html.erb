@@ -24,13 +24,14 @@
   </div>
 </nav>
 
-<div class="new-input" ng-show="showNewInput" >
-  <img src="{{newInput.picture}}">
-  <div class="new-input-title">A new record is entered</div>
-  <div class="new-input-name"><b>Name:</b> {{newInput.name}}</div>
-  <div class="new-input-value"><b>Value:</b> {{newInput.value}}</div>
-  <div class="new-input-name">{{newInput.name}}</div>
-  <div class="new-input-value">Just made a sale!</div>
+
+<div class="new-input-container" ng-show="showNewInput">
+  <div class="new-input-background"></div>
+  <div class="new-input">
+    <img src="{{newInput.picture}}">
+    <div class="new-input-name">{{newInput.name}}</div>
+    <div class="new-input-value">Just made a sale!</div>
+  </div>
 </div>
 
 <div class="container leaderboard-container">
