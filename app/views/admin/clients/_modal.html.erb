@@ -23,7 +23,7 @@
             <dd><%= organization.created_at.to_date.to_s(:short_date) %></dd>
 
             <dt>Date of last payment:</dt>
-            <% if organization.subscription.transactions.last %>
+            <% if organization.subscription.transactions.present? %>
               <dd><%= organization.subscription.transactions.last.created_at.to_date.to_s(:short_date) %></dd>
             <% else %>
               <dd>N/A</dd>

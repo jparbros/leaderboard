@@ -10,6 +10,22 @@ module Subscriptions
     self.organization.save!
   end
 
+  def recurring_subscription(data)
+    self.active_until = Time.at(data['current_period_end'])
+    self.organization.subscribed = data['status'] == 'active'
+    self.save!
+    self.organization.save!
+  end
+
+  def create_transaction(data)
+    self.transactions.create(
+      transacion_number: data['balance_transaction'],
+      amount_cents: data['amount'],
+      currency: data['currency'],
+      success: true
+    )
+  end
+
   private
 
   def create_subscription
