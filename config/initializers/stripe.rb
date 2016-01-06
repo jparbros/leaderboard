@@ -15,6 +15,7 @@ end
 
 StripeEvent.subscribe 'customer.subscription.updated' do |event|
   params = event.data.object
+  puts "PARAMS -> #{params}"
   organization = Organization.find_by_subscription_id(params['data']['object']['customer']).first
   organization.recurring_subscription(params['data']['object']) if organization
 end
