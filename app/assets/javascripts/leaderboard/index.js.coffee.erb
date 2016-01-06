@@ -147,7 +147,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $authProvider.configure
       apiUrl: '<%= ENV["AUTH_URL"]%>'
 
-).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout, ipCookie, RedirectTo, subdomain) ->
+).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout, ipCookie, RedirectTo, subdomain, $interval, $auth, $q) ->
 
   $rootScope.showLoading = true
   $rootScope.organization = {}
@@ -158,6 +158,8 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     $rootScope.showLoading = true;
     $rootScope.redirectToSubdomain = false
 
+    if $rootScope.leaderboardInterval
+      $interval.cancel($rootScope.leaderboardInterval)
     unless $rootScope.organization
       $rootScope.organization = {id: $root}
 

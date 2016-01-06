@@ -105,7 +105,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.rollingLeaderboard = ->
     if $scope.organization.rolling && $scope.rollingLeaderboardSet == false
       $scope.rollingLeaderboardSet = true
-      $interval( ->
+      $rootScope.leaderboardInterval = $interval( ->
         $scope.nextTeam();
       , ($scope.organization.rolling_time * 1000))
 
