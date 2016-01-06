@@ -26,7 +26,7 @@ module Api
     private
 
     def organization_params
-      params.require(:organization).permit(:boardname, :rolling, :rolling_time, :name, :vat)
+      params.require(:organization).permit(:boardname, :rolling, :rolling_time, :name, :vat, :company_name, :billing_email)
     end
 
     def address_params
