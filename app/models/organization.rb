@@ -17,7 +17,7 @@ class Organization < ActiveRecord::Base
   DEMO_PERIOD = 30
 
   def self.find_by_subscription_id(subscription_id)
-    self.joins(:subscription).where(subscriptions: {subscription_id: subscription_id})
+    self.joins(:subscription).where(subscriptions: {subscription_id: subscription_id}).first
   end
 
   def days_left
