@@ -32,17 +32,13 @@
 </table>
 
 <h1>Billing Details</h1>
-<table class="table table-striped billing-table">
-  <thead>
-    <tr>
-      <th>Billing period</th>
-      <th>Payment Due</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td> {{subscription.subscription_kind || uppercase}}</td>
-      <td>{{subscription.description}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-md-8 col-md-offset-1">
+    <address>
+      <strong>{{organization.company_name}}</strong><br>
+      {{organization.address.address}}, {{organization.address.address_2}}<br>
+      {{organization.address.city}}, {{organization.address.region_code}} {{organization.address.zip_code}}<br>
+      {{organization.address.country_code}}<br>
+    </address>
+  </div>
+</div>
