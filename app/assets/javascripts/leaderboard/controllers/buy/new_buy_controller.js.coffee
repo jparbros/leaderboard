@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscription, $location, $rootScope, Organization) ->
+LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscription, $location, $rootScope, Organization, $timeout) ->
   $scope.partialUrl = "leaderboard/templates/buy/new.html";
   $scope.erroOnCreate = false
   $scope.subscription_kind = null
@@ -41,6 +41,7 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
     if(response.error)
       $scope.erroOnCreate = true
     else
+      $('#modal-processing').modal();
       subscription = new Subscription({subscription: {
         subscription_kind: $scope.subscription_kind,
         card_number: response.card.last4,
@@ -50,7 +51,11 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
 
       subscription.$save({organization_id: $scope.organization.id}, (data) ->
         $rootScope.organization.$update({id: $rootScope.user.organization_id }, (organization) ->
-          $rootScope.organization = organization
-          $location.path('/billing')
+          $('#modal-processing').modal('hide');
+          $rootScope.organization = organization;
+          $timeout( ->
+            $location.path('/billing')
+          , 500);
+
         )
       )
