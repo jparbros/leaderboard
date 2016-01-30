@@ -54,7 +54,7 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
           $('#modal-processing').modal('hide');
           $rootScope.organization = organization;
           $timeout( ->
-            $location.path('/billing')
+            $location.path('/billing?payment=true')
           , 500);
 
         )
