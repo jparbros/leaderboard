@@ -85,7 +85,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
 
       $scope.inputs = $scope.calculateInputs(inputs)
       $scope.leader = _.max($scope.inputs, (input) ->
-        return input.fullfilment
+        return input.realized
       )
       $scope.data = [$scope.leader.realized, $scope.leader.difference]
     ) if $scope.organization.id && $scope.selectedTeam && $scope.selectedPeriod
