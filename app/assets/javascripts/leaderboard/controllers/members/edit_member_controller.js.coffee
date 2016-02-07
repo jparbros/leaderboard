@@ -4,6 +4,7 @@ LeaderboardApp.controller 'editMemberCtrl', ($scope, $rootScope, $location, User
   $scope.erroOnCreate = false
   $scope.selectedTeam = null
   $scope.msgError = ''
+  $scope.showTooltip = false;
 
   User.get({id: $routeParams.id, organization_id: $scope.organization.id}, (user) ->
     $scope.userForm = user

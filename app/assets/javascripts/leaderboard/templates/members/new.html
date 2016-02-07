@@ -71,7 +71,8 @@
   </fieldset>
 
   <div class="col-md-offset-8 col-md-2">
-    <input type="submit"  value="Save" class="btn btn-success form-control" data-toggle="tooltip" data-placement="top" title="On save an email will be sent with login information">
+    <input type="submit"  value="Save" class="btn btn-success form-control" ng-hide="showTooltip">
+    <input type="submit"  value="Save" class="btn btn-success form-control" data-toggle="tooltip" data-placement="top" title="Email will be sent to the user" ng-show='showTooltip'>
   </div>
 </form>
 

@@ -5,6 +5,7 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
   $scope.userForm = new User({active: true})
   $scope.selectedTeam = null
   $scope.msgError = ''
+  $scope.showTooltip = true;
 
   Departament.query({organization_id: $scope.organization.id}, (teams) ->
     $scope.teams = teams
