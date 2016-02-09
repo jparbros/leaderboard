@@ -36,7 +36,7 @@ module Api
     def update
       @input = user.inputs.find params[:id]
       if @input.update_attributes input_params
-        respond_with @input
+        render json: @input
       else
         render json: @input.errors.full_messages, status: 500
       end

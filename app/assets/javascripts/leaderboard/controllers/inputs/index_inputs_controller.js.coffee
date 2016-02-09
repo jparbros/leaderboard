@@ -64,7 +64,9 @@ LeaderboardApp.controller 'indexInputsCtrl', ($scope, $location, $resource, $mod
         input: ->
           input
 
-    modalInstance.result
+    modalInstance.result.then (editedInput) ->
+      input.date = editedInput.date
+
 
   $scope.openDialogDeleteInput = (input) ->
     modalInstance = $modal.open

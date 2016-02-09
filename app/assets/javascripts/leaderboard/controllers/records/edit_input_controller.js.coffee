@@ -3,6 +3,7 @@ LeaderboardApp.controller 'editRecordCtrl', ($scope, $modalInstance, Input, inpu
   $scope.inputForm = input;
   $scope.previous_attributes = angular.copy(input)
   $scope.msgError = ''
+  $scope.format = "yyyy-MM-dd"
 
   $scope.ok = ->
     $modalInstance.close();
@@ -18,8 +19,8 @@ LeaderboardApp.controller 'editRecordCtrl', ($scope, $modalInstance, Input, inpu
     $scope.opened = true;
 
   $scope.submitInput = (inputForm) ->
-    input = new Input(inputForm)
-    input.$update {user_id: input.user.id, organization_id: $scope.organization.id}, (input)->
+    editedInput = new Input(inputForm)
+    editedInput.$update {user_id: input.user.id, organization_id: $scope.organization.id}, (input)->
       $modalInstance.close(input)
     , (error) ->
       $scope.erroOnUpdate = true
