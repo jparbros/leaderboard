@@ -39,7 +39,8 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-1">
     <address>
-      <strong>{{organization.company_name}}</strong><br>
+      <strong>{{organization.company_name}}</strong> {{ organization.billing_email }}<br>
+      VAT Number: <strong>{{organization.vat}}</strong><br>
       {{organization.address.address}}, {{organization.address.address_2}}<br>
       {{organization.address.city}}, {{organization.address.region_code}} {{organization.address.zip_code}}<br>
       {{organization.address.country_code}}<br>
