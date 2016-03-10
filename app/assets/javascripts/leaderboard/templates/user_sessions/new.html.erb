@@ -4,13 +4,13 @@
 
 <div ng-hide="showLoading" class="ng-content">
   <nav class="navbar navbar-fixed-top navbar-layout">
-    <div class="container">
+    <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand" href="http://demo.rankingdesk.com/"><%= image_tag 'logo_color.png'%></a>
       </div>
 
-      <div class="nav navbar-nav navbar-right navbar-links">
+      <div class="nav navbar-nav navbar-right navbar-links hidden-xs">
         <a href="http://demo.rankingdesk.com/#pricing">Pricing</a>
         <a href="/signin">Login</a>
         <a href="/signup" class="btn btn-success">Free Trial</a>
@@ -58,10 +58,12 @@
             </div>
 
             <div class="form-group">
-              <a ng-click="openForgotPassword()" href="#">Forgot your password?</a>
-              <br />
-              <a ng-click="changeSubdomain()" ng-show="subdomain" href="#">Change subdomain</a>
-              <a ng-click="openForgotSubdomain()" ng-hide="subdomain"  href="#">Forgot your subdomain?</a>
+              <div class="col-sm-12">
+                <a ng-click="openForgotPassword()" href="#">Forgot your password?</a>
+                <br />
+                <a ng-click="changeSubdomain()" ng-show="subdomain" href="#">Change subdomain</a>
+                <a ng-click="openForgotSubdomain()" ng-hide="subdomain"  href="#">Forgot your subdomain?</a>
+              </div>
             </div>
 
             <div class="form-group">
@@ -73,7 +75,7 @@
         </form>
       </div>
 
-      <div class="row">
+      <div>
         <div class="col-sm-6 col-sm-offset-3 text-center">
           <h4>Don't have an account? <a href="/signup">Get started</a></h4>
         </div>

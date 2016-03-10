@@ -108,6 +108,8 @@
     ul.periods-list {
       list-style: none;
       padding: 0;
+      display: inline-block;
+      width: 100%;
 
       &.periods-1 {
         li {

@@ -35,7 +35,7 @@
 
   <nav class="navbar navbar-fixed-top navbar-app">
     <div class="container">
-      <div class="nav navbar-nav navbar-left buy-now-container" ng-hide="organization.subscribed">
+      <div class="nav navbar-nav navbar-left buy-now-container hidden-xs" ng-hide="organization.subscribed">
         <a href="/buy/new" class="btn btn-success" ng-show="user.role == 'admin'" >Buy Now!</a>
         <span ng-show="user.role == 'admin'">{{organization.days_left}} Days left of your free trial</span>
       </div>
@@ -51,6 +51,12 @@
     <div class="row main-row">
       <div class="col-md-3 sidebar">
         <ul class="nav nav-pills nav-stacked">
+          <li class="visible-xs-block text-center" ng-hide="organization.subscribed">
+            <a href="/buy/new" class="btn btn-success" ng-show="user.role == 'admin'" >Buy Now!</a>
+            <span ng-show="user.role == 'admin'">
+              <b>{{organization.days_left}} Days left of your free trial</b>
+            </span>
+          </li>
           <li ng-class="{active:departamentsActive}" ng-show="user.role == 'admin'"><a href="/teams">Teams & Periods</a></li>
           <li ng-class="{active:boardLoginActive}"  ng-show="user.role == 'admin'"><a href="/board/login">Board Login Details</a></li>
           <li ng-class="{active:boardSettingsActive}"  ng-show="user.role == 'admin'"><a href="/board/settings">Leaderboard Settings</a></li>

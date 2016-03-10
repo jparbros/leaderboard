@@ -61,29 +61,31 @@
         <li ng-show="showPeriod('yearly')" ng-class="{active:selectedPeriod=='year'}"><a href="#" ng-click="selectPeriod('year')">Year<a/></li>
       </ul>
 
-      <table class="table table-striped leaderboard-table">
-        <thead>
-          <tr>
-            <th>Name (alias)</th>
-            <th>Target</th>
-            <th>Realized</th>
-            <th>Difference</th>
-            <th>Fulfilment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="input in inputs">
-            <td>{{input.username}}</td>
-            <td>{{input.currentTarget | number:2}}</td>
-            <td>{{input.realized | number:2}}</td>
-            <td>{{input.difference | number:2}}</td>
-            <td>{{input.fullfilment | number:2}}%</td>
-          </tr>
-          <tr>
-            <td colspan="5" ng-show="inputs.length < 1">There is no data to show</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-striped leaderboard-table">
+          <thead>
+            <tr>
+              <th>Name (alias)</th>
+              <th>Target</th>
+              <th>Realized</th>
+              <th>Difference</th>
+              <th>Fulfilment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="input in inputs">
+              <td>{{input.username}}</td>
+              <td>{{input.currentTarget | number:2}}</td>
+              <td>{{input.realized | number:2}}</td>
+              <td>{{input.difference | number:2}}</td>
+              <td>{{input.fullfilment | number:2}}%</td>
+            </tr>
+            <tr>
+              <td colspan="5" ng-show="inputs.length < 1">There is no data to show</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="leader col-md-3 hidden-sm hidden-xs">
