@@ -96,11 +96,11 @@
   }
 
   .navbar-app.records {
-    height: 130px;
+    height: 75px;
   }
 
   .users-container.records {
-    margin-top: 220px;
+    margin-top: 165px;
   }
 
   .leader-mobile {
@@ -163,11 +163,28 @@
     margin-top: -5px;
     margin-bottom: -5px;
   }
+
+  .new-record {
+    width: 49% !important;
+    display: inline-block;
+  }
 }
 
 @media only screen and (max-device-width: 767px) {
  .mobile-profile-link {
    display: block;
+ }
+
+ .new-record {
+   width: 100% !important;
+ }
+
+ .navbar-app.records {
+   height: 130px;
+ }
+
+ .users-container.records {
+   margin-top: 220px;
  }
 }
 
