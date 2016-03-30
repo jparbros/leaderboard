@@ -12,8 +12,13 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
 
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
-  dispatcher = new WebSocketRails('demo.rankingdesk.com/websocket');
+  $scope.options = { responsive: true };
+  dispatcher = new WebSocketRails('lvh.me:3000/websocket');
   $scope.periods = [];
+
+  # if window.screen.width <= 768
+  #   $scope.options = {width: '100px'}
+
 
 
   Departament.query({organization_id: $scope.organization.id}, (teams)->

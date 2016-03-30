@@ -1,3 +1,11 @@
+@import "../colors";
+
+@media only screen and (min-device-width: 769px) {
+  .mobile-profile-link {
+    display: none;
+  }
+}
+
 @media only screen and (max-device-width: 768px) {
 
   .navbar-brand {
@@ -20,6 +28,7 @@
   .mobile-profile-link {
     margin: 7px 0;
     float: right;
+    display: none;
   }
 
   .sidebar, .teams, .profile-menu {
@@ -93,6 +102,73 @@
   .users-container.records {
     margin-top: 220px;
   }
+
+  .leader-mobile {
+    width: 100%;
+    height: 150px !important;
+  }
+
+  .leader-details {
+    margin-right: 20px;
+    border-right: 1px solid $light-gray-2;
+  }
+
+  .leader-mobile .leader-details {
+    height: 100%;
+    width: 50%;
+    float: left;
+  }
+
+  .leader-mobile .leader-chart {
+    height: 100%;
+    width: 47%;
+    float: left;
+  }
+
+  .leader-mobile .leader-details .leader-picture img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .leader-mobile .leader-chart {
+    height: 120px;
+  }
+
+  .leader-mobile .leader-picture, .leader-mobile .leader-name {
+    width: 50%;
+    float: left;
+  }
+
+  .leader-mobile .leader-name {
+    text-align: left !important;
+  }
+
+  .leader-mobile .leader-name span {
+    color: $black-text;
+  }
+
+  .leader-chart span {
+    margin: 62px 0;
+    display: inline-block;
+    font-size: 18px;
+  }
+
+  .chart-container {
+    width: 230px;
+    height: 130px;
+    float: right;
+  }
+
+  .leaderboard-container .main ul.periods-list {
+    margin-top: -5px;
+    margin-bottom: -5px;
+  }
+}
+
+@media only screen and (max-device-width: 767px) {
+ .mobile-profile-link {
+   display: block;
+ }
 }
 
 @media only screen and (max-device-width: 480px) {

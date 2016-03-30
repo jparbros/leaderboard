@@ -27,7 +27,7 @@
       </ul>
     </div>
 
-    <a href="#" class="mobile-profile-link visible-xs-inline-block visible-sm-inline-block" toggle-profile-menu>
+    <a href="#" class="mobile-profile-link" toggle-profile-menu>
       <img ng-src="{{user.picture_thumb}}" class="profile-pic">
     </a>
   </div>
@@ -57,6 +57,23 @@
       <div class="selected-team">
         {{organization.boardname}} - {{selectedTeam.name}}
       </div>
+
+      <div class="leader leader-mobile visible-sm-inline-block">
+        <div class="leader-details">
+          <div class="leader-picture"><img ng-src="{{leader.picture}}"></div>
+          <div class="leader-name">
+            <span>Leader</span>
+            <br />
+            {{leader.username}}
+          </div>
+          <span class="leader-alias">{{leader.alias}}</span>
+        </div>
+        <div class="leader-chart">
+          <span>Total Fulfilment</span>
+          <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels" chart-options="options"></canvas>
+        </div>
+      </div>
+
       <ul ng-class="ulClass()" class="periods-list">
         <li ng-show="showPeriod('daily')" ng-class="{active:selectedPeriod=='today'}"><a href="#" ng-click="selectPeriod('today')">Today<a/></li>
         <li ng-show="showPeriod('weekly')" ng-class="{active:selectedPeriod=='week'}"><a href="#" ng-click="selectPeriod('week')">Week<a/></li>
