@@ -13,6 +13,5 @@
  *= require 'base'
  *= require_tree ./layout/
  *= require_tree ./modules/
- *= require_tree ./sections/
  *= require_self
  */
