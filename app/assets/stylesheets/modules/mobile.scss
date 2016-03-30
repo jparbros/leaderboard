@@ -1,17 +1,49 @@
 @media only screen and (max-device-width: 768px) {
-  .sidebar, .teams {
+
+  .navbar-brand {
+    padding: 20px 15px;
+  }
+
+  .navbar-brand img {
+    width: 130px;
+  }
+
+  img.profile-pic {
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    height: 40px;
+    width: 40px;
+
+  }
+
+  .mobile-profile-link {
+    margin: 7px 0;
+    float: right;
+  }
+
+  .sidebar, .teams, .profile-menu {
     z-index: 1000;
     position: fixed;
-    left: 250px;
     width: 0;
     height: 100%;
-    margin-left: -250px;
     overflow-y: auto;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease
   }
+
+  .sidebar, .teams {
+    left: 250px;
+    margin-left: -250px;
+  }
+
+  .profile-menu {
+    right: 250px;
+    margin-right: -250px;
+  }
+
 
   .main {
     width: 100%;
@@ -25,17 +57,23 @@
   }
 
   .main-row.toggled .sidebar, .main-row.toggled .teams {
-    width: 350px;
+    width: 80%;
+  }
+
+  .main-row.profile-toggled .profile-menu {
+    width: 80%;
   }
 
   .navbar-header {
     display: inline-block;
     float: left;
+    margin: 0 auto !important;
   }
 
   .toggle-menu-button {
     float: left;
-    margin: 10px;
+    margin: 5px;
+    font-size: 22px;
   }
 
   .nav.navbar-nav.navbar-right {
@@ -43,9 +81,17 @@
     margin-right: 0;
   }
 
-  .sidebar li a {
+  .sidebar li a, .profile-menu li a {
     padding: 20px 0px 20px 15px;
     font-size: 20px;
+  }
+
+  .navbar-app.records {
+    height: 130px;
+  }
+
+  .users-container.records {
+    margin-top: 220px;
   }
 }
 

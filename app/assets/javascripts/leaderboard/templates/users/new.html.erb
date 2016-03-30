@@ -32,7 +32,7 @@
 
           <div class="form-group has-feedback" ng-class="{'has-success': form.email.$valid, 'has-error': (form.email.$touched && form.email.$invalid)}">
             <div class="col-sm-12">
-              <input type="text" placeholder="Email" ng-model="registrationForm.email" required class="form-control" name="email" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$">
+              <input type="email" placeholder="Email" ng-model="registrationForm.email" required class="form-control" name="email" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$">
               <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 

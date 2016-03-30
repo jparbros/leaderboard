@@ -43,11 +43,10 @@ a{
   padding: 0;
 }
 
-.sidebar {
+.sidebar, .profile-menu {
   background-color: $light-gray;
   padding: 0;
   height: 100%;
-
 
   li {
     border-bottom: 1px solid $white;

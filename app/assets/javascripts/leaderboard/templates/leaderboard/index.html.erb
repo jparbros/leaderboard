@@ -1,7 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-layout">
   <div class="container">
 
-    <button type="button" class="toggle-menu-button btn btn-primary visible-xs-inline-block visible-sm-inline-block" toggle-mobile-menu>
+    <button type="button" class="toggle-menu-button btn btn-menu visible-xs-inline-block visible-sm-inline-block" toggle-mobile-menu>
       <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
     </button>
 
@@ -26,6 +26,10 @@
         </li>
       </ul>
     </div>
+
+    <a href="#" class="mobile-profile-link visible-xs-inline-block visible-sm-inline-block" toggle-profile-menu>
+      <img ng-src="{{user.picture_thumb}}" class="profile-pic">
+    </a>
   </div>
 </nav>
 
@@ -99,6 +103,15 @@
           <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels"></canvas>
         </div>
       </div>
+    </div>
+
+    <div class="col-md-3 profile-menu hidden-md hidden-lg">
+      <ul class="nav nav-pills nav-stacked">
+        <li ng-hide="user.role == 'boardlogin'"><a href="/profile">Profile</a></li>
+        <li ng-show="user.role == 'admin'"><a href="/billing">Billing</a></li>
+        <li class="divider"></li>
+        <li><a href="#" ng-click='signOut()'>Sign Out</a></li>
+      </ul>
     </div>
   </div>
 </div>
