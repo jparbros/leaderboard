@@ -48,7 +48,7 @@
     <div class="teams col-md-2">
       <ul class="teams-list">
         <li class="title">Team</li>
-        <li ng-class="{active:selectedTeam==team}" ng-repeat='team in teams'><a href="#" ng-click="selectTeam(team)">{{team.name}}</a></li>
+        <li ng-class="{active:selectedTeam==team}" ng-repeat='team in teams'><a href="#" ng-click="selectTeam(team)" toggle-mobile-menu>{{team.name}}</a></li>
         <li ng-show="showTotal()"><a href="#" ng-click="selectTeam(allTeams)">Total Team</a></li>
       </ul>
     </div>

@@ -8,6 +8,7 @@
     background-color: #fefefe;
     margin: 0 100px 100px 0;
     cursor: pointer;
+    max-width: 365px;
 
     &.selected {
       background-color: #eee;
@@ -22,7 +23,7 @@
       display: block;
       color: #1dbbc3;
       font-family: 'Alegreya Sans SC', sans-serif;
-      font-size: 64px;
+      font-size: 45px;
       text-align: center;
       margin: 0;
     }
@@ -31,7 +32,7 @@
       display: block;
       color: #5f5e5e;
       font-family: 'Alegreya Sans SC', sans-serif;
-      font-size: 45px;
+      font-size: 35px;
       text-align: center;
       margin: 0;
     }
