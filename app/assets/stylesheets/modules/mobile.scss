@@ -220,4 +220,16 @@
     padding: 24px 88px;
     display: inline-block;
   }
+
+  .leader-chart span {
+    font-size: 16px;
+  }
+
+  .leader-chart {
+    width: 40% !important;
+
+    .chart-container {
+      width: 160px;
+    }
+  }
 }
