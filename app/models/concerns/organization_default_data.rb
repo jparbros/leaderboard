@@ -44,12 +44,10 @@ module OrganizationDefaultData
   end
 
   def create_input(user)
-     a_day_ago = Time.now - 60 * 60 * 24 * 90
-     date = rand(a_day_ago..Time.now)
      value = rand(1000.0..2000.0).round(2)
      user.inputs.create(
        value: value,
-       date: date,
+       date: Time.now,
        description: "Input of #{user.email} by #{value} at #{date.to_s(:short)}"
      )
   end
