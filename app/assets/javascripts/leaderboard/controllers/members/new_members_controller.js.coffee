@@ -1,4 +1,4 @@
-LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User, Departament, $filter, $timeout) ->
+LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User, Departament, $filter, $timeout, $window) ->
   $scope.partialUrl = "leaderboard/templates/members/new.html";
   $scope.usersActive = true;
   $scope.erroOnCreate = false
@@ -25,6 +25,7 @@ LeaderboardApp.controller 'newMemberCtrl', ($scope, $rootScope, $location, User,
       $scope.erroOnCreate = true
       error_key = Object.keys(respond.data)[0];
       $scope.msgError = respond.data[error_key][0]
+      $('.main').scrollTop(-300);
       $timeout( ->
         $scope.erroOnCreate = false
       , 5000)

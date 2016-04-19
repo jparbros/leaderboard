@@ -148,9 +148,18 @@
   }
 
   .leader-chart span {
-    margin: 62px 0;
-    display: inline-block;
+    margin: 22px 0 5px 0;
     font-size: 18px;
+    display: block;
+    text-align: center;
+  }
+
+  .leader-details > span {
+    color: $black-text;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 0 5px 0;
   }
 
   .chart-container {
