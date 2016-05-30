@@ -1,4 +1,4 @@
-Stripe.api_key = "sk_test_mZww9eF34Na4z1kZz2E6Y9Of"
+Stripe.api_key = "sk_live_GaINm4tmedPABWYEk3yIXwFP"
 
 StripeEvent.subscribe 'charge.succeeded' do |event|
   params = event.data.object

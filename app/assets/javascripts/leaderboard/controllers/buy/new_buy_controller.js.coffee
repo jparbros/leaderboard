@@ -3,7 +3,7 @@ LeaderboardApp.controller 'newBuyCtrl', ($scope, $http, $routeParams, Subscripti
   $scope.erroOnCreate = false
   $scope.subscription_kind = null
   $scope.stripeHandler = StripeCheckout.configure({
-    key: 'pk_test_mR4Q3PLJ3OAQfHWOigpAeFxO',
+    key: 'pk_live_eGsIyiL0RedgVs3Zzn9CJzsj',
     locale: 'auto',
     currency: 'EUR',
     token: (token) ->
