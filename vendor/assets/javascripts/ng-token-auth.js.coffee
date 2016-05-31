@@ -584,7 +584,9 @@ angular.module('ng-token-auth', ['ipCookie'])
               when 'localStorage'
                 $window.localStorage.removeItem(key)
               else
+                console.log('delete data => ', key)
                 ipCookie.remove(key, {path: '/', domain: 'rankingdesk.com'})
+                ipCookie.remove(key)
 
 
           # persist authentication token, client id, uid
