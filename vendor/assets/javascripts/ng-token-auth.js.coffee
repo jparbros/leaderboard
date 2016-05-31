@@ -510,6 +510,7 @@ angular.module('ng-token-auth', ['ipCookie'])
             # setting this value to null will force the validateToken method
             # to re-validate credentials with api server when validate is called
             @deleteData('auth_headers')
+            @deleteData('_leaderboard_session')
 
 
           # destroy auth token on server, destroy user auth credentials
@@ -583,7 +584,7 @@ angular.module('ng-token-auth', ['ipCookie'])
               when 'localStorage'
                 $window.localStorage.removeItem(key)
               else
-                ipCookie(key, null, {path: '/', domain: 'rankingdesk.com'})
+                ipCookie.remove(key, {path: '/', domain: 'rankingdesk.com'})
 
 
           # persist authentication token, client id, uid

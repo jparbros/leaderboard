@@ -12,7 +12,7 @@ LeaderboardApp.controller 'newUserCtrl', ($scope, $location, Organization, $auth
       registrationForm.owner = true
       registrationForm.active = true
       $auth.submitRegistration(registrationForm).catch((respond)->
-        ipCookie.remove('subdomain')
+        ipCookie.remove('subdomain', { path: '/', domain: 'rankingdesk.com' })
         $scope.erroOnLogin = true
         error_key = Object.keys(respond.data['errors'])[0];
         $scope.msgError = respond.data['errors'][error_key][0]

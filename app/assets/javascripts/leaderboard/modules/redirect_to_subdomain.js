@@ -4,6 +4,7 @@ LeaderboardApp.factory('RedirectTo', ['$location', function ($location) {
   }
 
   signIn = function (subdomain) {
+    console.log('RedirectTo signIn => ', subdomain)
     window.location.href = window.location.protocol + '//' + subdomain + '.' + host() + '/signin'
   }
 
