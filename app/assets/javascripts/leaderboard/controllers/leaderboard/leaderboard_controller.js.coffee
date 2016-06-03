@@ -13,7 +13,7 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
   $scope.options = { responsive: true };
-  dispatcher = new WebSocketRails('rankingdesk.com:3001/websocket');
+  dispatcher = new WebSocketRails('rankingdesk.com/websocket');
   $scope.periods = [];
 
   # if window.screen.width <= 768
