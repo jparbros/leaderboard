@@ -28,7 +28,8 @@ WebsocketRails.setup do |config|
   # Uncomment and edit to point to a different redis instance.
   # Will not be used unless standalone or synchronization mode
   # is enabled.
-  config.redis_options = {host: Redis.current.client.host, port: Redis.current.client.port}
+  config.redis_options = {driver: :ruby, host: Redis.current.client.host, port: Redis.current.client.port}
+
 
   # By default, all subscribers in to a channel will be removed
   # when that channel is made private. If you don't wish active
