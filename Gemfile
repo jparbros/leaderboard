@@ -43,3 +43,4 @@ gem 'uglifier', '>= 1.3.0'
 gem 'websocket-rails'
 gem 'will_paginate'
 gem 'dalli'
+gem 'puma', group: :production

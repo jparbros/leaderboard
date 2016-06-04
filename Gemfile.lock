@@ -350,6 +350,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    puma (2.15.3)
     rack (1.6.4)
     rack-cors (0.4.0)
     rack-protection (1.5.3)
@@ -512,6 +513,7 @@ DEPENDENCIES
   paperclip
   pg
   pry
+  puma
   rack-cors
   rails (= 4.2.4)
   rails-observers
