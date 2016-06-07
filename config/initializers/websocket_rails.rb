@@ -29,7 +29,7 @@ WebsocketRails.setup do |config|
   # Will not be used unless standalone or synchronization mode
   # is enabled.
   config.redis_options = {driver: :ruby, host: Redis.current.client.host, port: Redis.current.client.port}
-  config.thin_options = {host: 127.0.0.1}
+  config.thin_options = {host: '127.0.0.1'}
 
 
   # By default, all subscribers in to a channel will be removed
