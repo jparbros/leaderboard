@@ -6,20 +6,22 @@
   Your board login was successfully updated.
 </div>
 
-<form class="col-md-6 col-md-offset-2 with-margin" ng-submit="submitBoardLogin()">
+<form class="col-md-6 col-md-offset-2 with-margin" ng-submit="submitBoardLogin()" name="boardLoginForm">
   <div class="form-group">
     <label >Username</label>
     <input type="text" ng-model="guestUser.uid" class="form-control ng-pristine ng-untouched ng-valid">
   </div>
 
-  <div class="form-group">
+  <div class="form-group" >
     <label >Password</label>
     <input type="password" ng-model="guestUser.password" class="form-control ng-pristine ng-untouched ng-valid" required>
   </div>
 
-  <div class="form-group">
+  <div class="form-group has-feedback" ng-class="{'has-success': boardLoginForm.password_confirmation.$valid, 'has-error': (boardLoginForm.password_confirmation.$touched && boardLoginForm.password_confirmation.$invalid)}">
     <label >Confirm Password</label>
-    <input type="password" ng-model="guestUser.password_confirmation" class="form-control ng-pristine ng-untouched ng-valid" required>
+    <input type="password" ng-model="guestUser.password_confirmation" class="form-control ng-pristine ng-untouched ng-valid" required compare-to="guestUser.password" name="password_confirmation">
+    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
   </div>
 
   <div class="form-group">
