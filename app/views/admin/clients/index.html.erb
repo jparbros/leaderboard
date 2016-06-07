@@ -16,7 +16,13 @@
         <td><%= organization.name %></td>
         <td><%= organization.owner.try(:name) %></td>
         <td><%= organization.owner.try(:email) %></td>
-        <td><%= link_to 'Cancel', admin_client_path(organization), class: 'btn btn-danger', method: :delete, 'data-confirm' => 'Are you sure?' %></td>
+        <td>
+          <% if organization.subscribed %>
+            <%= link_to 'Cancel', admin_client_path(organization), class: 'btn btn-danger', method: :delete, 'data-confirm' => 'Are you sure?' %>
+          <% else %>
+            Unsubscribed
+          <% end %>
+        </td>
       </tr>
       <%= render partial: 'modal', locals: {organization: organization} %>
     <% end %>

@@ -7,8 +7,12 @@ class Admin::ClientsController < Admin::BaseController
 
   def destroy
     organization = Organization.find params[:id]
-    customer = Stripe::Customer.retrieve(organization.subscription.subscription_id)
-    customer.subscriptions.retrieve(customer.subscriptions.first.id).delete
+    organization.transaction do
+      organization.update_attribute :subscribed, false
+      organization.subscription.update_attribute :active_until, 1.day.ago
+      customer = Stripe::Customer.retrieve(organization.subscription.subscription_id)
+      customer.subscriptions.retrieve(customer.subscriptions.first.id).delete
+    end
     redirect_to :index
   end
 
@@ -17,7 +21,7 @@ class Admin::ClientsController < Admin::BaseController
     if organization.subscription.update_attributes(subscription_params)
       flash[:message] = 'Organization updated successfully'
     else
-      flash[:message] = 'There was an erro updating organization'
+      flash[:message] = 'There was an error updating organization'
     end
     redirect_to admin_clients_url
   end

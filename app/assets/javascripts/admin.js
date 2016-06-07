@@ -18,8 +18,8 @@
 //= require bootstrap-datepicker
 
 $('tr').on('click', function(event) {
-  event.stopPropagation();
   if(event.target.nodeName == 'TD') {
+    event.stopPropagation();
     popupId = $(this).data('popup');
     $(popupId).modal('show');
   }
