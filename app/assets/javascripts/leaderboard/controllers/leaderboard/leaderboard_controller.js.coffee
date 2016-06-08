@@ -40,15 +40,13 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
     _showTotal
 
   setWebsocket = ->
-    console.log('SET WEBSOCKET')
-    console.log('CHANNEL =>', $scope.channel)
     if $scope.channel == null
       $scope.channel = dispatcher.subscribe('organization-' + $scope.organization.id);
-      console.log('CHANNEL =>', $scope.channel)
       $scope.channel.bind('input_created', (data) ->
-        console.log('DATA => ', data)
         $scope.newInput = data
         $scope.showNewInput = true
+        console.log('showNewInput', $scope.showNewInput);
+        console.log('newInput', $scope.newInput);
         $timeout(->
           $scope.newInput = {}
           $scope.showNewInput = false
