@@ -1,3 +1,12 @@
+<div class="new-input-container" ng-show="showNewInput">
+  <div class="new-input-background"></div>
+  <div class="new-input">
+    <img src="{{newInput.picture}}">
+    <div class="new-input-name">{{newInput.name}}</div>
+    <div class="new-input-value">Just made a sale!</div>
+  </div>
+</div>
+
 <nav class="navbar navbar-fixed-top navbar-layout">
   <div class="container">
 
@@ -32,18 +41,6 @@
     </a>
   </div>
 </nav>
-
-<div>{{showNewInput}}</div>
-<div>{{newInput}}</div>
-
-<div class="new-input-container" ng-show="showNewInput">
-  <div class="new-input-background"></div>
-  <div class="new-input">
-    <img src="{{newInput.picture}}">
-    <div class="new-input-name">{{newInput.name}}</div>
-    <div class="new-input-value">Just made a sale!</div>
-  </div>
-</div>
 
 <div class="container leaderboard-container">
   <div class="row main-row">
