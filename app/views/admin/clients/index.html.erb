@@ -17,10 +17,8 @@
         <td><%= organization.owner.try(:name) %></td>
         <td><%= organization.owner.try(:email) %></td>
         <td>
-          <% if organization.subscribed %>
+          <% if organization.subscription.active %>
             <%= link_to 'Cancel', admin_client_path(organization), class: 'btn btn-danger', method: :delete, 'data-confirm' => 'Are you sure?' %>
-          <% else %>
-            Unsubscribed
           <% end %>
         </td>
       </tr>

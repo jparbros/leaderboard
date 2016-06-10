@@ -1,0 +1,17 @@
+form#board-login {
+  .tooltip-registration {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+
+    &.tooltip-password {
+      right: -205px;
+      top: 22px;
+    }
+
+    &.tooltip-password-confirmation {
+      right: -200px;
+      top: 30px;
+    }
+  }
+}
