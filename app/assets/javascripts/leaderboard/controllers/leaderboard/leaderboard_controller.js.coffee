@@ -13,13 +13,8 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   $scope.labels = ['Target', 'Difference'];
   $scope.data = [];
   $scope.options = { responsive: true };
-  dispatcher = new WebSocketRails('rankingdesk.com/websocket');
+  $scope.dispatcher = new WebSocketRails('rankingdesk.com/websocket');
   $scope.periods = [];
-
-  # if window.screen.width <= 768
-  #   $scope.options = {width: '100px'}
-
-
 
   Departament.query({organization_id: $scope.organization.id}, (teams)->
     $scope.teams = angular.forEach(teams, (team) ->
@@ -39,14 +34,14 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
     )
     _showTotal
 
-  setWebsocket = ->
+  $scope.setWebsocket = ->
     if $scope.channel == null
-      $scope.channel = dispatcher.subscribe('organization-' + $scope.organization.id);
+      $scope.channel = $scope.dispatcher.subscribe('organization-' + $scope.organization.id);
       $scope.channel.bind('input_created', (data) ->
         $scope.newInput = data
         $scope.showNewInput = true
-        console.log('showNewInput', $scope.showNewInput);
-        console.log('newInput', $scope.newInput);
+        $scope.getInputs();
+
         $timeout(->
           $scope.newInput = {}
           $scope.showNewInput = false
@@ -120,4 +115,4 @@ LeaderboardApp.controller 'leaderboardCtrl', ($scope, $rootScope, User, Departam
   # $scope.$watch('selectedTeam', $scope.getInputs)
   # $scope.$watch('selectedPeriod', $scope.getInputs)
   $scope.$watch('organization', $scope.rollingLeaderboard)
-  $scope.$watch('organization', setWebsocket)
+  $scope.$watch('organization', $scope.setWebsocket)
