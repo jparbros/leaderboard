@@ -15,7 +15,7 @@ class Admin::ClientsController < Admin::BaseController
         customer.subscriptions.retrieve(customer.subscriptions.first.id).delete
       end
     end
-    redirect_to :index
+    redirect_to admin_clients_url
   end
 
   def update
