@@ -10,8 +10,10 @@ class Admin::ClientsController < Admin::BaseController
     organization.transaction do
       organization.update_attribute :subscribed, false
       organization.subscription.update_attribute :active_until, 1.day.ago
-      customer = Stripe::Customer.retrieve(organization.subscription.subscription_id)
-      customer.subscriptions.retrieve(customer.subscriptions.first.id).delete
+      if organization.subscription.subscription_id
+        customer = Stripe::Customer.retrieve(organization.subscription.subscription_id)
+        customer.subscriptions.retrieve(customer.subscriptions.first.id).delete
+      end
     end
     redirect_to :index
   end

@@ -9,7 +9,7 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
     $scope.guestUser = data
   )
 
-  $scope.submitBoardLogin = ->
+  $scope.submitBoardLogin = (boardLoginForm) ->
     $scope.erroOnUpdate = false
     $scope.erroMessage = ''
 
@@ -25,6 +25,10 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
       if $scope.guestUser.id
         $scope.guestUser.$update({organization_id: $scope.organization.id}, (data) ->
           $scope.updateSuccessfully= true
+          boardLoginForm.$setPristine();
+          boardLoginForm.$setValidity();
+          boardLoginForm.$setUntouched();
+
           $timeout( ->
             $scope.updateSuccessfully= false;
           , 6000)
@@ -43,6 +47,10 @@ LeaderboardApp.controller 'loginBoardCtrl', ($scope, GuestUser, $timeout) ->
       else
         $scope.guestUser.$save({organization_id: $scope.organization.id}, (data) ->
           $scope.updateSuccessfully= true
+          boardLoginForm.$setPristine();
+          boardLoginForm.$setValidity();
+          boardLoginForm.$setUntouched();
+
           $timeout( ->
             $scope.updateSuccessfully= false;
           , 6000)
