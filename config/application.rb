@@ -35,7 +35,7 @@ module Leaderboard
 
     config.paperclip_defaults = {
       storage: :filesystem,
-      url: "/system/:class/:attachment/:id/:style/:filename",
+      url: "/:class/:attachment/:id/:style/:filename",
       path: ":rails_root/public/:attachment/:id/:style/:basename.:extension"
     }
 
