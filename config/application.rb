@@ -36,7 +36,7 @@ module Leaderboard
     config.paperclip_defaults = {
       storage: :filesystem,
       url: "/:class/:attachment/:id/:style/:filename",
-      path: ":rails_root/public/:attachment/:id/:style/:basename.:extension"
+      path: ":rails_root/public:url"
     }
 
     config.middleware.delete Rack::Lock
