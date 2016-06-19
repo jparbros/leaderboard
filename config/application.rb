@@ -34,13 +34,9 @@ module Leaderboard
     config.autoload_paths << Rails.root.join('lib')
 
     config.paperclip_defaults = {
-      storage: :fog,
-      fog_credentials: {
-        provider: "Local",
-        local_root: "#{Rails.root}/public"
-      },
-      fog_directory: "",
-      fog_host: "localhost"
+      storage: :filesystem,
+      url: "/system/:class/:attachment/:id/:style/:filename",
+      path: ":rails_root/public/:attachment/:id/:style/:basename.:extension"
     }
 
     config.middleware.delete Rack::Lock
