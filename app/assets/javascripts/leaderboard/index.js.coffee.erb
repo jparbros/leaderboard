@@ -240,7 +240,7 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
     if $rootScope.user.role then 0 else 800
 
   redirectToSubdomain = ->
-    if !subdomain and ipCookie('subdomain')
+    if (!subdomain and ipCookie('subdomain')) or (ipCookie('subdomain') != undefined and ipCookie('subdomain') != subdomain)
       $rootScope.redirectToSubdomain = true
       RedirectTo.subdomain(ipCookie('subdomain'))
 
