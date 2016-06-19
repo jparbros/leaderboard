@@ -40,7 +40,7 @@
 
   <nav class="navbar navbar-fixed-top navbar-app">
     <div class="container">
-      <div class="nav navbar-nav navbar-left buy-now-container hidden-xs" ng-hide="organization.subscribed">
+      <div class="nav navbar-nav navbar-left buy-now-container hidden-xs" ng-hide="organization.active">
         <a href="/buy/new" class="btn btn-success" ng-show="user.role == 'admin'" >Buy Now!</a>
         <span ng-show="user.role == 'admin'">{{organization.days_left}} Days left of your free trial</span>
       </div>
@@ -56,7 +56,7 @@
     <div class="row main-row">
       <div class="col-md-3 sidebar">
         <ul class="nav nav-pills nav-stacked">
-          <li class="visible-xs-block text-center" ng-hide="organization.subscribed">
+          <li class="visible-xs-block text-center" ng-hide="organization.active">
             <a href="/buy/new" class="btn btn-success" ng-show="user.role == 'admin'" >Buy Now!</a>
             <span ng-show="user.role == 'admin'">
               <b>{{organization.days_left}} Days left of your free trial</b>

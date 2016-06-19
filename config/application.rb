@@ -34,15 +34,15 @@ module Leaderboard
     config.autoload_paths << Rails.root.join('lib')
 
     config.paperclip_defaults = {
-      :storage => :fog,
+      storage: :fog,
       fog_credentials: {
-        provider: 'Google',
-        google_storage_access_key_id: ENV['GOOGLE_ACCESS_KEY'],
-        google_storage_secret_access_key: ENV['GOOGLE_SECRET_KEY']
+        provider: "Local",
+        local_root: "#{Rails.root}/public"
       },
-      fog_directory: ENV['GOOGLE_DIRECTORY'],
-      fog_public: true
+      fog_directory: "",
+      fog_host: "localhost"
     }
-    config.middleware.delete Rack::Lock if Rails.env.development?
+
+    config.middleware.delete Rack::Lock
   end
 end

@@ -150,9 +150,11 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
 ).run( ($rootScope, $location, Organization, $modal, Authorization, $timeout, ipCookie, RedirectTo, subdomain, $interval, $auth, $q) ->
 
   $rootScope.showLoading = true
-  $rootScope.organization = {}
+  $rootScope.organization = null
   $rootScope.redirectToSubdomain = false
   $rootScope.cookiesMessageViewed = ipCookie('cookiesMessageViewed') || false
+
+  $rootScope.$watch('$auth.user', $rootScope.loadOrganization)
 
   $rootScope.$on '$routeChangeStart', (event, next) ->
     $rootScope.showLoading = true;
@@ -160,13 +162,9 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
 
     if $rootScope.leaderboardInterval
       $interval.cancel($rootScope.leaderboardInterval)
-    unless $rootScope.organization
-      $rootScope.organization = {id: $root}
-
-    loadOrganization()
 
     redirectToSubdomain()
-
+    manageOrganizationAccess(next, event)
     manageAccess(next)
 
   $rootScope.$on '$routeChangeError', (ev) ->
@@ -191,6 +189,9 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
   $rootScope.$on 'auth:logout-success', (ev) ->
     $location.path('/signin')
 
+  $rootScope.$on 'organization-loaded', (ev) ->
+    manageOrganizationAccess()
+
   $rootScope.openBuyModal = ->
     modalInstance = $modal.open
       templateUrl: 'leaderboard/templates/buy/modal.html',
@@ -205,13 +206,18 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
       $location.path('/leaderboard')
 
   loadOrganization = ->
-    $rootScope.organization.id = $rootScope.user.organization_id
+    $rootScope.organization = $rootScope.user.organization
+    $rootScope.$emit('organization-loaded')
 
-    Organization.get({id: $rootScope.user.organization_id }, (organization) ->
-      $rootScope.organization = organization
-      if !$rootScope.organization.active
+  manageOrganizationAccess = (next, event) ->
+    if $rootScope.organization && !$rootScope.organization.active
+      if next
+        if $location.$$path == '/buy/new' && next.$$route.originalPath != '/buy/new'
+          event.preventDefault()
+        else
+          $location.path('/buy/new')
+      else
         $location.path('/buy/new')
-    )
 
   manageAccess = (next) ->
     if !$rootScope.redirectToSubdomain

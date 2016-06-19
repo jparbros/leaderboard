@@ -2,6 +2,7 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :email, :username, :name, :active, :target, :departament_id, :picture, :picture_thumb, :organization_id, :uid, :role, :newsletter, :alias
 
   has_one :departament, root: :team
+  has_one :organization
 
   def picture
     object.avatar.url(:medium)
