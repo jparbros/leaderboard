@@ -8,8 +8,7 @@ class Admin::ClientsController < Admin::BaseController
   def destroy
     organization = Organization.find params[:id]
     organization.transaction do
-      organization.update_attribute :subscribed, false
-      organization.subscription.update_attribute :active_until, 1.day.ago
+      organization.update_attribute :canceled_at, Time.now
       if organization.subscription.subscription_id
         customer = Stripe::Customer.retrieve(organization.subscription.subscription_id)
         customer.subscriptions.retrieve(customer.subscriptions.first.id).delete
@@ -41,14 +40,14 @@ class Admin::ClientsController < Admin::BaseController
       }
       @user.save!
 
-      sign_in(:user, @user, store: false, bypass: false)
+      sign_in(:user, @user)
 
       redirect_to input_url(
-        subdomain:      @user.organization.subdomain,
-        token:          @token,
-        client_id:      @client_id,
-        uid:            @user.uid
-      )
+          subdomain:      @user.organization.subdomain,
+          token:          @token,
+          client_id:      @client_id,
+          uid:            @user.uid
+        )
     else
       redirect_to admin_clients_url
     end

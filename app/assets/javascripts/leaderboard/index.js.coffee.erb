@@ -140,6 +140,12 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
         access:
           requiredPermissions: ['admin']
       }
+      .when '/canceled', {
+        templateUrl: 'leaderboard/templates/canceled.html',
+        resolve:
+          auth: ($auth) ->
+            $auth.validateUser()
+      }
       .otherwise {redirectTo: '/'}
 
     $locationProvider.html5Mode(true)
@@ -218,6 +224,10 @@ window.LeaderboardApp ||= angular.module('LeaderboardApp', [
           $location.path('/buy/new')
       else
         $location.path('/buy/new')
+
+    if $rootScope.organization && $rootScope.organization.canceled_at
+      console.log('CANCELED')
+      $location.path('/canceled')
 
   manageAccess = (next) ->
     if !$rootScope.redirectToSubdomain

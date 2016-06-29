@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106134208) do
+ActiveRecord::Schema.define(version: 20160629122240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(version: 20160106134208) do
     t.string   "vat"
     t.string   "company_name"
     t.string   "billing_email"
+    t.datetime "canceled_at"
   end
 
   create_table "subscriptions", force: :cascade do |t|

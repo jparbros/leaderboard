@@ -1,0 +1,77 @@
+<div class="loading-view" ng-show="showLoading">
+  <%= image_tag 'logo_color.png'%>
+</div>
+
+<div ng-hide="showLoading" class="ng-content">
+  <nav class="navbar navbar-fixed-top navbar-layout">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <button type="button" class="toggle-menu-button btn btn-menu visible-xs-inline-block visible-sm-inline-block" toggle-mobile-menu>
+        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+      </button>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" href=""><%= image_tag 'logo_color.png'%></a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <img ng-src="{{user.picture_thumb}}">
+              {{user.username}} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#" ng-click='signOut()'>Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <a href="#" class="mobile-profile-link" toggle-profile-menu>
+        <img ng-src="{{user.picture_thumb}}" class="profile-pic">
+      </a>
+
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-fixed-top navbar-app">
+    <div class="container">
+      <div class="nav navbar-nav navbar-left buy-now-container hidden-xs" ng-hide="organization.active">
+        <a href="/buy/new" class="btn btn-success" ng-show="user.role == 'admin'" >Buy Now!</a>
+        <span ng-show="user.role == 'admin'">{{organization.days_left}} Days left of your free trial</span>
+      </div>
+
+      <div class="nav navbar-nav navbar-right">
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container main-container">
+    <div class="row main-row">
+      <div class="col-md-12 main">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <br /><br /><br />
+            <div class="panel panel-danger">
+              <div class="panel-heading">Account canceled</div>
+              <div class="panel-body">
+                Your account have been canceled. Please contact to support to get more information about your account.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 profile-menu hidden-md hidden-lg">
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-hide="user.role == 'boardlogin'"><a href="/profile">Profile</a></li>
+          <li ng-show="user.role == 'admin'"><a href="/billing">Billing</a></li>
+          <li class="divider"></li>
+          <li><a href="#" ng-click='signOut()'>Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
