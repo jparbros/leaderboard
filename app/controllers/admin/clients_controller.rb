@@ -42,7 +42,7 @@ class Admin::ClientsController < Admin::BaseController
 
       sign_in(:user, @user)
 
-      cookies['subdomain'] = @user.organization.subdomain
+      cookies['subdomain'] ={ value: @user.organization.subdomain, domain: 'rankingdesk.com'}
 
       redirect_to input_url(
           subdomain:      @user.organization.subdomain,
