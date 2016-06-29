@@ -42,6 +42,8 @@ class Admin::ClientsController < Admin::BaseController
 
       sign_in(:user, @user)
 
+      cookies['subdomain'] = @user.organization.subdomain
+
       redirect_to input_url(
           subdomain:      @user.organization.subdomain,
           token:          @token,
